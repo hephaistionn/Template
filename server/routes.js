@@ -4,6 +4,7 @@ const path = require('path');
 const index = path.resolve(__dirname, './templates/index.ejs');
 
 router.use('/assets', express.static('client/assets'));
+router.use('/', express.static('client/.dist'));
 router.get('/reset/', indexRender);
 router.get('/profile', indexRender);
 router.get('/signup', indexRender);

@@ -24,17 +24,15 @@ gulp.task('build-i18n-en', () => {
 });
 
 gulp.task('build-js-fr', () => {
-    return browserify({ entries: './client/src/view.jsx', extensions: ['.jsx'], debug: false })
-        .transform('babelify', { presets: ['es2015', 'react'] })
+    return browserify({ entries: './client/src/app.js', debug: false })
+        .transform('babelify', { presets: ['es2015'] })
         .bundle()
         .pipe(source('bundle_fr.js'))
-        //.pipe(buffer())
-        ///.pipe(uglify())
         .pipe(gulp.dest('client/.dist'));
 });
 
 gulp.task('build-js-en', () => {
-    return browserify({ entries: './client/src/view.jsx', extensions: ['.jsx'], debug: false })
+    return browserify({ entries: './client/src/app.jsx', extensions: ['.jsx'], debug: false })
         .transform('babelify', { presets: ['es2015', 'react'] })
         .bundle()
         .pipe(source('bundle_en.js'))
@@ -44,8 +42,9 @@ gulp.task('build-js-en', () => {
 });
 
 gulp.task('build-css', () => {
-    return gulp.src('./client/src/style.scss')
+    return gulp.src('./client/src/app.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(rename('style.css'))
         .pipe(gulp.dest('client/.dist'));
 });
 
@@ -63,9 +62,11 @@ gulp.task('startServer', () => {
 
 gulp.task('watch', ['build'], () => {
     gulp.watch(['server/**/*'], ['startServer']);
+    gulp.watch(['client/**/*.js'], ['build-js-fr']);
+    gulp.watch(['client/**/*.scss'], ['build-css']);
 });
 
 gulp.task('default', ['watch', 'startServer']);
 gulp.task('build', function(){
-    return runSeq('build-css');
+    return runSeq('build-css', 'build-js-fr');
 });
