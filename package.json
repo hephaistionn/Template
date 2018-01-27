@@ -1,0 +1,59 @@
+{
+  "name": "wiproom",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "lint": "eslint ."
+  },
+  "pre-commit": [], 
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bcrypt-promise": "^2.0.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.18.2",
+    "browserify": "^14.4.0",
+    "cloudinary": "^1.9.0",
+    "compression": "^1.0.3",
+    "connect-mongo": "^2.0.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "express-yields": "^1.1.2",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "mongoose": "^5.0.1",
+    "node-mailjet": "^3.2.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "react": "^15.1.0",
+    "react-color": "^2.13.8",
+    "react-date-range": "^0.9.4",
+    "react-dom": "^15.1.0",
+    "react-dropzone": "^3.13.3",
+    "react-markdown": "^2.5.0",
+    "react-router-dom": "^4.1.1",
+    "reflux": "^6.4.1",
+    "sendmail": "^1.1.1",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-loopback": "^8.0.0",
+    "eslint-plugin-react": "^5.0.0",
+    "nsp": "^2.1.0"
+  },
+  "repository": {
+    "type": "gitlab",
+    "url": "https://gitlab.com/hephaistionn/wiproom.git"
+  },
+  "license": "MIT",
+  "description": "project template"
+}
