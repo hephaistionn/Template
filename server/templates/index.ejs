@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%- include ./seo/fr.ejs %>
     <base href="/">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bundle.css">
     <link rel="icon" type="image/png" href="assets/fav.ico" />
 </head>
 
 <body>
   <div id="app"></div>
-  <script src=<%='bundle_' + lang + '.js' %> ></script>
+  <script src=<%='assets/i18n' + lang + '.js' %> ></script>
+  <script src=<%='bundle.js' %> ></script>
 </body>
 
 </html>
