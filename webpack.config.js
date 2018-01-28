@@ -11,11 +11,6 @@ const config = {
     path: path.resolve(__dirname, './client/.dist'),
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: path.join(__dirname, "./client/.dist"),
-    compress: true,
-    port: 9000
-  },
   module: {
     rules: [
       {
@@ -33,7 +28,7 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015']
+            presets: ['es2015', 'react']
           }
         }
       },
@@ -72,13 +67,6 @@ const config = {
         }]
       }
     ]
-  },
-
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
   },
   plugins: [
     new ExtractTextPlugin({

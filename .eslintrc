@@ -2,13 +2,19 @@
   "globals": {
     "_": true
   },
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "env": {
     "node": true,
     "browser": true,
     "es6": true
   },
   "plugins": [
-
+    "babel",
+    "react"
   ],
   "rules": {
     "comma-dangle": 0,
@@ -31,7 +37,10 @@
     "vars-on-top": 0,
     "guard-for-in": 0,
     "eqeqeq": 0,
-    "new-cap": 0
+    "new-cap": 0,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
   },
   "parserOptions": {
     "sourceType": "module"
