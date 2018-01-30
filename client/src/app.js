@@ -1,12 +1,18 @@
 import {render} from 'react-dom';
+import './app.scss';
 import Reflux from 'reflux';
 import React from 'react';
+import 'whatwg-fetch';
 import {BrowserRouter, Route, Link, Redirect} from 'react-router-dom'
- 
-import Home from './components/home';
-import Header from './components/header';
-import Login from './components/login';
-import Signup from './components/signup';
+import ViewHeader from './components/viewHeader';
+import ViewArticle from './components/viewArticle';
+import ViewArticles from './components/viewArticles';
+import ViewHome from './components/viewHome';
+import ViewMessages from './components/viewMessages';
+import ViewProfile from './components/viewProfile';
+import ViewSignin from './components/viewSignin';
+import ViewSignup from './components/viewSignup';
+
 
 class App extends Reflux.Component {
 
@@ -18,10 +24,14 @@ class App extends Reflux.Component {
         return (
             <BrowserRouter>
                 <div className={'container'}>
-                    <Header />
-                    <Route exact path='/' component={Home}/>
-                    <Route exact path='/login' component={Login}/>
-                    <Route path='/signup' component={Signup}/>
+                    <ViewHeader />
+                    <Route exact path='/' component={ViewHome}/>
+                    <Route exact path='/signin' component={ViewSignin}/>
+                    <Route exact path='/signup' component={ViewSignup}/>
+                    <Route exact path='/messages/:memberId1/:memberId2' component={ViewMessages}/>
+                    <Route exact path='/articles/' component={ViewArticles}/>
+                    <Route exact path='/articles/:articleId' component={ViewArticle}/>
+                    <Route exact path='/profile/:memberId' component={ViewProfile}/>
                 </div>
             </BrowserRouter>
         );

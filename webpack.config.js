@@ -7,7 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const I18nPlugin = require('i18n-webpack-plugin');
 
-const sassEntry = './client/src/app.scss';
 const jsEntry = './client/src/app.js';
 const langEntry = '/client/assets/';
 const output = './client/.dist';
@@ -24,7 +23,7 @@ files.forEach(modelName => {
 
 const configs = Object.keys(languages).map(function (language) {
   const config = {
-    entry: [jsEntry, sassEntry],
+    entry: [jsEntry],
     output: {
       path: path.resolve(__dirname, output),
       filename: language + `.${bundleName}.js`
@@ -51,7 +50,7 @@ const configs = Object.keys(languages).map(function (language) {
           }
         },
         {
-          test: /\.scs$/,
+          test: /\.css$/,
           use: ExtractTextPlugin.extract(['style-loader', 'css-loader'])
         },
         {

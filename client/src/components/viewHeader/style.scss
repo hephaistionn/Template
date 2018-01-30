@@ -1,0 +1,18 @@
+@import './../variables';
+
+.view-header {
+    @include view();
+    justify-content: space-between;
+
+    &__left{
+        align-self: flex-start;
+    }
+
+    &__right {
+        align-self: flex-end;
+    }
+ 
+    a {
+        margin: 10px;
+    }
+}

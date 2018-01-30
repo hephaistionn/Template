@@ -1,0 +1,10 @@
+ 
+@mixin view() { 
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    border: solid 1px;
+    padding: 30px;
+    margin: 5px;
+}

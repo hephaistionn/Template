@@ -4,6 +4,16 @@ h1 {
    color: green; 
    transform: translateX(3px);
 }
+
 body {
-    background: url('../assets/avatar3.png');
+    font-size: 1rem;
+}
+
+.pannel {
+    border: solid 1px;
+    padding: 40px 80px;
+    margin: 0 auto;
+    .label { 
+        margin: 10px 0 10px 0;
+    }
 }

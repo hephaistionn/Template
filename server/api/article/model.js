@@ -11,7 +11,7 @@ const ArticleSchema = new Schema({
 const Article = mongoose.model('Article', ArticleSchema);
 
 Article.ACL = {
-    READ: '$authenticated',
+    READ: '$everyone',
     UPDATE:  '$owner',
     CREATE: '$authenticated',
     DELETE: '$owner'

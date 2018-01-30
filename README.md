@@ -34,7 +34,6 @@ $ npm run dev
   
 
 ```js
-const sassEntry = './client/src/app.scss';
 const jsEntry = './client/src/app.js';
 const langEntry = '/client/assets/';
 const output = './client/.dist';
