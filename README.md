@@ -11,8 +11,8 @@ $ node .
 .
 ## Client
 
-#### Used technologies
-The client works with the following technos
+### Used technologies
+The client works with the following technos : 
 
 | About | Tech |
 | ------ | ------ |
@@ -20,31 +20,32 @@ The client works with the following technos
 | Style | Sass |
 | Bundler | Webpack |
 
-#### Building commands
+### Building commands
 Build the prod bundles
 ```sh
 $ npm run build
 ```
-Watch the client files and restart bundling after each modify.
+Build the dev bundles
 ```sh
 $ npm run dev
 ```
 
-#### Webpack configuration  
+### Webpack configuration  
   
-| params | value |
-| ------ | ------ |
-| sass entry | ./client/src/app.scss |
-| javascript entry | ./client/src/app.js |
-| distribution directory | ./client/.dist |
-| javascript bundle | [lang].bundle.js |
-| css bundle | bundle.css |
+
+```js
+const sassEntry = './client/src/app.scss';
+const jsEntry = './client/src/app.js';
+const langEntry = '/client/assets/';
+const output = './client/.dist';
+const bundleName = 'bundle'
+```
 
 
-#### Multi language
+### Multi language
 
-The project use **i18n-webpack-plugin**  
-The strings included in the tr() functions are automatically translated into bundles
+The project use **i18n-webpack-plugin** to create one bunles by languages.
+The strings included in the tr() functions are automatically translated into bundles.  
 The translation keys are here : 
 
 ```sh
@@ -64,26 +65,26 @@ The server works with the following technos
 | BDD | Mongo |
 | Templating | EJS |
 
-#### Start server
+### Start server
 
 Simple server start
 ```sh
 $ node .
 ```
-Watch the server files and enable auto refresh.
+Start with auto-refresh
 ```sh
 $ npm install nodemon -g // first time
 $ nodemon .
 ```
-Starting the server in production
+Start in production
 ```sh
 $ npm install forever -g // first time
 $ forever start . .
 ```
 
-#### Server configuration
+### Server configuration
 
-The server is configured via conf.js
+The server is configured in conf.js
 ```sh
 ./server/conf.js
 ```
@@ -97,13 +98,13 @@ EMAIL_SECRET: process.env.EMAIL_SECRET,
 CLOUD_KEY: process.env.CLOUD_KEY,
 CLOUD_SECRET: process.env.CLOUD_SECRET
 ```
-#### Server api
-The server API is configured via this directory
+### API
+The server API is configured via this directory.
 ```sh
 ./server/api/
 ```
     
-One directory for each model
+One directory for each model.
 In each directory : 
  - routes directory to declare enabled routes
  - model.js to declare a mongo document model
@@ -123,26 +124,14 @@ Limites :
   - $owner
 
 
-#### Services
+### Languages
 
-The usable services are placed in the service directory
-```sh
-./server/services
-```
-| Service | Lib |
-| ------ | ------ |
-| Mail | mailjet|
-| BDD | Mongo |
-| cloud | cloudinary |
-
-
-#### Languages
-
-The language is determined according to the domain extension
+The language is determined according to the domain extension.
 
 * **fr** use  **fr.bundle.js**
 * **com** use  **en.bundle.js**
 * **none** use **fr.bundle.js**
+
 
 ## Add a new language
 

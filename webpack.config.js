@@ -5,10 +5,17 @@ const webpack = require('webpack')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const I18nPlugin = require("i18n-webpack-plugin");
+const I18nPlugin = require('i18n-webpack-plugin');
+
+const sassEntry = './client/src/app.scss';
+const jsEntry = './client/src/app.js';
+const langEntry = '/client/assets/';
+const output = './client/.dist';
+const bundleName = 'bundle'
+
 
 // loading languages
-const files = fs.readdirSync(path.resolve(__dirname + '/client/assets/'))
+const files = fs.readdirSync(path.resolve(__dirname + langEntry))
 .filter(filename => filename.indexOf('.json')!==-1);
 const languages = {}
 files.forEach(modelName => {
@@ -17,10 +24,10 @@ files.forEach(modelName => {
 
 const configs = Object.keys(languages).map(function (language) {
   const config = {
-    entry: ['./client/src/app.js', './client/src/app.scss'],
+    entry: [jsEntry, sassEntry],
     output: {
-      path: path.resolve(__dirname, './client/.dist'),
-      filename: language + '.bundle.js'
+      path: path.resolve(__dirname, output),
+      filename: language + `.${bundleName}.js`
     },
     module: {
       rules: [
@@ -28,7 +35,7 @@ const configs = Object.keys(languages).map(function (language) {
           enforce: 'pre',
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "eslint-loader",
+          loader: 'eslint-loader',
           options: {
             // eslint options (if necessary)
           }
@@ -50,14 +57,14 @@ const configs = Object.keys(languages).map(function (language) {
         {
           test: /\.scss$/,
           use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
+            fallback: 'style-loader',
             use: [
               'css-loader',
               {
                 loader: 'postcss-loader',
                 options: {
                   ident: 'postcss',
-                  plugins: () => [autoprefixer({ "browserslist": ["last 3 versions"] })]
+                  plugins: () => [autoprefixer()]
                 }
               },
               'sass-loader'
@@ -81,7 +88,7 @@ const configs = Object.keys(languages).map(function (language) {
     },
     plugins: [
       new ExtractTextPlugin({
-        filename: 'bundle.css',
+        filename: `${bundleName}.css`,
         allChunks: true,
         // disable: env !== 'production'
       }),
