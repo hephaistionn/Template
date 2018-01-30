@@ -2,6 +2,8 @@ import Reflux from 'reflux';
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom'
 
+console.log(tr("Hello World"))
+
 class Header extends Reflux.Component {
 
     render() {
@@ -14,7 +16,7 @@ class Header extends Reflux.Component {
         return (
             <div className='view_header'>
                 <div className="top-bar-left">
-                    <Link className='title' to={'/'}><h1>Header VIEW !</h1></Link>
+                    <Link className='title' to={'/'}><h1>Header VIEW !  {tr("Hello World")}  </h1></Link>
                 </div>
                 <section className="top-bar-right menu">
                     {nav}

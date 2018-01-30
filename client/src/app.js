@@ -18,7 +18,7 @@ class App extends Reflux.Component {
         return (
             <BrowserRouter>
                 <div className={'container'}>
-                    <Header title=''/>
+                    <Header />
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/login' component={Login}/>
                     <Route path='/signup' component={Signup}/>
