@@ -1,16 +1,16 @@
 import Reflux from 'reflux';
+import request from '../tools/request';
 
-//Action
 export const actionsMember = Reflux.createActions([
-    'register',
-    'login',
+    'signup',
+    'signin',
     'logout',
     'update',
     'loadMember',
     'loadCurrentMember',
     'setPicture'
 ]);
-//Store
+
 export class StoreMember extends Reflux.Store {
 
     constructor() {
@@ -22,36 +22,34 @@ export class StoreMember extends Reflux.Store {
         this.listenables = actionsMember;
     }
 
-    onRegister(email, password, username, cgu) {
-
+    onSignup(email, password, username, cgu) {
         if (email && username && password && cgu) {
-            return request.post('/api/Members/', {
+            return request.post('/api/members/signup', {
                 email: email,
                 password: password,
                 username: username
             }).then((response) => {
-                console.log(response);
-                this.setState({});
+                this.setState({member:response.data});
             });
         }
     }
 
-    onLogin(email, password, redirectPath) {
-        request.post('/api/Members/login', {
+    onSignin(email, password, redirectPath) {
+        request.post('/api/members/login', {
             email: email,
             password: password
         }).then(response => {
-            console.log(response);
-            this.setState({});
-        }).then(() => {
-            actionsMain.redirect(redirectPath);
+            this.setState({
+                member:response.data
+            });
+            location.pathname = redirectPath;
         })
     }
 
     onLogout(redirectPath) {
-        request.post('/api/Members/logout').then(() => {
+        request.get('/api/members/logout').then(() => {
         }).then(() => {
-            actionsMain.redirect(redirectPath);
+            location.pathname = redirectPath;
         })
     }
 

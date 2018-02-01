@@ -9,6 +9,19 @@ body {
     font-size: 1rem;
 }
 
+input {
+    border: solid 1px;
+    padding: 10px 15px;
+    font-size: 2rem;
+    outline: none;
+    line-height: 1.5;
+}
+
+button {
+    font-size: 2rem;
+    padding: 5px 20px;
+}
+
 .pannel {
     border: solid 1px;
     padding: 40px 80px;

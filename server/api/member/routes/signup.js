@@ -2,7 +2,6 @@ const router = require('express').Router();
 const Member = require('../model');
 
 function* signup(req, res) {
-
     if (req.body.email && req.body.username && req.body.password) {
         const intance = new Member({
             email: req.body.email,

@@ -1,3 +1,7 @@
 {
-	"Hello World": "Hello World"
+	"Hello World": "Hello World",
+	"email": "email",
+    "username": "username",
+    "password": "password",
+    "cgu": "cgu"
 }

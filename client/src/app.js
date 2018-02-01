@@ -2,8 +2,7 @@ import {render} from 'react-dom';
 import './app.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import 'whatwg-fetch';
-import {BrowserRouter, Route, Link, Redirect} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import ViewHeader from './components/viewHeader';
 import ViewArticle from './components/viewArticle';
 import ViewArticles from './components/viewArticles';
@@ -13,17 +12,19 @@ import ViewProfile from './components/viewProfile';
 import ViewSignin from './components/viewSignin';
 import ViewSignup from './components/viewSignup';
 
+import { StoreMember } from './stores/member';
 
 class App extends Reflux.Component {
 
     constructor(props) { 
         super(props);
+        this.store = StoreMember;
     }
 
     render() {
         return (
             <BrowserRouter>
-                <div className={'container'}>
+                <div>
                     <ViewHeader />
                     <Route exact path='/' component={ViewHome}/>
                     <Route exact path='/signin' component={ViewSignin}/>

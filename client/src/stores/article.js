@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import request from '../tools/request';
 
 //Action
 export const actionsArticle = Reflux.createActions([
@@ -19,10 +20,9 @@ export class StoreArticle extends Reflux.Store {
     }
 
     getAll() {
-        console.log('getAll');
-        fetch('/api/articles/').then((resp) => resp.json())
+        request.get('/api/articles/')
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
             })
             .catch(function (err) {
                 console.log(err);

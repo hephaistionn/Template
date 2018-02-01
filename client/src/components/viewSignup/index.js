@@ -31,10 +31,17 @@ class ViewSignup extends Reflux.Component {
         this.setState({ cgu: value });
     }
 
+    signup() {
+        const email = this.state.email;
+        const username = this.state.username;
+        const password = this.state.password;
+        const cgu = this.state.cgu;
+        actionsMember.signup(email, password, username, cgu);
+    }
+
     render() {
         return (
             <div className='view-signup'>
-
                 <div className='pannel'>
                     <div className='label'>{tr("email")}</div>
                     <input
@@ -61,6 +68,11 @@ class ViewSignup extends Reflux.Component {
                         type="checkbox"
                         checked={this.state.cgu}
                         onChange={this.updateCgu.bind(this)} />
+                    <button 
+                        type="button" 
+                        onClick={this.signup.bind(this)}>
+                        {tr("signup")}
+                    </button>
                 </div>
             </div>
         );

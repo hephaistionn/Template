@@ -13,6 +13,7 @@
   "pre-commit": [],
   "dependencies": {
     "autoprefixer": "^7.2.5",
+    "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
@@ -47,8 +48,7 @@
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "^0.6.2",
-    "webpack": "^3.10.0",
-    "whatwg-fetch": "^2.0.3"
+    "webpack": "^3.10.0"
   },
   "devDependencies": {},
   "repository": {
@@ -58,6 +58,9 @@
   "license": "MIT",
   "description": "Fullstack project template",
   "nodemonConfig": {
-    "ignore": ["node_modules/*", "client/*"]
+    "ignore": [
+      "node_modules/*",
+      "client/*"
+    ]
   }
 }

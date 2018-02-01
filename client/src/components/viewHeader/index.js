@@ -1,12 +1,19 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom';
+import { actionsMember } from '../../stores/member';
 
 class ViewHeader extends Reflux.Component {
 
+    logout() {
+        const redirect = '/signin'; 
+        actionsMember.logout(redirect);
+    }
+
     render() {
         const nav = [
+            <a key={0} className='' onClick={this.logout}>logout</a>,
             <NavLink key={1} activeClassName="selected" to={'/signin'}>signin</NavLink>,
             <NavLink key={2} activeClassName="selected" to={'/signup'}>signup</NavLink>,
             <NavLink key={3} activeClassName="selected" to={'/messages'}>messages</NavLink>,
