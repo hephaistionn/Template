@@ -1,36 +1,29 @@
 import './style.scss';
-import Reflux from 'reflux';
 import React from 'react';
+import CardArticle from './cardArticle';
+import ComponentUrlWatched from './../common/componentUrlWatched';
 
 import { StoreArticle, actionsArticle } from '../../stores/article';
 
-class ViewArticles extends Reflux.Component {
+class ViewArticles extends ComponentUrlWatched {
 
     constructor(props) {
         super(props);
         this.store = StoreArticle;
     }
 
-    componentDidMount() {
-        this.refresh();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const nextPath = nextProps.location.pathname;
-        const previousPath = this.props.location.pathname;
-        if(previousPath !== nextPath &&  this.props.match.url===nextPath.slice(0, -1)) {
-            this.refresh();
-        }
-    }
-
-    refresh(){
+    urlUpdated() {
         actionsArticle.getAll();
     }
 
     render() {
+        const articles = this.state.articles;
         return (
             <div className='view-articles'>
-                ViewArticles
+                <div>ViewArticles</div>    
+                <div className='container-card'>
+                    {articles.map(article => <CardArticle  article={article} key={article._id}/>)}   
+                </div>
             </div>
         );
     }

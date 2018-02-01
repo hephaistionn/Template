@@ -11,8 +11,8 @@ import ViewMessages from './components/viewMessages';
 import ViewProfile from './components/viewProfile';
 import ViewSignin from './components/viewSignin';
 import ViewSignup from './components/viewSignup';
-
 import { StoreMember } from './stores/member';
+
 
 class App extends Reflux.Component {
 

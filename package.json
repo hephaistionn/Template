@@ -36,6 +36,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "i18n-webpack-plugin": "^1.0.0",
+    "moment": "^2.20.1",
     "mongoose": "^5.0.2",
     "node-mailjet": "^3.2.1",
     "node-sass": "^4.7.2",

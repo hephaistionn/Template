@@ -1,13 +1,12 @@
 import Reflux from 'reflux';
 import request from '../tools/request';
 
-//Action
 export const actionsArticle = Reflux.createActions([
     'getAll',
     'get',
     'update'
 ]);
-//Store
+
 export class StoreArticle extends Reflux.Store {
 
     constructor() {
@@ -22,7 +21,17 @@ export class StoreArticle extends Reflux.Store {
     getAll() {
         request.get('/api/articles/')
             .then((response) => {
-                console.log(response.data);
+                this.setState({articles: response.data});
+            })
+            .catch(function (err) {
+                console.log(err);
+            }); 
+    }
+
+    get(articleId) {
+        request.get('/api/articles/'+articleId)
+            .then((response) => {
+                this.setState({article: response.data});
             })
             .catch(function (err) {
                 console.log(err);

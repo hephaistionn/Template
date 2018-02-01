@@ -73,7 +73,7 @@ $ node .
 Start with auto-refresh
 ```sh
 $ npm install nodemon -g // first time
-$ nodemon .
+$ nodemon --watch server .
 ```
 Start in production
 ```sh

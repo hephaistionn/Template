@@ -12,8 +12,8 @@ router.get('/signin', indexRender);
 router.get('/messages/:memberId1/:memberId2', indexRender);
 router.get('/messages', indexRender);
 router.get('/articles', indexRender);
-router.get('/article/:articleId', indexRender);
-router.get('/article/', indexRender);
+router.get('/articles/:articleId', indexRender);
+router.get('/articles/', indexRender);
 router.get('/', indexRender);
 
 function indexRender(req, res) {
