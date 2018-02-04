@@ -2,9 +2,11 @@ import Reflux from 'reflux';
 import request from '../tools/request';
 
 export const actionsArticle = Reflux.createActions([
-    'getAll',
     'get',
-    'update'
+    'change',
+    'update',
+    'create'
+
 ]);
 
 export class StoreArticle extends Reflux.Store {
@@ -18,23 +20,48 @@ export class StoreArticle extends Reflux.Store {
         this.listenables = actionsArticle;
     }
 
-    getAll() {
-        request.get('/api/articles/')
+    onGet(articleId) {
+        request.get('/api/articles/' + (articleId || ''))
             .then((response) => {
-                this.setState({articles: response.data});
+                articleId ?
+                    this.setState({ article: response.data }) :
+                    this.setState({ articles: response.data });
             })
             .catch(function (err) {
                 console.log(err);
-            }); 
+            });
     }
 
-    get(articleId) {
-        request.get('/api/articles/'+articleId)
+    onChange(field, value) {
+        this.state.article[field] = value
+        this.setState({ article: this.state.article });
+    }
+
+    onUpdate(articleId, title, content) {
+        request.put('/api/articles/' + articleId, {
+            title: title,
+            content: content
+        })
             .then((response) => {
-                this.setState({article: response.data});
+                this.setState({ article: response.data });
+                location.pathname = '/articles/' + articleId;
             })
             .catch(function (err) {
                 console.log(err);
-            }); 
+            });
+    }
+
+    onCreate(title, content) {
+        request.post('/api/articles/', {
+            title: title,
+            content: content
+        })
+            .then((response) => {
+                this.setState({ article: response.data });
+                location.pathname = '/articles/' + response.data._id;
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 }

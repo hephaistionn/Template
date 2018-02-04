@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const Article = require('../model');
-  
-function* update(req, res){
 
-    const condition = {_id: req.params.id};
+function* update(req, res) {
 
-    const updated =  req.body;
+    const condition = { _id: req.params.id };
 
-    const option  =  {
+    const updated = req.body;
+
+    const option = {
         new: true,
         upsert: false,
         strict: true

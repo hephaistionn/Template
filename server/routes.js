@@ -5,13 +5,16 @@ const index = path.resolve(__dirname, './templates/index.ejs');
 
 router.use('/', express.static('client/.dist'));
 
-router.get('/profile/:memberId', indexRender);
-router.get('/profile', indexRender);
+router.get('/members/:memberId/edit', indexRender);
+router.get('/members/:memberId', indexRender);
+router.get('/members', indexRender);
 router.get('/signup', indexRender);
 router.get('/signin', indexRender);
 router.get('/messages/:memberId1/:memberId2', indexRender);
 router.get('/messages', indexRender);
 router.get('/articles', indexRender);
+router.get('/articles/edit', indexRender);
+router.get('/articles/:articleId/edit', indexRender);
 router.get('/articles/:articleId', indexRender);
 router.get('/articles/', indexRender);
 router.get('/', indexRender);

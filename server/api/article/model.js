@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-    title:  String,
+    title: String,
     owner: String,
     content: String,
     date: { type: Date, default: Date.now }
@@ -12,7 +12,7 @@ const Article = mongoose.model('Article', ArticleSchema);
 
 Article.ACL = {
     READ: '$authenticated',
-    UPDATE:  '$owner',
+    UPDATE: '$owner',
     CREATE: '$authenticated',
     DELETE: '$owner'
 };

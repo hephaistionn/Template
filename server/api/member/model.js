@@ -20,6 +20,7 @@ const MemberSchema = new Schema({
         required: true,
         trim: true
     },
+    owner: String,
     level: {
         type: Number
     },
@@ -42,7 +43,7 @@ const Member = mongoose.model('Member', MemberSchema);
 
 Member.ACL = {
     READ: '$authenticated',
-    UPDATE:  '$owner',
+    UPDATE: '$owner',
     CREATE: '$everyone',
     DELETE: '$owner'
 };

@@ -6,15 +6,15 @@ function* login(req, res) {
 
     const option = { date: 0, __v: 0, level: 0, owner: 0 };
 
-    const member = yield Member.findOne({ email: req.body.email }, option); 
-    if(!member) {
+    const member = yield Member.findOne({ email: req.body.email }, option);
+    if (!member) {
         const err = new Error('Invalid email');
         err.status = 401;
         throw err;
     }
 
     const same = yield bcrypt.compare(req.body.password, member.password);
-    if(!same) {
+    if (!same) {
         const err = new Error('Invalid password');
         err.status = 401;
         throw err;

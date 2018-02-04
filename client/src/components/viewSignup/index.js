@@ -11,22 +11,13 @@ class ViewSignup extends Reflux.Component {
         this.state = { email: '', username: '', password: '', cgu: false };
     }
 
-    updateEmail(event) {
+    change(event) {
+        const filed = event.target.name;
         const value = event.target.value;
-        this.setState({ email: value });
+        this.setState({ [filed]: value });
     }
 
-    updateUsername(event) {
-        const value = event.target.value;
-        this.setState({ username: value });
-    }
-
-    updatePassword(event) {
-        const value = event.target.value;
-        this.setState({ password: value });
-    }
-
-    updateCgu() {
+    changeCgu() {
         const value = !this.state.cgu;
         this.setState({ cgu: value });
     }
@@ -45,31 +36,34 @@ class ViewSignup extends Reflux.Component {
                 <div className='pannel'>
                     <div className='label'>{tr("email")}</div>
                     <input
+                        name='email'
                         type='email'
                         placeholder={tr("email")}
                         value={this.state.email}
-                        onChange={this.updateEmail.bind(this)} />
+                        onChange={this.change.bind(this)} />
                     <div className='label'>{tr("username")}</div>
                     <input
+                        name='username'
                         type='text'
                         placeholder={tr("username")}
                         autoComplete='off'
                         value={this.state.username}
-                        onChange={this.updateUsername.bind(this)} />
+                        onChange={this.change.bind(this)} />
                     <div className='label'>{tr("password")}</div>
                     <input
+                        name='password'
                         type='password'
                         placeholder={tr("password")}
                         autoComplete="new-password"
                         value={this.state.password}
-                        onChange={this.updatePassword.bind(this)} />
+                        onChange={this.change.bind(this)} />
                     <div className='label'>{tr("cgu")}</div>
                     <input
                         type="checkbox"
                         checked={this.state.cgu}
-                        onChange={this.updateCgu.bind(this)} />
-                    <button 
-                        type="button" 
+                        onChange={this.changeCgu.bind(this)} />
+                    <button
+                        type="button"
                         onClick={this.signup.bind(this)}>
                         {tr("signup")}
                     </button>

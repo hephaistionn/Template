@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const Comment = require('../model');
 
-function* update(req, res){
+function* update(req, res) {
 
-    const condition = {_id: req.params.id};
+    const condition = { _id: req.params.id };
 
-    const updated =  req.body;
+    const updated = req.body;
 
-    const option  =  {
+    const option = {
         new: true,
         upsert: false,
         strict: true
     }
 
-    const comment = yield Comment.findOneAndUpdate(condition,updated, option);
+    const comment = yield Comment.findOneAndUpdate(condition, updated, option);
 
     res.send(comment);
 }

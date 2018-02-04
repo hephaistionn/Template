@@ -6,7 +6,7 @@ class ViewMessages extends Reflux.Component {
 
     render() {
         return (
-            <div className='view-login'>
+            <div className='view-messages'>
                 ViewMessages
             </div>
         );

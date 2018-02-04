@@ -39,7 +39,7 @@ module.exports = function* (req, res) {
     if (role > AUTHENTICATED && req.session.memberLevel !== ADMIN) {
 
         const instance = yield Model.findOne({ _id: modelId });
-        
+
         if (!instance) {
             var err = new Error('This document does not exist');
             err.status = 404;

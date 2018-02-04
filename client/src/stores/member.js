@@ -5,9 +5,10 @@ export const actionsMember = Reflux.createActions([
     'signup',
     'signin',
     'logout',
+    'change',
     'update',
-    'loadMember',
-    'loadCurrentMember',
+    'get',
+    'getCurrentMember',
     'setPicture'
 ]);
 
@@ -16,6 +17,7 @@ export class StoreMember extends Reflux.Store {
     constructor() {
         super();
         this.state = {
+            members: [],
             member: {},
             currentMember: {}
         };
@@ -29,40 +31,62 @@ export class StoreMember extends Reflux.Store {
                 password: password,
                 username: username
             }).then((response) => {
-                this.setState({member:response.data});
+                this.setState({ member: response.data });
             });
         }
     }
 
-    onSignin(email, password, redirectPath) {
+    onSignin(email, password) {
         request.post('/api/members/login', {
             email: email,
             password: password
         }).then(response => {
             this.setState({
-                member:response.data
+                member: response.data
             });
-            location.pathname = redirectPath;
-        })
+            location.pathname = '/';
+        });
     }
 
-    onLogout(redirectPath) {
+    onLogout() {
         request.get('/api/members/logout').then(() => {
         }).then(() => {
-            location.pathname = redirectPath;
+            location.pathname = '/signin';
+        });
+    }
+
+    onGetCurrentMember() {
+        request.get('/api/members/me')
+            .then(response => {
+                this.setState({
+                    currentMember: response.data
+                });
+            });
+    }
+
+    onGet(memberId) {
+        request.get('/api/members/' + (memberId || ''))
+            .then(response => {
+                this.setState(memberId ?
+                    { member: response.data } :
+                    { members: response.data }
+                );
+            });
+    }
+
+    onChange(field, value) {
+        this.state.member[field] = value
+        this.setState({ member: this.state.member });
+    }
+
+    onUpdate(memberId, username) {
+        request.put('/api/members/' + memberId, {
+            username: username
         })
-    }
-
-    onLoadCurrentMember() {
-
-    }
-
-    onLoadMember(memberId) {
-        console.log(memberId);
-    }
-
-    onUpdate() {
-
+            .then((response) => {
+                this.setState({ member: response.data });
+                location.pathname = '/members/' + memberId;
+            });
     }
 
     onSetPicture(file) {

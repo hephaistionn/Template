@@ -1,0 +1,5 @@
+@import './../variables';
+
+.view-profiles{
+    @include view();
+}

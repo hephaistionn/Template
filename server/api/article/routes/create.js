@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Article = require('../model');
 
 function* create(req, res) {
-    
+
     const model = req.body;
     model.owner = req.session.memberId;
 

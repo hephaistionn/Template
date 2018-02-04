@@ -6,9 +6,10 @@
     "node": ">=6"
   },
   "scripts": {
-    "dev": "webpack --watch",
+    "dev-client": "webpack --watch",
+    "dev-server": "nodemon --watch server .",
     "build": "webpack --progress --hide-modules --optimize-minimize",
-    "start": "webpack --hide-modules --optimize-minimize"
+    "start": "webpack --progress --hide-modules --optimize-minimize"
   },
   "pre-commit": [],
   "dependencies": {

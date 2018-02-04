@@ -2,24 +2,34 @@ import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { actionsMember } from '../../stores/member';
+import { actionsMember, StoreMember } from '../../stores/member';
 
 class ViewHeader extends Reflux.Component {
 
+    constructor(props) {
+        super(props);
+        this.store = StoreMember;
+    }
+
     logout() {
-        const redirect = '/signin'; 
-        actionsMember.logout(redirect);
+        actionsMember.logout();
     }
 
     render() {
-        const nav = [
-            <a key={0} className='' onClick={this.logout}>logout</a>,
-            <NavLink key={1} activeClassName="selected" to={'/signin'}>signin</NavLink>,
-            <NavLink key={2} activeClassName="selected" to={'/signup'}>signup</NavLink>,
-            <NavLink key={3} activeClassName="selected" to={'/messages'}>messages</NavLink>,
-            <NavLink key={4} activeClassName="selected" to={'/articles'}>articles</NavLink>,
-            <NavLink key={5} activeClassName="selected" to={'/article'}>article</NavLink>,
-            <NavLink key={6} activeClassName="selected" to={'/profile'}>profile</NavLink>];
+        const currentMember = this.state.currentMember;
+
+        const nav = currentMember._id ?
+            [
+                <NavLink key={3} activeClassName="selected" to={'/messages'}>messages</NavLink>,
+                <NavLink key={4} activeClassName="selected" to={'/articles'}>articles</NavLink>,
+                <NavLink key={6} activeClassName="selected" to={'/members/' + currentMember._id}>me</NavLink>,
+                <NavLink key={7} activeClassName="selected" to={'/members/'}>profiles</NavLink>,
+                <a key={0} className='' onClick={this.logout}>logout</a>
+            ] :
+            [
+                <NavLink key={1} activeClassName="selected" to={'/signin'}>signin</NavLink>,
+                <NavLink key={2} activeClassName="selected" to={'/signup'}>signup</NavLink>
+            ];
 
         return (
             <div className='view-header'>

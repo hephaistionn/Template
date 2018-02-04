@@ -27,7 +27,7 @@ $ npm run build
 ```
 Build the dev bundles
 ```sh
-$ npm run dev
+$ npm run dev-client
 ```
 
 ### Webpack configuration  
@@ -73,7 +73,7 @@ $ node .
 Start with auto-refresh
 ```sh
 $ npm install nodemon -g // first time
-$ nodemon --watch server .
+$ npm run dev-server
 ```
 Start in production
 ```sh

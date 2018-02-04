@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PollSchema = new Schema({
-    choices:  Array,
+    choices: Array,
     votes: Array,
     date: { type: Date, default: Date.now }
 });
