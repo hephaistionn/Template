@@ -1,7 +1,6 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import Moment from 'moment';
 import { Link } from 'react-router-dom';
 
 class CardMember extends Reflux.Component {

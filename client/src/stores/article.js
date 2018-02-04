@@ -6,7 +6,6 @@ export const actionsArticle = Reflux.createActions([
     'change',
     'update',
     'create'
-
 ]);
 
 export class StoreArticle extends Reflux.Store {

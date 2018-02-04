@@ -1,7 +1,5 @@
 import './style.scss';
-import Reflux from 'reflux';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { StoreMember, actionsMember } from '../../stores/member';
 import ComponentUrlWatched from './../common/componentUrlWatched';
 import CardMember from './cardMember';

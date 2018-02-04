@@ -1,7 +1,14 @@
 {
 	"Hello World": "Hello World",
-	"email": "email",
-    "username": "username",
-    "password": "password",
-    "cgu": "cgu"
+	"create": "create",
+	"edit": "edit",
+    "email": "email",
+    "login": "login",
+	"password": "password",
+	"username": "username",
+	"cgu": "cgu",
+	"signup": "signup",
+	"title": "title",
+	"content": "content",
+	"save": "save"
 }
