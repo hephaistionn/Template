@@ -17,7 +17,8 @@ class ViewArticleEdit extends ComponentUrlWatched {
         }
     }
 
-    save() {
+    save(event) {
+        event.preventDefault();
         const id = this.state.article._id;
         const title = this.state.article.title;
         const content = this.state.article.content;

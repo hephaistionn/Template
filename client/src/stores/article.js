@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import request from '../tools/request';
+import axios from 'axios';
 
 export const actionsArticle = Reflux.createActions([
     'get',
@@ -21,7 +21,7 @@ export class StoreArticle extends Reflux.Store {
     }
 
     onGet(articleId) {
-        request.get('/api/articles/' + (articleId || ''))
+        axios.get('/api/articles/' + (articleId || ''))
             .then((response) => {
                 articleId ?
                     this.setState({ article: response.data }) :
@@ -38,7 +38,7 @@ export class StoreArticle extends Reflux.Store {
     }
 
     onUpdate(articleId, title, content) {
-        request.put('/api/articles/' + articleId, {
+        axios.put('/api/articles/' + articleId, {
             title: title,
             content: content
         })
@@ -52,7 +52,7 @@ export class StoreArticle extends Reflux.Store {
     }
 
     onCreate(title, content) {
-        request.post('/api/articles/', {
+        axios.post('/api/articles/', {
             title: title,
             content: content
         })

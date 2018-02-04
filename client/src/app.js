@@ -15,6 +15,14 @@ import ViewSignin from './components/viewSignin';
 import ViewSignup from './components/viewSignup';
 import ViewArticleEdit from './components/viewArticleEdit';
 import { actionsMember, StoreMember } from './stores/member';
+import axios from 'axios';
+axios.interceptors.response.use(response => {
+    console.log('----reponse ok');
+    return response;
+}, error => {
+    console.log('----error ko');
+    return Promise.reject(error);
+});
 
 
 class App extends Reflux.Component {

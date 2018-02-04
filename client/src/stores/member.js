@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import request from '../tools/request';
+import axios from 'axios';
 
 export const actionsMember = Reflux.createActions([
     'signup',
@@ -26,7 +26,7 @@ export class StoreMember extends Reflux.Store {
 
     onSignup(email, password, username, cgu) {
         if (email && username && password && cgu) {
-            return request.post('/api/members/signup', {
+            return axios.post('/api/members/signup', {
                 email: email,
                 password: password,
                 username: username
@@ -37,7 +37,7 @@ export class StoreMember extends Reflux.Store {
     }
 
     onSignin(email, password) {
-        request.post('/api/members/login', {
+        axios.post('/api/members/login', {
             email: email,
             password: password
         }).then(response => {
@@ -49,14 +49,14 @@ export class StoreMember extends Reflux.Store {
     }
 
     onLogout() {
-        request.get('/api/members/logout').then(() => {
+        axios.get('/api/members/logout').then(() => {
         }).then(() => {
             location.pathname = '/signin';
         });
     }
 
     onGetCurrentMember() {
-        request.get('/api/members/me')
+        axios.get('/api/members/me')
             .then(response => {
                 this.setState({
                     currentMember: response.data
@@ -65,7 +65,7 @@ export class StoreMember extends Reflux.Store {
     }
 
     onGet(memberId) {
-        request.get('/api/members/' + (memberId || ''))
+        axios.get('/api/members/' + (memberId || ''))
             .then(response => {
                 this.setState(memberId ?
                     { member: response.data } :
@@ -80,7 +80,7 @@ export class StoreMember extends Reflux.Store {
     }
 
     onUpdate(memberId, username) {
-        request.put('/api/members/' + memberId, {
+        axios.put('/api/members/' + memberId, {
             username: username
         })
             .then((response) => {
@@ -93,7 +93,7 @@ export class StoreMember extends Reflux.Store {
         return upload(file).then(store.bind(this)).then(save);
 
         function upload(file) {
-            return request.post('/api/documents/upload/', file[0])
+            return axios.post('/api/documents/upload/', file[0])
         }
 
         function store(response) {

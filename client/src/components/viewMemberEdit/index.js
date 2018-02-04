@@ -17,7 +17,8 @@ class ViewMemberEdit extends ComponentUrlWatched {
         }
     }
 
-    save() {
+    save(event) {
+        event.preventDefault();
         const id = this.state.member._id;
         const username = this.state.member.username;
         actionsMember.update(id, username);
