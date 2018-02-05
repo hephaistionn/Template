@@ -5,6 +5,7 @@ const ArticleSchema = new Schema({
     title: String,
     owner: String,
     content: String,
+    banner: String,
     date: { type: Date, default: Date.now }
 });
 

@@ -2,6 +2,7 @@ import './style.scss';
 import ComponentUrlWatched from './../common/componentUrlWatched';
 import React from 'react';
 import { StoreMember, actionsMember } from '../../stores/member';
+import Dropzone from '../common/dropzone';
 
 class ViewMemberEdit extends ComponentUrlWatched {
 
@@ -21,13 +22,18 @@ class ViewMemberEdit extends ComponentUrlWatched {
         event.preventDefault();
         const id = this.state.member._id;
         const username = this.state.member.username;
-        actionsMember.update(id, username);
+        const avatar = this.state.member.avatar;
+        actionsMember.update(id, username, avatar);
     }
 
     changed(event) {
         const value = event.target.value;
         const filed = event.target.name;
         actionsMember.change(filed, value);
+    }
+
+    onDropAvatar(files) {
+        actionsMember.setPicture(files[0]);
     }
 
     render() {
@@ -41,6 +47,9 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     placeholder={tr("username")}
                     value={member.username}
                     onChange={this.changed.bind(this)} />
+                <Dropzone onDrop={this.onDropAvatar}
+                    url={member.avatar}>
+                </Dropzone>
                 <button
                     type="button"
                     onClick={this.save.bind(this)}>

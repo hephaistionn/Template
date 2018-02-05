@@ -1,0 +1,24 @@
+.dropzone-container {
+    display: block;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    border: solid 1px red;
+
+
+    &__picture {
+        background-image: url(./../../../../assets/avatar3.png);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: -1;
+    }
+
+    &__upload-label {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+}

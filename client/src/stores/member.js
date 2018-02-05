@@ -79,9 +79,10 @@ export class StoreMember extends Reflux.Store {
         this.setState({ member: this.state.member });
     }
 
-    onUpdate(memberId, username) {
+    onUpdate(memberId, username, avatar) {
         axios.put('/api/members/' + memberId, {
-            username: username
+            username: username,
+            avatar: avatar
         })
             .then((response) => {
                 this.setState({ member: response.data });
@@ -90,18 +91,24 @@ export class StoreMember extends Reflux.Store {
     }
 
     onSetPicture(file) {
-        return upload(file).then(store.bind(this)).then(save);
+        return upload(file).then(store.bind(this));
 
         function upload(file) {
-            return axios.post('/api/documents/upload/', file[0])
+            const form = new FormData();
+            const name = Math.floor((1 + Math.random()) * 0x100000000000000).toString(16).substring(1);
+            const extension = file.name.split('.').pop();
+            form.append('image', file, name + '.' + extension);
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            };
+            return axios.post('/api/documents/upload/', form, config)
         }
 
         function store(response) {
-            console.log(response);;
-        }
-
-        function save(member) {
-            console.log(member);
+            const member = this.state.member;
+            member.avatar = response.data;
+            this.setState({ 'member': member });
+            return member;
         }
     }
 }

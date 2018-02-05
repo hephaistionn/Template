@@ -1,5 +1,10 @@
 const conf = require('../conf');
+const cloudinary = require('cloudinary');
 
-module.exports = function(app) {
+cloudinary.config({
+    cloud_name: "dhaptygxt",
+    api_key: conf.CLOUD_KEY,
+    api_secret: conf.CLOUD_SECRET
+});
 
-}
+module.exports = cloudinary;
