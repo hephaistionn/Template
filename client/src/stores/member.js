@@ -1,14 +1,11 @@
 import Reflux from 'reflux';
 import axios from 'axios';
+import { actionsMain } from './main';
 
 export const actionsMember = Reflux.createActions([
-    'signup',
-    'signin',
-    'logout',
     'change',
     'update',
     'get',
-    'getCurrentMember',
     'setPicture'
 ]);
 
@@ -18,50 +15,9 @@ export class StoreMember extends Reflux.Store {
         super();
         this.state = {
             members: [],
-            member: {},
-            currentMember: {}
+            member: {}
         };
         this.listenables = actionsMember;
-    }
-
-    onSignup(email, password, username, cgu) {
-        if (email && username && password && cgu) {
-            return axios.post('/api/members/signup', {
-                email: email,
-                password: password,
-                username: username
-            }).then((response) => {
-                this.setState({ member: response.data });
-            });
-        }
-    }
-
-    onSignin(email, password) {
-        axios.post('/api/members/login', {
-            email: email,
-            password: password
-        }).then(response => {
-            this.setState({
-                member: response.data
-            });
-            location.pathname = '/';
-        });
-    }
-
-    onLogout() {
-        axios.get('/api/members/logout').then(() => {
-        }).then(() => {
-            location.pathname = '/signin';
-        });
-    }
-
-    onGetCurrentMember() {
-        axios.get('/api/members/me')
-            .then(response => {
-                this.setState({
-                    currentMember: response.data
-                });
-            });
     }
 
     onGet(memberId) {
@@ -86,7 +42,7 @@ export class StoreMember extends Reflux.Store {
         })
             .then((response) => {
                 this.setState({ member: response.data });
-                location.pathname = '/members/' + memberId;
+                actionsMain.redirect('/members/' + memberId);
             });
     }
 

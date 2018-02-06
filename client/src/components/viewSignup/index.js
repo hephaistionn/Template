@@ -1,13 +1,13 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import { StoreMember, actionsMember } from '../../stores/member';
+import { StoreMain, actionsMain } from '../../stores/main';
 
 class ViewSignup extends Reflux.Component {
 
     constructor(props) {
         super(props);
-        this.store = StoreMember;
+        this.store = StoreMain;
         this.state = { email: '', username: '', password: '', cgu: false };
     }
 
@@ -27,7 +27,7 @@ class ViewSignup extends Reflux.Component {
         const username = this.state.username;
         const password = this.state.password;
         const cgu = this.state.cgu;
-        actionsMember.signup(email, password, username, cgu);
+        actionsMain.signup(email, password, username, cgu);
     }
 
     render() {
@@ -39,7 +39,7 @@ class ViewSignup extends Reflux.Component {
                         name='email'
                         type='email'
                         placeholder={tr("email")}
-                        value={this.state.email}
+                        value={this.state.email || ''}
                         onChange={this.change.bind(this)} />
                     <div className='label'>{tr("username")}</div>
                     <input
@@ -47,7 +47,7 @@ class ViewSignup extends Reflux.Component {
                         type='text'
                         placeholder={tr("username")}
                         autoComplete='off'
-                        value={this.state.username}
+                        value={this.state.username || ''}
                         onChange={this.change.bind(this)} />
                     <div className='label'>{tr("password")}</div>
                     <input
@@ -55,7 +55,7 @@ class ViewSignup extends Reflux.Component {
                         type='password'
                         placeholder={tr("password")}
                         autoComplete="new-password"
-                        value={this.state.password}
+                        value={this.state.password || ''}
                         onChange={this.change.bind(this)} />
                     <div className='label'>{tr("cgu")}</div>
                     <input

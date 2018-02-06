@@ -1,6 +1,8 @@
 import Reflux from 'reflux';
 import axios from 'axios';
 
+import { actionsMain } from './main';
+
 export const actionsArticle = Reflux.createActions([
     'get',
     'change',
@@ -25,9 +27,6 @@ export class StoreArticle extends Reflux.Store {
                 articleId ?
                     this.setState({ article: response.data }) :
                     this.setState({ articles: response.data });
-            })
-            .catch(function (err) {
-                console.log(err);
             });
     }
 
@@ -43,10 +42,7 @@ export class StoreArticle extends Reflux.Store {
         })
             .then((response) => {
                 this.setState({ article: response.data });
-                location.pathname = '/articles/' + articleId;
-            })
-            .catch(function (err) {
-                console.log(err);
+                actionsMain.redirect('/articles/' + articleId)
             });
     }
 
@@ -57,10 +53,8 @@ export class StoreArticle extends Reflux.Store {
         })
             .then((response) => {
                 this.setState({ article: response.data });
-                location.pathname = '/articles/' + response.data._id;
-            })
-            .catch(function (err) {
-                console.log(err);
+                actionsMain.redirect('/articles/' + response.data._id)
             });
     }
 }
+

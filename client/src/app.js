@@ -2,7 +2,7 @@ import { render } from 'react-dom';
 import './app.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import ViewHeader from './components/viewHeader';
 import ViewArticle from './components/viewArticle';
 import ViewArticles from './components/viewArticles';
@@ -14,31 +14,17 @@ import ViewMemberEdit from './components/viewMemberEdit';
 import ViewSignin from './components/viewSignin';
 import ViewSignup from './components/viewSignup';
 import ViewArticleEdit from './components/viewArticleEdit';
-import { actionsMember, StoreMember } from './stores/member';
-import axios from 'axios';
-axios.interceptors.response.use(response => {
-    console.log('----reponse ok');
-    return response;
-}, error => {
-    console.log('----error ko');
-    return Promise.reject(error);
-});
-
+import { actionsMain, history } from './stores/main';
 
 class App extends Reflux.Component {
 
-    constructor(props) {
-        super(props);
-        this.store = StoreMember;
-    }
-
     componentDidMount() {
-        actionsMember.getCurrentMember();
+        actionsMain.getSession();
     }
 
     render() {
         return (
-            <BrowserRouter>
+            <Router history={history}>
                 <div>
                     <ViewHeader />
                     <Route exact path='/' component={ViewHome} />
@@ -56,7 +42,7 @@ class App extends Reflux.Component {
                     <Route exact path='/members/' component={ViewMembers} />
                     <Route exact path='/articles/' component={ViewArticles} />
                 </div>
-            </BrowserRouter>
+            </Router>
         );
     }
 }

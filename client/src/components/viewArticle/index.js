@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import Moment from 'moment';
 import { StoreArticle, actionsArticle } from '../../stores/article';
-import { StoreMember } from '../../stores/member';
+import { StoreMain } from '../../stores/main';
 
 class ViewArticle extends ComponentUrlWatched {
 
     constructor(props) {
         super(props);
-        this.stores = [StoreArticle, StoreMember];
+        this.stores = [StoreArticle, StoreMain];
     }
     urlUpdated() {
         const articleId = this.props.match.params.articleId;
@@ -19,7 +19,7 @@ class ViewArticle extends ComponentUrlWatched {
 
     render() {
         const article = this.state.article;
-        const currentMember = this.state.currentMember;
+        const session = this.state.session;
         const editButton = <Link to={'/articles/' + article._id + '/edit'}>{tr("edit")}</Link>;
 
         return (
@@ -27,7 +27,7 @@ class ViewArticle extends ComponentUrlWatched {
                 <div>{article.title}</div>
                 <div>{Moment(article.date).format("MMM Do YY")}</div>
                 <div>{article.content}</div>
-                {currentMember._id === article.owner && editButton}
+                {session._id === article.owner && editButton}
             </div>
         );
     }

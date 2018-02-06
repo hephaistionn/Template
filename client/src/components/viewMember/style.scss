@@ -2,4 +2,12 @@
 
 .view-profile{
     @include view();
+
+    &__picture {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-size: cover;
+
+    }
 }

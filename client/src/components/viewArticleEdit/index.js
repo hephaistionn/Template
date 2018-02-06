@@ -44,14 +44,14 @@ class ViewArticleEdit extends ComponentUrlWatched {
                     type='text'
                     name='title'
                     placeholder={tr("title")}
-                    value={article.title}
+                    value={article.title || ''}
                     onChange={this.change.bind(this)} />
                 <div className='label'>{tr("content")}</div>
                 <input
                     type='text'
                     name='content'
                     placeholder={tr("content")}
-                    value={article.content}
+                    value={article.content || ''}
                     onChange={this.change.bind(this)} />
                 <button
                     type="button"

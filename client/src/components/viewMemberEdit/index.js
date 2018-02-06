@@ -45,7 +45,7 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     type='text'
                     name='username'
                     placeholder={tr("username")}
-                    value={member.username}
+                    value={member.username || ''}
                     onChange={this.changed.bind(this)} />
                 <Dropzone onDrop={this.onDropAvatar}
                     url={member.avatar}>

@@ -13,7 +13,8 @@ class Drop extends React.Component {
         return (
             <div className={'dropzone-container' + (this.props.className || '')}>
                 <div className='dropzone-container__upload-label'>Upload</div>
-                <div className='dropzone-container__picture' style={style}></div>
+                {this.props.url &&
+                    <div className='dropzone-container__picture' style={style}></div>}
                 <Dropzone multiple={false} onDrop={this.props.onDrop}></Dropzone>
             </div>
         )

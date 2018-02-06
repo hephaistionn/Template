@@ -1,13 +1,13 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import { StoreMember, actionsMember } from '../../stores/member';
+import { StoreMain, actionsMain } from '../../stores/main';
 
 class ViewSignin extends Reflux.Component {
 
     constructor(props) {
         super(props);
-        this.store = StoreMember;
+        this.store = StoreMain;
         this.state = { email: '', password: '' };
     }
 
@@ -20,7 +20,7 @@ class ViewSignin extends Reflux.Component {
     signin() {
         const email = this.state.email;
         const password = this.state.password;
-        actionsMember.signin(email, password);
+        actionsMain.signin(email, password);
     }
 
     render() {
@@ -31,14 +31,14 @@ class ViewSignin extends Reflux.Component {
                         name='email'
                         type='email'
                         placeholder={tr("email")}
-                        value={this.state.email}
+                        value={this.state.email || ''}
                         onChange={this.change.bind(this)} />
                     <input
                         name='password'
                         type='password'
                         placeholder={tr("password")}
                         autoComplete="new-password"
-                        value={this.state.password}
+                        value={this.state.password || ''}
                         onChange={this.change.bind(this)} />
                     <button
                         type="button"

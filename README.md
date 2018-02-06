@@ -1,4 +1,4 @@
-# Fullstack Project template : Express React+Reflux 
+# Fullstack Template Project  : Express React+Reflux 
 
 ## Start project
   
@@ -43,7 +43,7 @@ const bundleName = 'bundle'
 
 ### Multi language
 
-The project use **i18n-webpack-plugin** to create one bunles by languages.
+The project use **i18n-webpack-plugin** to create one bundle by languages.
 The strings included in the tr() functions are automatically translated into bundles.  
 The translation keys are here : 
 
