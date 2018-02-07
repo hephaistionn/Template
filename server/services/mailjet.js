@@ -6,4 +6,4 @@ const mailjet = require ('node-mailjet')
         version: 'v3.1'
       });
 
-module.exports = mailjet;
+module.exports = mailjet.post("send", {'version': 'v3.1'});
