@@ -13,6 +13,10 @@ import ViewMembers from './components/viewMembers';
 import ViewMemberEdit from './components/viewMemberEdit';
 import ViewSignin from './components/viewSignin';
 import ViewSignup from './components/viewSignup';
+import ViewVerify from './components/viewVerify';
+import ViewVerifyRequest from './components/viewVerifyRequest';
+import ViewReset from './components/viewReset';
+import ViewResetRequest from './components/viewResetRequest';
 import ViewArticleEdit from './components/viewArticleEdit';
 import { actionsMain, history } from './stores/main';
 
@@ -30,6 +34,10 @@ class App extends Reflux.Component {
                     <Route exact path='/' component={ViewHome} />
                     <Route exact path='/signin' component={ViewSignin} />
                     <Route exact path='/signup' component={ViewSignup} />
+                    <Route exact path='/verify' component={ViewVerify} />
+                    <Route exact path='/verify/request' component={ViewVerifyRequest} />
+                    <Route exact path='/reset' component={ViewReset} />
+                    <Route exact path='/reset/request' component={ViewResetRequest} />
                     <Route exact path='/messages/' component={ViewMessages} />
                     <Route exact path='/messages/:memberId1/:memberId2' component={ViewMessages} />
                     <Switch>

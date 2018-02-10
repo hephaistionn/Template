@@ -31,7 +31,7 @@ module.exports = function* (req, res) {
     if (role > EVERYONE) {
         if (!req.session || !req.session.memberId) {
             var err = new Error('You must be logged in to view this page.');
-            err.status = 401;
+            err.status = 511;
             throw err;
         }
     }

@@ -10,5 +10,6 @@
 	"signup": "signup",
 	"title": "title",
 	"content": "content",
-	"save": "save"
+	"save": "save",
+	"code": "code"
 }

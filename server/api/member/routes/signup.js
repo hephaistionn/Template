@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Member = require('../model');
+const mongoose = require('mongoose');
 
 function* signup(req, res) {
     if (req.body.email && req.body.username && req.body.password) {
@@ -7,17 +8,19 @@ function* signup(req, res) {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
+            token: mongoose.Types.ObjectId().toString().substr(-5),
+            tokendate: new Date(),
+            verified: false,
             level: 0
         });
         intance.owner = intance._id;
+        yield intance.save();
 
-        const member = yield intance.save();
-
-        res.send(member);
+        res.send('success');
 
     } else {
         const err = new Error('params required');
-        err.status = 401;
+        err.status = 400;
         return err;
     }
 

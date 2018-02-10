@@ -20,6 +20,13 @@ const MemberSchema = new Schema({
         required: true,
         trim: true
     },
+    verified: Boolean,
+    token: String,
+    tokendate: Date,
+    try: {
+        type: Number,
+        default: 0
+    },
     owner: String,
     level: {
         type: Number
@@ -30,6 +37,8 @@ const MemberSchema = new Schema({
 
 MemberSchema.pre('save', function (next) {
     const member = this;
+    if (!member.isModified('password')) return next();
+
     bcrypt.hash(member.password, 10, function (err, hash) {
         if (err) {
             return next(err);

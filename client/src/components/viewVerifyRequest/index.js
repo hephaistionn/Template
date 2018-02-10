@@ -1,15 +1,14 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { StoreMain, actionsMain } from '../../stores/main';
 
-class ViewSignin extends Reflux.Component {
+class ViewVerifyRequest extends Reflux.Component {
 
     constructor(props) {
         super(props);
         this.store = StoreMain;
-        this.state = { email: '', password: '' };
+        this.state = { email: ''};
     }
 
     change(event) {
@@ -18,39 +17,32 @@ class ViewSignin extends Reflux.Component {
         this.setState({ [filed]: value });
     }
 
-    signin() {
+    getVerifyToken() {
         const email = this.state.email;
-        const password = this.state.password;
-        actionsMain.signin(email, password);
+        actionsMain.getVerifyToken(email);
     }
 
     render() {
         return (
-            <div className='view-signin'>
+            <div className='view-verify-request'>
                 <div className='pannel'>
+                    <div className='label'>{tr("code")}</div>
                     <input
                         name='email'
                         type='email'
                         placeholder={tr("email")}
+                        autoComplete='off'
                         value={this.state.email || ''}
-                        onChange={this.change.bind(this)} />
-                    <input
-                        name='password'
-                        type='password'
-                        placeholder={tr("password")}
-                        autoComplete="new-password"
-                        value={this.state.password || ''}
                         onChange={this.change.bind(this)} />
                     <button
                         type="button"
-                        onClick={this.signin.bind(this)}>
-                        {tr("login")}
+                        onClick={this.getVerifyToken.bind(this)}>
+                        {tr("send a verification email")}
                     </button>
-                    <Link className='' to={'/reset/request'}>{tr("reset password")}</Link>
                 </div>
             </div>
         );
     }
 }
 
-export default ViewSignin;  
+export default ViewVerifyRequest;  

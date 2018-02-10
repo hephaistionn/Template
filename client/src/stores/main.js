@@ -1,6 +1,7 @@
 import Reflux from 'reflux';
 import axios from 'axios';
 import createHistory from 'history/createBrowserHistory'
+import { actionsArticle } from './article';
 
 export const history = createHistory()
 
@@ -10,6 +11,10 @@ export const actionsMain = Reflux.createActions([
     'signup',
     'signin',
     'logout',
+    'verify',
+    'getVerifyToken',
+    'reset',
+    'getResetToken',
     'notif',
 ]);
 
@@ -43,7 +48,7 @@ export class StoreMain extends Reflux.Store {
                 password: password,
                 username: username
             }).then((response) => {
-                this.setState({ session: response.data });
+                actionsMain.redirect('/verify');
             });
         }
     }
@@ -70,8 +75,44 @@ export class StoreMain extends Reflux.Store {
         });
     }
 
+    onVerify(token) {
+        axios.post('/api/members/verify', {
+            token: token
+        }).then((response) => {
+            this.setState({ session: response.data });
+        }); 
+    }
+
+    onGetVerifyToken(email) {
+        axios.post('/api/members/verifyrequest', {
+            email: email
+        }).then((response) => {
+            actionsMain.notif(tr('mail sent'));
+            actionsMain.redirect('/verify');
+        }); 
+    }
+
+    onReset(token, password) {
+        axios.post('/api/members/reset', {
+            token: token,
+            password: password
+        }).then((response) => {
+            actionsMain.notif(tr('password changed'));
+            actionsMain.redirect('/signin');
+        }); 
+    }
+
+    onGetResetToken(email) {
+        axios.post('/api/members/resetrequest', {
+            email: email
+        }).then((response) => {
+            actionsMain.notif(tr('mail sent'));
+            actionsMain.redirect('/reset');
+        }); 
+    }
+
     onNotif(message, level) {
-        console.log(message)
+        //console.log(message)
     }
 
 }
@@ -79,5 +120,12 @@ export class StoreMain extends Reflux.Store {
 axios.interceptors.response.use(response => {
     return response;
 }, error => {
-    return actionsMain.notif(error, 'error');
+    if(error.request.status ===  428){
+        actionsMain.redirect('/verify');
+    }else if(error.request.status ===  511){
+        // actionsMain.redirect('/signin');
+    }else{
+        actionsMain.notif(error, 'error');
+    }
+    throw error;
 });
