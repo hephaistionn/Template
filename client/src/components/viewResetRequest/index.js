@@ -26,7 +26,7 @@ class ViewResetRequest extends Reflux.Component {
         return (
             <div className='view-reset-request'>
                 <div className='pannel'>
-                    <div className='label'>{tr("code")}</div>
+                    <div className='label'>{tr("email")}</div>
                     <input
                         name='email'
                         type='email'
