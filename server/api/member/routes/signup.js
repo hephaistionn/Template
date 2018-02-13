@@ -6,6 +6,7 @@ const conf = require('../../../conf');
 
 function* signup(req, res) {
     if (req.body.email && req.body.username && req.body.password) {
+        
         const intance = new Member({
             email: req.body.email,
             username: req.body.username,
@@ -15,28 +16,15 @@ function* signup(req, res) {
             verified: false,
             level: 0
         });
+
         intance.owner = intance._id;
 
-        const emailData = {
-            Messages: [
-                {
-                    From: {
-                        Email: `noreply@${conf.APP_NAME}.com`,
-                        Name: conf.APP_NAME
-                    },
-                    To: [{
-                        Email: req.body.email,
-                        Name: req.body.username
-                    }],
-                    Subject: "Signed up successfully",
-                    TextPart: `Welcome to ${conf.APP_NAME}.\n Hey ${intance.username},\n Thanks for registering, 
-                    Use this code to validate your account.\n ${intance.token}`,
-                    HTMLPart: `<h1>Welcome to ${conf.APP_NAME}</h1><p>Hey ${intance.username},</p><p>Thanks for registering, 
-                    Use this code to validate your account.</p> <h2>${intance.token}</h2> `
-                }
-            ]
-        }
-        yield sendmail.request(emailData);
+        yield sendmail({
+            email: intance.email,
+            username: intance.username,
+            token: intance.token,
+            template: '../templates/signup/en.ejs'
+        });
 
         yield intance.save();
 
