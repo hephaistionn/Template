@@ -1,6 +1,7 @@
 import './style.scss';
 import React from 'react';
 import { StoreMember, actionsMember } from '../../stores/member';
+import { StoreMain } from '../../stores/main';
 import ComponentUrlWatched from './../common/componentUrlWatched';
 import CardMember from './cardMember';
 
@@ -8,7 +9,7 @@ class ViewMembers extends ComponentUrlWatched {
 
     constructor(props) {
         super(props);
-        this.store = StoreMember;
+        this.stores = [StoreMember, StoreMain];
     }
 
     urlUpdated() {
@@ -17,14 +18,24 @@ class ViewMembers extends ComponentUrlWatched {
 
     render() {
         const members = this.state.members;
+        const session = this.state.session;
 
-        const items = members.map(member => <CardMember
+        const items = members.filter(member => member._id !== session._id)
+            .map(member => <CardMember
+                key={member._id}
+                className='view-members__grid__item'
+                member={member} key={member._id} />);
+
+        items.unshift(<CardMember
+            key={session._id}
             className='view-members__grid__item'
-            member={member} key={member._id} />);
+            member={session} key={session._id} />);
 
         for (let i = 0; i < 10; i++) {
-            items.push(<div className='view-members__grid__item-empty' />)
+            items.push(<div className='view-members__grid__item-empty' key={i} />)
         }
+
+
 
         return (
             <div className='view-members'>

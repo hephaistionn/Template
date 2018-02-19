@@ -3,7 +3,6 @@ import Reflux from 'reflux';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { actionsMain, StoreMain } from '../../stores/main';
-import Avatar from '../common/avatar';
 
 class Menu extends Reflux.Component {
 
@@ -21,10 +20,9 @@ class Menu extends Reflux.Component {
 
         return (
             <div className='menu'>
-                <Avatar member={session}/>
-                <NavLink key={1} activeClassName='selected' to={'/messages'}>messages</NavLink>
-                <NavLink key={2} activeClassName='selected' to={'/articles'}>articles</NavLink>
-                <NavLink key={4} activeClassName='selected' to={'/members/'}>profiles</NavLink>
+                <NavLink key={1} activeClassName='selected' className='fas fa-envelope' to={'/messages'}></NavLink>
+                <NavLink key={2} activeClassName='selected' className='fas fa-globe' to={'/articles'}></NavLink>
+                <NavLink key={4} activeClassName='selected' className='fas fa-address-card' to={'/members/'}></NavLink>
             </div>
         );
     }

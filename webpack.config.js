@@ -71,7 +71,7 @@ const configs = Object.keys(languages).map(function (language) {
           })
         },
         {
-          test: /\.(woff2|eot|ttf|otf)$/,
+          test: /\.(woff2|eot|ttf|otf|woff2|woff)$/,
           loader: 'file-loader'
         },
         {

@@ -1,13 +1,53 @@
 @import './../variables';
 
-.view-profile{
-    @include view();
+.view-member {
+    position: relative;
+    display: flex;
+    flex-direction: column; // direction
+    align-content: center;
+    justify-content: space; // vertical space
+    align-items: center; // horizontal align
+    padding: 20px;
+    max-width: 555px;
+    margin: auto;
 
-    &__picture {
+    &__edit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__avatar {
+        display: block;
         position: relative;
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
+        border-radius: 150px; 
         background-size: cover;
+        background-image: url(../../../assets/avatar3.png);
+        background-color: black;
+        margin-top:15px;
+    }
 
+    &__username {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 2rem;
+        margin-top:15px;
+    }
+
+    &__description {
+        display: block;
+        position: relative;
+        font-size: 1rem;
+        margin-top:15px;
+    }
+
+    &__skills {
+        margin-top:15px; 
     }
 }

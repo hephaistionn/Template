@@ -20,6 +20,12 @@ const MemberSchema = new Schema({
         required: true,
         trim: true
     },
+    description: {
+        type: String 
+    },
+    skills: {
+        type: Array
+    },
     verified: Boolean,
     token: String,
     tokendate: Date,

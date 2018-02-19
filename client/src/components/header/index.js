@@ -21,7 +21,7 @@ class Header extends Reflux.Component {
         return (
             <div className='header'>
                 <Link className='header__title' to={'/'}>{tr('Appication Title')}</Link>
-                {session._id  && <a className='header__logout' onClick={this.logout}>logout</a>}
+                {session._id  && <a className='header__logout fas fa-sign-out-alt' onClick={this.logout}></a>}
             </div>
         );
     }

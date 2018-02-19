@@ -21,3 +21,33 @@
         background: #1976D2;
     }
 }
+
+@mixin grid() { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: start;
+    justify-content: space-around;
+
+    &__item {
+        position: relative;
+        display: inline-block;
+        width: 32%;
+        max-width: 250px;
+        margin: 0 0 10px 0 ;
+        &:after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+    }
+
+    &__item-empty {
+        position: relative;
+        display: inline-block;
+        width: 32%;
+        max-width: 250px;
+        margin: 0 0 10px 0 ;
+    }
+}

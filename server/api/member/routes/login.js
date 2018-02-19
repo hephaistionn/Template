@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 function* login(req, res) {
 
-    const fields = { date: 0, __v: 0, level: 0, owner: 0, token:0, tokendate:0 };
+    const fields = { date: 0, __v: 0, level: 0, owner: 0, token:0, tokendate:0, try:0 };
 
     const member = yield Member.findOne({ email: req.body.email }, fields);
 

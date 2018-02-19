@@ -38,7 +38,8 @@ export class StoreMain extends Reflux.Store {
                 this.setState({
                     session: response.data
                 });
-                history.push('/members');
+                if(location.pathname === '/')
+                    history.push('/members');
             });
     }
 

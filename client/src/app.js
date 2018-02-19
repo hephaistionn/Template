@@ -41,7 +41,7 @@ class App extends Reflux.Component {
             <Router history={history}>
                 <div>
                     <Route strict path='/:page' component={Header}/>
-                    <Route exact path='/:page' component={Menu}/>
+                    <Route strict path='/:page' component={Menu}/>
                     <Route exact path='/' component={ViewHome} />
                     <Route exact path='/signin' component={ViewSignin} />
                     <Route exact path='/signup' component={ViewSignup} />
