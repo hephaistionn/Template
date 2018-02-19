@@ -18,10 +18,18 @@ class ViewMembers extends ComponentUrlWatched {
     render() {
         const members = this.state.members;
 
+        const items = members.map(member => <CardMember
+            className='view-members__grid__item'
+            member={member} key={member._id} />);
+
+        for (let i = 0; i < 10; i++) {
+            items.push(<div className='view-members__grid__item-empty' />)
+        }
+
         return (
-            <div className='view-profiles'>
-                <div className='container-card'>
-                    {members.map(member => <CardMember member={member} key={member._id} />)}
+            <div className='view-members'>
+                <div className='view-members__grid'>
+                    {items}
                 </div>
             </div>
         );
