@@ -1,0 +1,18 @@
+@import './../variables';
+
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #2196f3;
+    color: white;
+    text-transform: capitalize;
+
+    a {
+        &.selected {
+            border-bottom: solid 1px;
+        }
+    }
+}

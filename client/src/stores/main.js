@@ -38,6 +38,7 @@ export class StoreMain extends Reflux.Store {
                 this.setState({
                     session: response.data
                 });
+                history.push('/members');
             });
     }
 

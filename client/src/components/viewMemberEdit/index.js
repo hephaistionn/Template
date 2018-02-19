@@ -40,20 +40,20 @@ class ViewMemberEdit extends ComponentUrlWatched {
         const member = this.state.member;
         return (
             <div className='card-member-edit'>
-                <div className='label'>{tr("title")}</div>
+                <div className='label'>{tr('title')}</div>
                 <input
                     type='text'
                     name='username'
-                    placeholder={tr("username")}
+                    placeholder={tr('username')}
                     value={member.username || ''}
                     onChange={this.changed.bind(this)} />
                 <Dropzone onDrop={this.onDropAvatar}
                     url={member.avatar}>
                 </Dropzone>
                 <button
-                    type="button"
+                    type='button'
                     onClick={this.save.bind(this)}>
-                    {tr("save")}
+                    {tr('save')}
                 </button>
             </div>
         );

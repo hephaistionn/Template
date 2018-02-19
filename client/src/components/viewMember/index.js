@@ -21,7 +21,7 @@ class ViewMember extends ComponentUrlWatched {
         const member = this.state.member;
         const session = this.state.session;
 
-        const editButton = <Link to={'/members/' + member._id + '/edit'}>{tr("edit")}</Link>;
+        const editButton = <Link to={'/members/' + member._id + '/edit'}>{tr('edit')}</Link>;
 
         return (
             <div className='view-profile'>

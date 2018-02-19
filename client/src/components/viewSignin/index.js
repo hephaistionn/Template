@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StoreMain, actionsMain } from '../../stores/main';
+import Input from '../common/input';
 
 class ViewSignin extends Reflux.Component {
 
@@ -27,27 +28,25 @@ class ViewSignin extends Reflux.Component {
     render() {
         return (
             <div className='view-signin'>
-                <div className='pannel'>
-                    <input
-                        name='email'
-                        type='email'
-                        placeholder={tr("email")}
-                        value={this.state.email || ''}
-                        onChange={this.change.bind(this)} />
-                    <input
-                        name='password'
-                        type='password'
-                        placeholder={tr("password")}
-                        autoComplete="new-password"
-                        value={this.state.password || ''}
-                        onChange={this.change.bind(this)} />
-                    <button
-                        type="button"
-                        onClick={this.signin.bind(this)}>
-                        {tr("login")}
-                    </button>
-                    <Link className='' to={'/reset/request'}>{tr("reset password")}</Link>
+                <Input
+                    name='email'
+                    type='email'
+                    label={tr('email')}
+                    value={this.state.email || ''}
+                    onChange={this.change.bind(this)} />
+                <Input
+                    name='password'
+                    type='password'
+                    label={tr('password')}
+                    autoComplete='new-password'
+                    value={this.state.password || ''}
+                    onChange={this.change.bind(this)} />
+                <div
+                    className='view-signin__button'
+                    onClick={this.signin.bind(this)}>
+                    {tr('login')}
                 </div>
+                <Link className='' to={'/reset/request'}>{tr('reset password')}</Link>
             </div>
         );
     }

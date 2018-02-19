@@ -26,18 +26,18 @@ class ViewResetRequest extends Reflux.Component {
         return (
             <div className='view-reset-request'>
                 <div className='pannel'>
-                    <div className='label'>{tr("email")}</div>
+                    <div className='label'>{tr('email')}</div>
                     <input
                         name='email'
                         type='email'
-                        placeholder={tr("email")}
+                        placeholder={tr('email')}
                         autoComplete='off'
                         value={this.state.email || ''}
                         onChange={this.change.bind(this)} />
                     <button
-                        type="button"
+                        type='button'
                         onClick={this.getResetToken.bind(this)}>
-                        {tr("get a reset password authorization")}
+                        {tr('get a reset password authorization')}
                     </button>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
 import { StoreMain, actionsMain } from '../../stores/main';
+import Input from '../common/input';
 
 class ViewSignup extends Reflux.Component {
 
@@ -33,40 +34,34 @@ class ViewSignup extends Reflux.Component {
     render() {
         return (
             <div className='view-signup'>
-                <div className='pannel'>
-                    <div className='label'>{tr("email")}</div>
-                    <input
-                        name='email'
-                        type='email'
-                        placeholder={tr("email")}
-                        value={this.state.email || ''}
-                        onChange={this.change.bind(this)} />
-                    <div className='label'>{tr("username")}</div>
-                    <input
-                        name='username'
-                        type='text'
-                        placeholder={tr("username")}
-                        autoComplete='off'
-                        value={this.state.username || ''}
-                        onChange={this.change.bind(this)} />
-                    <div className='label'>{tr("password")}</div>
-                    <input
-                        name='password'
-                        type='password'
-                        placeholder={tr("password")}
-                        autoComplete="new-password"
-                        value={this.state.password || ''}
-                        onChange={this.change.bind(this)} />
-                    <div className='label'>{tr("cgu")}</div>
-                    <input
-                        type="checkbox"
-                        checked={this.state.cgu}
-                        onChange={this.changeCgu.bind(this)} />
-                    <button
-                        type="button"
-                        onClick={this.signup.bind(this)}>
-                        {tr("signup")}
-                    </button>
+                <Input
+                    name='email'
+                    type='email'
+                    label={tr("email")}
+                    value={this.state.email || ''}
+                    onChange={this.change.bind(this)} />
+                <Input
+                    name='username'
+                    type='text'
+                    label={tr("username")}
+                    autoComplete='off'
+                    value={this.state.username || ''}
+                    onChange={this.change.bind(this)} />
+                <Input
+                    name='password'
+                    type='password'
+                    label={tr("password")}
+                    autoComplete="new-password"
+                    value={this.state.password || ''}
+                    onChange={this.change.bind(this)} />
+                <input
+                    type="checkbox"
+                    checked={this.state.cgu}
+                    onChange={this.changeCgu.bind(this)} />
+                <div
+                    className='view-signup__button'
+                    onClick={this.signup.bind(this)}>
+                    {tr("signup")}
                 </div>
             </div>
         );

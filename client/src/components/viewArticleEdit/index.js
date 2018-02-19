@@ -39,24 +39,24 @@ class ViewArticleEdit extends ComponentUrlWatched {
         const article = this.state.article;
         return (
             <div className='card-article-edit'>
-                <div className='label'>{tr("title")}</div>
+                <div className='label'>{tr('title')}</div>
                 <input
                     type='text'
                     name='title'
-                    placeholder={tr("title")}
+                    placeholder={tr('title')}
                     value={article.title || ''}
                     onChange={this.change.bind(this)} />
-                <div className='label'>{tr("content")}</div>
+                <div className='label'>{tr('content')}</div>
                 <input
                     type='text'
                     name='content'
-                    placeholder={tr("content")}
+                    placeholder={tr('content')}
                     value={article.content || ''}
                     onChange={this.change.bind(this)} />
                 <button
-                    type="button"
+                    type='button'
                     onClick={this.save.bind(this)}>
-                    {tr("save")}
+                    {tr('save')}
                 </button>
             </div>
         );

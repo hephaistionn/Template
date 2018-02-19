@@ -20,12 +20,12 @@ class ViewArticle extends ComponentUrlWatched {
     render() {
         const article = this.state.article;
         const session = this.state.session;
-        const editButton = <Link to={'/articles/' + article._id + '/edit'}>{tr("edit")}</Link>;
+        const editButton = <Link to={'/articles/' + article._id + '/edit'}>{tr('edit')}</Link>;
 
         return (
             <div className='card-article'>
                 <div>{article.title}</div>
-                <div>{Moment(article.date).format("MMM Do YY")}</div>
+                <div>{Moment(article.date).format('MMM Do YY')}</div>
                 <div>{article.content}</div>
                 {session._id === article.owner && editButton}
             </div>

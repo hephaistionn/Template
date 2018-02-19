@@ -1,5 +1,14 @@
 @import './../variables';
 
 .view-signin{
-    @include view();
+    display: flex;
+    flex-direction: column; // direction
+    align-content: center;
+    justify-content: space; // vertical space
+    align-items: center; // horizontal align
+    padding: 20px;
+
+    &__button {
+        @include button();
+    }
 }

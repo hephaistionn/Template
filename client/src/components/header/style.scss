@@ -1,0 +1,19 @@
+@import './../variables';
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #aaa;
+
+    &__title{
+        font-size: 1.5rem;
+    }
+
+    &__logout {
+        @include button();
+        padding: 10px 10px;
+    }
+}

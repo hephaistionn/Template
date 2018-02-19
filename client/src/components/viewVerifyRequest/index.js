@@ -8,7 +8,7 @@ class ViewVerifyRequest extends Reflux.Component {
     constructor(props) {
         super(props);
         this.store = StoreMain;
-        this.state = { email: ''};
+        this.state = { email: '' };
     }
 
     change(event) {
@@ -25,20 +25,18 @@ class ViewVerifyRequest extends Reflux.Component {
     render() {
         return (
             <div className='view-verify-request'>
-                <div className='pannel'>
-                    <div className='label'>{tr("code")}</div>
-                    <input
-                        name='email'
-                        type='email'
-                        placeholder={tr("email")}
-                        autoComplete='off'
-                        value={this.state.email || ''}
-                        onChange={this.change.bind(this)} />
-                    <button
-                        type="button"
-                        onClick={this.getVerifyToken.bind(this)}>
-                        {tr("send a verification email")}
-                    </button>
+                <div className='label'>{tr('code')}</div>
+                <input
+                    name='email'
+                    type='email'
+                    placeholder={tr('email')}
+                    autoComplete='off'
+                    value={this.state.email || ''}
+                    onChange={this.change.bind(this)} />
+                <div
+                    className='view-verify__button'
+                    onClick={this.getVerifyToken.bind(this)}>
+                    {tr('send a verification email')}
                 </div>
             </div>
         );

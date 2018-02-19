@@ -1,5 +1,23 @@
 @import './../variables';
 
-.view-home{
-    @include view();
+.view-home {
+
+    display: flex;
+    flex-direction: column; // direction
+    align-content: center;
+    justify-content: space; // vertical space
+    align-items: center; // horizontal align
+    padding: 20px;
+    
+    &__title {
+        display: inline-block;
+    }
+
+    &__description {
+        display: inline-block;
+    }
+
+    &__button {
+        @include button();
+    }
 }

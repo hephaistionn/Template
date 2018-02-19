@@ -3,7 +3,8 @@ import './app.scss';
 import Reflux from 'reflux';
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom'
-import ViewHeader from './components/viewHeader';
+import Header from './components/header';
+import Menu from './components/menu';
 import ViewArticle from './components/viewArticle';
 import ViewArticles from './components/viewArticles';
 import ViewHome from './components/viewHome';
@@ -18,19 +19,29 @@ import ViewVerifyRequest from './components/viewVerifyRequest';
 import ViewReset from './components/viewReset';
 import ViewResetRequest from './components/viewResetRequest';
 import ViewArticleEdit from './components/viewArticleEdit';
-import { actionsMain, history } from './stores/main';
+
+import { actionsMain, history, StoreMain } from './stores/main';
 
 class App extends Reflux.Component {
+
+    constructor(props) {
+        super(props);
+        this.store = StoreMain;
+    }
 
     componentDidMount() {
         actionsMain.getSession();
     }
 
     render() {
+
+        const session = this.state.session;
+
         return (
             <Router history={history}>
                 <div>
-                    <ViewHeader />
+                    <Route strict path='/:page' component={Header}/>
+                    <Route exact path='/:page' component={Menu}/>
                     <Route exact path='/' component={ViewHome} />
                     <Route exact path='/signin' component={ViewSignin} />
                     <Route exact path='/signup' component={ViewSignup} />

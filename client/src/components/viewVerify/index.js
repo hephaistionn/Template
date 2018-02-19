@@ -9,7 +9,7 @@ class ViewVerify extends Reflux.Component {
     constructor(props) {
         super(props);
         this.store = StoreMain;
-        this.state = { token: ''};
+        this.state = { token: '' };
     }
 
     change(event) {
@@ -27,20 +27,20 @@ class ViewVerify extends Reflux.Component {
         return (
             <div className='view-verify'>
                 <div className='pannel'>
-                    <div className='label'>{tr("code")}</div>
+                    <div className='label'>{tr('code')}</div>
                     <input
                         name='token'
                         type='text'
-                        placeholder={tr("code")}
+                        placeholder={tr('code')}
                         autoComplete='off'
                         value={this.state.token || ''}
                         onChange={this.change.bind(this)} />
                     <button
-                        type="button"
+                        type='button'
                         onClick={this.verify.bind(this)}>
-                        {tr("confirme")}
+                        {tr('confirme')}
                     </button>
-                    <Link className='' to={'/verify/request'}>{tr("send a verification email")}</Link>
+                    <Link className='' to={'/verify/request'}>{tr('send a verification email')}</Link>
                 </div>
             </div>
         );

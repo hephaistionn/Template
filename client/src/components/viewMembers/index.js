@@ -20,7 +20,6 @@ class ViewMembers extends ComponentUrlWatched {
 
         return (
             <div className='view-profiles'>
-                <div>ViewProfiles</div>
                 <div className='container-card'>
                     {members.map(member => <CardMember member={member} key={member._id} />)}
                 </div>

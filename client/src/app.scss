@@ -1,38 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-h1 {
-   color: green; 
-   transform: translateX(3px);
-}
 
 body {
     font-size: 1rem;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 input {
-    border: solid 1px;
-    padding: 10px 15px;
-    font-size: 2rem;
     outline: none;
-    line-height: 1.5;
+    border: none;
 }
 
-button {
-    font-size: 2rem;
-    padding: 5px 20px;
-}
-
-.pannel {
-    border: solid 1px;
-    padding: 40px 80px;
-    margin: 0 auto;
-    .label { 
-        margin: 10px 0 10px 0;
-    }
-}
-
-.container-card {
-    padding: 10px;
-    margin: 20px;
-    border: solid 1px;
-}
+input[type="checkbox"] {
+    display: inline;
+    margin: 0 9px 0px 6px;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+  }
