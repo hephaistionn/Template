@@ -3,6 +3,8 @@ import Reflux from 'reflux';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { actionsMain, StoreMain } from '../../stores/main';
+import Menu from './../common/menu';
+
 
 class Header extends Reflux.Component {
 
@@ -17,11 +19,19 @@ class Header extends Reflux.Component {
 
     render() {
         const session = this.state.session;
+        const status = location.pathname.split('/')[2] ? 'hidden' : '';
 
+        const actions = [ 
+            {label: tr('logout'), actionFn: this.logout.bind(this), classIcon:'fas fa-sign-out-alt'},
+            {label: tr('profil'), link: `/members/${session._id}`, classIcon:'fas fa-user'}
+        ];
+ 
         return (
-            <div className='header'>
-                <Link className='header__title' to={'/'}>{tr('Appication Title')}</Link>
-                {session._id  && <a className='header__logout fas fa-sign-out-alt' onClick={this.logout}></a>}
+            <div className={`header ${status}`}>
+                <div className='header__content'>
+                    <Link className='header__title' to={'/'}>{tr('Appication Title')}</Link>
+                    {session._id && <Menu className='header__menu' list={actions}/>}
+                </div>
             </div>
         );
     }

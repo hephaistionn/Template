@@ -2,18 +2,30 @@
 
 .header {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
     background: #aaa;
+    transition: height 500ms cubic-bezier(0.23, 1, 0.32, 1);
+    height: 50px;
+    z-index: 2;
+    &__content {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        
+    }
 
     &__title{
         font-size: 1.5rem;
     }
 
-    &__logout {
+    &__menu {
         margin: 0;
         font-size: 1.5rem;
+    }
+
+    &.hidden {
+        height: 0;
+        z-index: 0;
     }
 }

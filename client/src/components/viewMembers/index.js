@@ -26,16 +26,9 @@ class ViewMembers extends ComponentUrlWatched {
                 className='view-members__grid__item'
                 member={member} key={member._id} />);
 
-        items.unshift(<CardMember
-            key={session._id}
-            className='view-members__grid__item'
-            member={session} key={session._id} />);
-
         for (let i = 0; i < 10; i++) {
             items.push(<div className='view-members__grid__item-empty' key={i} />)
         }
-
-
 
         return (
             <div className='view-members'>

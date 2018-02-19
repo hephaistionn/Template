@@ -1,24 +1,30 @@
+@import './../../variables';
 .dropzone-container {
     display: block;
-    height: 200px;
-    width: 200px;
     position: relative;
-    border: solid 1px red;
 
-
-    &__picture {
-        background-image: url(./../../../../assets/avatar3.png);
-        position: absolute;
-        top: 0;
+    &__label{
+        position: relative;
+        font-size: 1rem;
+        transform-origin: left;
+        color: gray;
+        text-transform: capitalize;
         width: 100%;
-        height: 100%;
+        margin-bottom: 5px;
+    }
+
+    &__dropzone {
+        position: relative;
+        width: 180px;
+        height: 180px;
         background-size: cover;
-        z-index: -1;
+        margin: auto;
+        border: dashed 1px;
     }
 
     &__upload-label {
         position: absolute;
-        top: 0;
-        z-index: -1;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
     }
 }

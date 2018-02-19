@@ -1,0 +1,38 @@
+@import './../../variables';
+
+.menu {
+  position: relative;
+  &__button{
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  &__list{
+    display: block;
+    position: absolute;
+    top: 29px;
+    right: 17px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.21);
+    padding: 10px 0 10px 0;
+    color: gray;
+    &__item{
+      display: block;
+      padding: 4px 37px;
+      display: block;
+      cursor: pointer;
+      font-size: 2rem;
+      line-height: 4rem;
+      width: 160px;
+      &:hover {
+        background-color: $focus-color;
+      }
+    }
+    i {
+      padding: 0 20px 0 0;
+      display: inline-block;
+    }
+
+  }
+
+}

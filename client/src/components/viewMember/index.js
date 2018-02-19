@@ -21,8 +21,8 @@ class ViewMember extends ComponentUrlWatched {
         const member = this.state.member;
         const session = this.state.session;
 
-        const editButton = <Link 
-            className='view-member__edit far fa-edit'
+        const editButton = <Link
+            className='view-member__edit fas fa-edit'
             aria-hidden='true'
             to={'/members/' + member._id + '/edit'}>
         </Link>;
