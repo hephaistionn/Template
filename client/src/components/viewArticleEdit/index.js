@@ -2,6 +2,8 @@ import './style.scss';
 import ComponentUrlWatched from './../common/componentUrlWatched';
 import React from 'react';
 import { StoreArticle, actionsArticle } from '../../stores/article';
+import Textarea from '../common/textarea';
+import Input from '../common/input';
 
 class ViewArticleEdit extends ComponentUrlWatched {
 
@@ -38,26 +40,29 @@ class ViewArticleEdit extends ComponentUrlWatched {
     render() {
         const article = this.state.article;
         return (
-            <div className='card-article-edit'>
-                <div className='label'>{tr('title')}</div>
-                <input
+            <div className='view-article-edit'>
+                <div
+                    className='view-article-edit__save fas fa-save'
+                    aria-hidden='true'
+                    onClick={this.save.bind(this)}/>
+                <div 
+                    className='view-article-edit__previous fas fa-arrow-left'
+                    aria-hidden='true'
+                    onClick={this.props.history.goBack}/>
+                <Input
+                    className='view-article-edit__title'
                     type='text'
                     name='title'
-                    placeholder={tr('title')}
+                    label={tr('title')}
                     value={article.title || ''}
                     onChange={this.change.bind(this)} />
-                <div className='label'>{tr('content')}</div>
-                <input
+                <Textarea
+                    className='view-article-edit__content'
                     type='text'
                     name='content'
-                    placeholder={tr('content')}
+                    label={tr('content')}
                     value={article.content || ''}
                     onChange={this.change.bind(this)} />
-                <button
-                    type='button'
-                    onClick={this.save.bind(this)}>
-                    {tr('save')}
-                </button>
             </div>
         );
     }

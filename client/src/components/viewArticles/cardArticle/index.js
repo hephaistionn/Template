@@ -14,8 +14,8 @@ class CardArticle extends Reflux.Component {
         const article  =  this.props.article;
         return (
             <Link className='card-article' to={'/articles/'+article._id}>
-                <div>{article.title}</div>
-                <div>{Moment(article.date).format('MMM Do YY')}</div>
+                <div className='card-article__title'>{article.title}</div>
+                <div className='card-article__date'>{Moment(article.date).format('MMM Do YY')}</div>
             </Link>
         );
     }

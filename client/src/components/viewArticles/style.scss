@@ -2,4 +2,14 @@
 
 .view-articles{
     @include view();
+    position: relative;
+    padding: 10px;
+
+    &__grid {
+        @include column();
+    }
+
+    &__button {
+        @include button();
+    }
 }

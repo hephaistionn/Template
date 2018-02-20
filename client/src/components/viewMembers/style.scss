@@ -1,9 +1,8 @@
 @import './../variables';
 
 .view-members{
-    position: relative;
-    padding: 10px;
-
+    @include view();
+    padding: 0;
     &__grid {
         @include grid();
     }

@@ -21,11 +21,12 @@ class ViewArticles extends ComponentUrlWatched {
         const articles = this.state.articles;
         return (
             <div className='view-articles'>
-                <div>ViewArticles</div>
-                <div className='container-card'>
-                    {articles.map(article => <CardArticle article={article} key={article._id} />)}
+                <div className='view-articles__grid'>
+                    {articles.map(article => <CardArticle
+                        className='view-articles__grid__item'
+                        article={article} key={article._id} />)}
                 </div>
-                <Link to={'/articles/create'}>{tr("create")}</Link>
+                <Link className='view-articles__button' to={'/articles/create'}>{tr("create")}</Link>
             </div>
         );
     }

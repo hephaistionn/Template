@@ -2,17 +2,17 @@
 
 .header {
     position: relative;
-    background: #aaa;
+    background: linear-gradient(45deg, #2196f3, 70%, #a3d6ff);;
+    color: white;
     transition: height 500ms cubic-bezier(0.23, 1, 0.32, 1);
     height: 50px;
     z-index: 2;
-    &__content {
-        position: relative;
+    &__container {
+        @include view();
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        
+        padding: 10px  20px;
     }
 
     &__title{
@@ -24,8 +24,12 @@
         font-size: 1.5rem;
     }
 
-    &.hidden {
-        height: 0;
-        z-index: 0;
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        &.hidden {
+            height: 0;
+            z-index: 0;
+        }
     }
 }
+

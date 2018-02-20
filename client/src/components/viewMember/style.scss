@@ -1,15 +1,12 @@
 @import './../variables';
 
 .view-member {
-    position: relative;
+    @include view();
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space; 
     align-items: center; 
-    padding: 20px;
-    max-width: 555px;
-    margin: auto;
 
     &__edit {
         position: absolute;
@@ -53,7 +50,10 @@
         display: block;
         position: relative;
         font-size: 1rem;
-        margin-top:15px;
+        margin-top: 30px;
+        width: 100%;
+        overflow-wrap: break-word;
+        white-space: pre-line;
     }
 
     &__skills {

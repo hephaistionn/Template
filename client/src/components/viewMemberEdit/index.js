@@ -27,7 +27,7 @@ class ViewMemberEdit extends ComponentUrlWatched {
         const username = this.state.member.username;
         const avatar = this.state.member.avatar;
         const description = this.state.member.description;
-        actionsMember.update(id, username, avatar);
+        actionsMember.update(id, username, avatar, description);
     }
 
     changed(event) {
@@ -43,28 +43,27 @@ class ViewMemberEdit extends ComponentUrlWatched {
     render() {
         const member = this.state.member;
         return (
-            <div className='member-edit'>
+            <div className='view-member-edit'>
                 <Dropzone onDrop={this.onDropAvatar}
-                    className='member-edit__avatar'
+                    className='view-member-edit__avatar'
                     url={member.avatar}>
                 </Dropzone>
                 <Input
                     type='text'
-                    className='member-edit__username'
+                    className='view-member-edit__username'
                     name='username'
                     label={tr('username')}
                     value={member.username || ''}
                     onChange={this.changed.bind(this)} />
                 <Textarea
                     type='text'
-                    className='member-edit__description'
+                    className='view-member-edit__description'
                     name='description'
                     label={tr('description')}
                     value={member.description || ''}
                     onChange={this.changed.bind(this)} />
-
                 <div
-                    className='member-edit__save fas fa-save'
+                    className='view-member-edit__save fas fa-save'
                     aria-hidden='true'
                     onClick={this.save.bind(this)}/>
                 <div 
