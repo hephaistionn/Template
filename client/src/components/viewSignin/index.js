@@ -29,12 +29,14 @@ class ViewSignin extends Reflux.Component {
         return (
             <div className='view-signin'>
                 <Input
+                    className='view-signin__input'
                     name='email'
                     type='email'
                     label={tr('email')}
                     value={this.state.email || ''}
                     onChange={this.change.bind(this)} />
                 <Input
+                    className='view-signin__input'
                     name='password'
                     type='password'
                     label={tr('password')}

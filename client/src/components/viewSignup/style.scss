@@ -8,7 +8,12 @@
     align-items: center; // horizontal align
     padding: 20px;
 
+    &__input {
+        margin: 20px 0;
+    }
+
     &__button {
+        margin: 20px 0;
         @include button();
     }
 }

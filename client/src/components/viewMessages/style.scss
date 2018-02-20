@@ -1,7 +1,12 @@
 @import './../variables';
 
 .view-messages{
-    position: relative;
-    border: solid 1px;
-    padding: 30px;
+    @include view();
+    padding: 0;
+    &__list-members {
+        @include column();
+    }
+    &__list-conv {
+        @include column();
+    }
 }

@@ -40,8 +40,7 @@ class App extends Reflux.Component {
         return (
             <Router history={history}>
                 <div>
-                    <Route strict path='/:page' component={Header}/>
-                    <Route strict path='/:page' component={Menu}/>
+                    <Header />
                     <Route exact path='/' component={ViewHome} />
                     <Route exact path='/signin' component={ViewSignin} />
                     <Route exact path='/signup' component={ViewSignup} />
@@ -49,7 +48,10 @@ class App extends Reflux.Component {
                     <Route exact path='/verify/request' component={ViewVerifyRequest} />
                     <Route exact path='/reset' component={ViewReset} />
                     <Route exact path='/reset/request' component={ViewResetRequest} />
-                    <Route exact path='/messages/' component={ViewMessages} />
+                    <Route strict  path='/messages' component={Menu} />
+                    <Route strict  path='/articles' component={Menu} />
+                    <Route strict  path='/members' component={Menu} />
+                    <Route exact path='/messages' component={ViewMessages} />
                     <Route exact path='/messages/:memberId1/:memberId2' component={ViewMessages} />
                     <Switch>
                         <Route exact path='/articles/create' component={ViewArticleEdit} />
@@ -58,8 +60,8 @@ class App extends Reflux.Component {
                     <Route exact path='/articles/:articleId/edit' component={ViewArticleEdit} />
                     <Route exact path='/members/:memberId/edit' component={ViewMemberEdit} />
                     <Route exact path='/members/:memberId' component={ViewMember} />
-                    <Route exact path='/members/' component={ViewMembers} />
-                    <Route exact path='/articles/' component={ViewArticles} />
+                    <Route exact path='/members' component={ViewMembers} />
+                    <Route exact path='/articles' component={ViewArticles} />
                 </div>
             </Router>
         );

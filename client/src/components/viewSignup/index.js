@@ -35,12 +35,14 @@ class ViewSignup extends Reflux.Component {
         return (
             <div className='view-signup'>
                 <Input
+                    className='view-signup__input'
                     name='email'
                     type='email'
                     label={tr("email")}
                     value={this.state.email || ''}
                     onChange={this.change.bind(this)} />
                 <Input
+                    className='view-signup__input'
                     name='username'
                     type='text'
                     label={tr("username")}
@@ -48,6 +50,7 @@ class ViewSignup extends Reflux.Component {
                     value={this.state.username || ''}
                     onChange={this.change.bind(this)} />
                 <Input
+                    className='view-signup__input'
                     name='password'
                     type='password'
                     label={tr("password")}
@@ -55,6 +58,7 @@ class ViewSignup extends Reflux.Component {
                     value={this.state.password || ''}
                     onChange={this.change.bind(this)} />
                 <input
+                    className='view-signup__input'
                     type="checkbox"
                     checked={this.state.cgu}
                     onChange={this.changeCgu.bind(this)} />

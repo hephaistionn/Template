@@ -1,7 +1,6 @@
 import './style.scss';
 import React from 'react';
-import { actionsMain } from '../../../stores/main';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class CardMember extends React.Component {
 
