@@ -7,7 +7,7 @@ files.forEach(modelName => {
 });
 
 const ACTIONS = { get: 'READ', post: 'CREATE', put: 'UPDATE', delete: 'DELETE' }
-const ROLES = { $everyone: 0, $authenticated: 1, teamMember: 2, $owner: 3 }
+const ROLES = { $everyone: 0, $authenticated: 1, $teamMember: 2, $owner: 3 }
 
 const EVERYONE = 0;
 const AUTHENTICATED = 1;
@@ -24,9 +24,14 @@ module.exports = function* (req, res) {
     const action = ACTIONS[req.method.toLowerCase()];
     const modelName = urlData[2];
     const modelId = urlData[3];
+    const teamIds = urlData[3] === 'team' ? [] : null;
     const Model = modelMap[modelName];
     const ACL = Model.ACL;
     const role = ROLES[ACL[action]];
+    if (teamIds) {
+        if (urlData[4]) teamIds.push(urlData[4]);
+        teamIds.push(req.session.memberId);
+    }
 
     if (role > EVERYONE) {
         if (!req.session || !req.session.memberId) {
@@ -38,7 +43,9 @@ module.exports = function* (req, res) {
 
     if (role > AUTHENTICATED && req.session.memberLevel !== ADMIN) {
 
-        const instance = yield Model.findOne({ _id: modelId });
+        const condition = teamIds ? { team: { '$all': teamIds } } : { _id: modelId };
+
+        const instance = yield Model.findOne(condition);
 
         if (!instance) {
             var err = new Error('This document does not exist');

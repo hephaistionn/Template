@@ -52,7 +52,7 @@ class App extends Reflux.Component {
                     <Route strict  path='/articles' component={Menu} />
                     <Route strict  path='/members' component={Menu} />
                     <Route exact path='/messages' component={ViewMessages} />
-                    <Route exact path='/messages/:memberId1/:memberId2' component={ViewMessages} />
+                    <Route exact path='/messages/:memberId' component={ViewMessages} />
                     <Switch>
                         <Route exact path='/articles/create' component={ViewArticleEdit} />
                         <Route exact path='/articles/:articleId' component={ViewArticle} />

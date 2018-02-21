@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
     content: String,
+    owner: String,
+    team: Array,
     date: { type: Date, default: Date.now }
 });
 
@@ -10,7 +12,7 @@ const Message = mongoose.model('Message', MessageSchema);
 
 Message.ACL = {
     READ: '$teamMember',
-    UPDATE: '$owner',
+    UPDATE: '$teamMember',
     CREATE: '$authenticated',
     DELETE: '$owner'
 };

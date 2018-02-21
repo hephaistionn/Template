@@ -3,14 +3,34 @@ const Message = require('../model');
 
 function* create(req, res) {
 
-    const model = req.body;
+    const memberId = req.params.memberId;
+    const ownerId = req.session.memberId;
+    const content = req.body.content;
 
-    const intance = new Message(model);
+    if (!memberId) {
+        const err = new Error('Need target');
+        err.status = 403;
+        throw err;
+    }
+    if (!req.body.content) {
+        const err = new Error('Need content');
+        err.status = 403;
+        throw err;
+    }
+
+    const intance = new Message({
+        content: content,
+        owner: ownerId,
+        team: [ownerId, memberId]
+    });
 
     const message = yield intance.save();
 
-    res.send(message);
+    res.send({
+        content: message.content,
+        date: message.date
+    });
 
 }
 
-module.exports = router.post('/', create);
+module.exports = router.post('/team/:memberId', create);

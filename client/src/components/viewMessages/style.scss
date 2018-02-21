@@ -6,7 +6,7 @@
     &__list-members {
         @include column();
     }
-    &__list-conv {
+    &__list-messages {
         @include column();
     }
 }

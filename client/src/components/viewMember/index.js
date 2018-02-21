@@ -20,20 +20,23 @@ class ViewMember extends ComponentUrlWatched {
     render() {
         const member = this.state.member;
         const session = this.state.session;
-
-        const editButton = <Link
-            className='view-member__edit fas fa-edit'
-            aria-hidden='true'
-            to={'/members/' + member._id + '/edit'}>
-        </Link>;
-
+        
         return (
             <div className='view-member'>
                 <div className='view-member__avatar'
                     style={member.avatar && { backgroundImage: `url(${member.avatar})` }} />
                 <div className='view-member__username' >{member.username}</div>
                 <div className='view-member__description' >{member.description}</div>
-                {session._id === member._id && editButton}
+                <Link
+                    className={`view-member__edit fas fa-edit ${session._id !== member._id ? ' hide' : ''}`}
+                    aria-hidden='true'
+                    to={'/members/' + member._id + '/edit'}>
+                </Link>
+                <Link
+                    className={`view-member__message fas fa-comment-alt ${session._id === member._id ? ' hide' : ''}`}
+                    aria-hidden='true'
+                    to={`/messages/${member._id}`}>
+                </Link>;
             </div>
         );
     }

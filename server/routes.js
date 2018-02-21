@@ -14,7 +14,7 @@ router.get('/verify/', indexRender);
 router.get('/verify/request', indexRender);
 router.get('/reset/', indexRender);
 router.get('/reset/request', indexRender);
-router.get('/messages/:memberId1/:memberId2', indexRender);
+router.get('/messages/:memberId', indexRender);
 router.get('/messages', indexRender);
 router.get('/articles', indexRender);
 router.get('/articles/edit', indexRender);
