@@ -27,7 +27,7 @@ class ViewSignin extends Reflux.Component {
 
     render() {
         return (
-            <div className='view-signin'>
+            <form className='view-signin'>
                 <Input
                     className='view-signin__input'
                     name='email'
@@ -49,7 +49,7 @@ class ViewSignin extends Reflux.Component {
                     {tr('login')}
                 </div>
                 <Link className='' to={'/reset/request'}>{tr('reset password')}</Link>
-            </div>
+            </form>
         );
     }
 }

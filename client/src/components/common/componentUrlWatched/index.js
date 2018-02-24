@@ -13,7 +13,7 @@ class ComponentUrlWatched extends Reflux.Component {
     componentWillReceiveProps(nextProps) {
         const nextPath = nextProps.location.pathname;
         const previousPath = this.props.location.pathname;
-        if (previousPath !== nextPath && this.props.match.url === nextPath.slice(0, -1)) {
+        if (previousPath !== nextPath /*&& this.props.match.url === nextPath.slice(0, -1)*/) {
             this.urlUpdated();
         }
     }

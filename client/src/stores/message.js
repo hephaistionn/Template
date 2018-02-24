@@ -21,15 +21,21 @@ export class StoreMessage extends Reflux.Store {
 
     onGet(memberId) {
         this.setState({ messages: [] });
-        if(!memberId) return;
-        axios.get(`/api/messages/team/${memberId}`)
-            .then(response => {
-                this.setState({ messages: response.data });
-            });
+        if (!memberId) {
+            axios.get(`/api/messages`)
+                .then(response => {
+                    this.setState({ conversations: response.data });
+                });
+        } else {
+            axios.get(`/api/messages/team/${memberId}`)
+                .then(response => {
+                    this.setState({ messages: response.data });
+                });
+        }
     }
 
     onSend(content, memberId) {
-        if(!memberId) return;
+        if (!memberId) return;
         axios.post(`/api/messages/team/${memberId}`, {
             content: content
         })

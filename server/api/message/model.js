@@ -11,7 +11,7 @@ const MessageSchema = new Schema({
 const Message = mongoose.model('Message', MessageSchema);
 
 Message.ACL = {
-    READ: '$teamMember',
+    READ: '$authenticated',//'$teamMember',
     UPDATE: '$teamMember',
     CREATE: '$authenticated',
     DELETE: '$owner'

@@ -18,6 +18,7 @@ class ViewMessages extends ComponentUrlWatched {
     urlUpdated() {
         const memberId = this.props.match.params.memberId;
         actionsMessage.get(memberId);
+        actionsMessage.get();
     }
 
     change(event) {
