@@ -21,13 +21,14 @@ function* create(req, res) {
     const intance = new Message({
         content: content,
         owner: ownerId,
-        team: [ownerId, memberId]
+        team: [ownerId, memberId].sort()
     });
 
     const message = yield intance.save();
 
     res.send({
         content: message.content,
+        owner: ownerId,
         date: message.date
     });
 

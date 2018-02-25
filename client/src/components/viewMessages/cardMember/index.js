@@ -19,11 +19,9 @@ class CardMember extends React.Component {
 
 
         return (
-
-            <Link className={`card-member ${this.props.className || ''}`}
+            <Link className={`card-member-message ${this.props.className || ''}`}
                 style={style}
                 to={`/messages/${member._id}`}>
-                <span className="card-member__username">{member.username}</span>
             </Link>
         )
     }

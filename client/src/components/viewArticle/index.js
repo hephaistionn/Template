@@ -12,8 +12,8 @@ class ViewArticle extends ComponentUrlWatched {
         super(props);
         this.stores = [StoreArticle, StoreMain];
     }
-    urlUpdated() {
-        const articleId = this.props.match.params.articleId;
+    urlUpdated(params) {
+        const articleId = params.articleId;
         actionsArticle.get(articleId);
     }
 
@@ -30,7 +30,7 @@ class ViewArticle extends ComponentUrlWatched {
                     className='view-article__edit fas fa-edit'
                     to={'/articles/' + article._id + '/edit'} />}
                 <div className='view-article__title'>{article.title}</div>
-                <div className='view-article__date'>{Moment(article.date).format('MMM Do YY')}</div>
+                <div className='view-article__date'>{Moment(article.date).format('MMM Do YY')}</div> 
                 <div className='view-article__content'>{article.content}</div>
             </div>
         );

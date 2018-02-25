@@ -1,6 +1,7 @@
 import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
+import Moment from 'moment';
 import { StoreMain } from '../../stores/main';
 import { StoreMessage, actionsMessage } from '../../stores/message';
 import CardMember from './cardMember';
@@ -15,8 +16,8 @@ class ViewMessages extends ComponentUrlWatched {
         this.state = { message: '' };
     }
 
-    urlUpdated() {
-        const memberId = this.props.match.params.memberId;
+    urlUpdated(params) {
+        const memberId = params.memberId;
         actionsMessage.get(memberId);
         actionsMessage.get();
     }
@@ -38,7 +39,6 @@ class ViewMessages extends ComponentUrlWatched {
         const message = this.state.message;
         const messages = this.state.messages;
         const conversations = this.state.conversations;
-
         return (
             <div className='view-messages'>
                 <div className='view-messages__list-members'>
@@ -51,20 +51,28 @@ class ViewMessages extends ComponentUrlWatched {
                     <div className='view-messages__list-messages'>
                         {messages.map((message, index) => <div
                             key={index}
-                            className='view-messages__list-messages__item' >
-                            {message.content}
+                            className={`view-messages__list-messages__item ${
+                                message.owner === session._id ? 'your' : ''}`} >
+                            <div className='view-messages__list-messages__item__date'>
+                                {Moment(message.date).format('MMM/DD HH:mm')}
+                            </div>
+                            <div className='view-messages__list-messages__item__content'>
+                                {message.content}
+                            </div>
                         </div>)}
                     </div>
-                    <Textarea
-                        className='view-messages__input'
-                        type='text'
-                        name='content'
-                        value={message}
-                        onChange={this.change.bind(this)} />
-                    <div
-                        className='view-messages__button'
-                        onClick={this.send.bind(this)}>
-                        {tr('send')}
+                    <div className='view-messages__tools'>
+                        <Textarea
+                            className='view-messages__tools__input'
+                            type='text'
+                            name='content'
+                            value={message}
+                            onChange={this.change.bind(this)} />
+                        <div
+                            className='view-messages__tools__button'
+                            onClick={this.send.bind(this)}>
+                            {tr('send')}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ function* getTeam(req, res) {
         throw err;
     }
 
-    const fields = { __v: 0, owner: 0, team: 0, _id: 0 };
+    const fields = { __v: 0, team: 0, _id: 0 };
     const query = { team: { '$all': [currenMemberId, memberId] } };
 
     let messages = yield Message.find(query, fields);
@@ -48,7 +48,7 @@ function* getAll(req, res) {
     const fields = { username: 1, avatar: 1 };
     for (let i = 0; i < messagesGrouped.length; i++) {
         const group = messagesGrouped[i];
-        const query = { _id: group._id[1] };
+        const query = { _id: group._id.filter(id=>id!==currenMemberId)[0] };
         conversations.push({
             member: yield Member.findOne(query, fields),
             lastMessage: group.lastmessage.content

@@ -12,8 +12,8 @@ class ViewMember extends ComponentUrlWatched {
         this.stores = [StoreMember, StoreMain];
     }
 
-    urlUpdated() {
-        const memberId = this.props.match.params.memberId;
+    urlUpdated(params) {
+        const memberId = params.memberId;
         actionsMember.get(memberId);
     }
 
