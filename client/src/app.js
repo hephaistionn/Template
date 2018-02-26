@@ -9,6 +9,7 @@ import ViewArticle from './components/viewArticle';
 import ViewArticles from './components/viewArticles';
 import ViewHome from './components/viewHome';
 import ViewMessages from './components/viewMessages';
+import ViewMessage from './components/viewMessage';
 import ViewMember from './components/viewMember';
 import ViewMembers from './components/viewMembers';
 import ViewMemberEdit from './components/viewMemberEdit';
@@ -52,7 +53,7 @@ class App extends Reflux.Component {
                     <Route strict  path='/articles' component={Menu} />
                     <Route strict  path='/members' component={Menu} />
                     <Route exact path='/messages' component={ViewMessages} />
-                    <Route exact path='/messages/:memberId' component={ViewMessages} />
+                    <Route exact path='/messages/:memberId' component={ViewMessage} />
                     <Switch>
                         <Route exact path='/articles/create' component={ViewArticleEdit} />
                         <Route exact path='/articles/:articleId' component={ViewArticle} />

@@ -1,0 +1,77 @@
+@import './../variables';
+
+.view-conversation{
+    @include view();
+    padding: 0;
+    display: block;
+    &__previous { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__member {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        font-size: 1.5rem;
+        background-size: cover;
+        cursor: pointer;
+        background-image: url(../../../assets/avatar3.png);
+    }
+
+    &__list-messages {
+        position: absolute;
+        top: 60px;
+        height: 331px;
+        display: flex;
+        flex: auto;
+        flex-direction: column;
+        width: calc(100% - 20px);
+        margin: 10px;
+        overflow: auto;
+        &__item {
+            position: relative;
+            display: block;
+            background: #d1e8fb;
+            margin: 4px 4px 0 4px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            max-width: 66%;
+            margin-right: auto;
+            margin-left: inherit;
+            &.your {
+                margin-left: auto;
+                margin-right: inherit;
+            }
+
+            &__date {
+                font-size: 0.7rem;
+                color: rgb(141, 141, 141);
+            }
+
+            &__content {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    &__tools{
+        position: absolute;
+        width: calc(100% - 20px);
+        margin: 10px;
+        top: 415px;
+        &__input {
+            width: 100%;
+        }
+        &__button {
+            @include button();
+        }
+    }
+}

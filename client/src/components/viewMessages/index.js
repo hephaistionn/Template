@@ -4,7 +4,7 @@ import React from 'react';
 import Moment from 'moment';
 import { StoreMain } from '../../stores/main';
 import { StoreMessage, actionsMessage } from '../../stores/message';
-import CardMember from './cardMember';
+import CardMessage from './cardMessage';
 import ComponentUrlWatched from './../common/componentUrlWatched';
 import Textarea from '../common/textarea';
 
@@ -39,41 +39,13 @@ class ViewMessages extends ComponentUrlWatched {
         const message = this.state.message;
         const messages = this.state.messages;
         const conversations = this.state.conversations;
+        console.log(conversations)
         return (
             <div className='view-messages'>
-                <div className='view-messages__list-members'>
-                    {conversations.map(conversation => <CardMember
-                        className='view-messages__list-members__item'
-                        member={conversation.member} key={conversation.member._id} />)}
-                </div>
-
-                <div className='view-messages__conversation'>
-                    <div className='view-messages__list-messages'>
-                        {messages.map((message, index) => <div
-                            key={index}
-                            className={`view-messages__list-messages__item ${
-                                message.owner === session._id ? 'your' : ''}`} >
-                            <div className='view-messages__list-messages__item__date'>
-                                {Moment(message.date).format('MMM/DD HH:mm')}
-                            </div>
-                            <div className='view-messages__list-messages__item__content'>
-                                {message.content}
-                            </div>
-                        </div>)}
-                    </div>
-                    <div className='view-messages__tools'>
-                        <Textarea
-                            className='view-messages__tools__input'
-                            type='text'
-                            name='content'
-                            value={message}
-                            onChange={this.change.bind(this)} />
-                        <div
-                            className='view-messages__tools__button'
-                            onClick={this.send.bind(this)}>
-                            {tr('send')}
-                        </div>
-                    </div>
+                <div className='view-messages__grid'>
+                    {conversations.map((conversation, index) => <CardMessage
+                        className='view-messages__grid__item'
+                        conversation={conversation} key={index} />)}
                 </div>
             </div>
         );

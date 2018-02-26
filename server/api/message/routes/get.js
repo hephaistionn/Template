@@ -48,9 +48,10 @@ function* getAll(req, res) {
     const fields = { username: 1, avatar: 1 };
     for (let i = 0; i < messagesGrouped.length; i++) {
         const group = messagesGrouped[i];
-        const query = { _id: group._id.filter(id=>id!==currenMemberId)[0] };
+        const query = { _id: group._id.filter(id => id !== currenMemberId)[0] };
         conversations.push({
             member: yield Member.findOne(query, fields),
+            date: group.lastmessage.date,
             lastMessage: group.lastmessage.content
         });
     }
