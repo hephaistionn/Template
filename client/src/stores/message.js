@@ -5,7 +5,8 @@ import { actionsMain } from './main';
 export const actionsMessage = Reflux.createActions([
     'send',
     'change',
-    'get'
+    'get',
+    'updated' //Hack, very bad
 ]);
 
 export class StoreMessage extends Reflux.Store {
@@ -25,11 +26,13 @@ export class StoreMessage extends Reflux.Store {
             axios.get(`/api/messages`)
                 .then(response => {
                     this.setState({ conversations: response.data });
+                    actionsMessage.updated();
                 });
         } else {
             axios.get(`/api/messages/team/${memberId}`)
                 .then(response => {
                     this.setState({ messages: response.data });
+                    actionsMessage.updated();
                 });
         }
     }
@@ -42,6 +45,7 @@ export class StoreMessage extends Reflux.Store {
             .then(response => {
                 this.state.messages.push(response.data)
                 this.setState({ messages: this.state.messages });
+                actionsMessage.updated();
             });
     }
 

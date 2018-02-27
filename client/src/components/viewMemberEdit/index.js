@@ -59,6 +59,7 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     type='text'
                     className='view-member-edit__description'
                     name='description'
+                    autoResize={true}
                     label={tr('description')}
                     value={member.description || ''}
                     onChange={this.changed.bind(this)} />

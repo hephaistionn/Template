@@ -29,7 +29,7 @@ class Header extends Reflux.Component {
         return (
             <div className={`header ${status}`}>
                 <div className='header__container'>
-                    <Link className='header__title' to={'/'}>{tr('Appication Title')}</Link>
+                    <Link className='header__title' to={'/'}>{tr('Application Title')}</Link>
                     {session._id && <Menu className='header__menu' list={actions}/>}
                 </div>
             </div>

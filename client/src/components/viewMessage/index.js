@@ -2,6 +2,7 @@ import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
 import Moment from 'moment';
+import { Link } from 'react-router-dom';
 import { StoreMain } from '../../stores/main';
 import { StoreMessage, actionsMessage } from '../../stores/message';
 import ComponentUrlWatched from './../common/componentUrlWatched';
@@ -18,6 +19,9 @@ class ViewMessage extends ComponentUrlWatched {
     urlUpdated(params) {
         const memberId = params.memberId;
         actionsMessage.get(memberId);
+        actionsMessage.updated = ()=>{
+            this.autoview();
+        }
     }
 
     change(event) {
@@ -30,6 +34,25 @@ class ViewMessage extends ComponentUrlWatched {
         const memberId = this.props.match.params.memberId;
         actionsMessage.send(message, memberId);
         this.setState({ message: '' });
+    }
+
+    autoview() {
+        this.listview.scrollTop = this.listview.scrollHeight;
+        this.listview.addEventListener("scroll",() => {            
+            this.handleScroll();       
+        });    
+    }
+
+    componentWillUnmount() {
+        this.listview.removeEventListener("scroll",() => {            
+            this.handleScroll();       
+        });   
+    }
+
+    handleScroll(event) {      
+        console.log('scrolled');
+        // const memberId = this.props.match.params.memberId;
+        // actionsMessage.getNextPage(memberId)
     }
 
     render() {
@@ -49,13 +72,17 @@ class ViewMessage extends ComponentUrlWatched {
 
         return (
             <div className='view-conversation'>
-                <div className='view-conversation__previous fas fa-arrow-left'
-                    aria-hidden='true'
-                    onClick={this.props.history.goBack} />
-                <div className={`view-conversation__member`}
-                    style={style}>
+                <div className='view-conversation__header'>
+                    <div className='view-conversation__header__previous fas fa-arrow-left'
+                        aria-hidden='true'
+                        onClick={this.props.history.goBack} />
+                    <Link className={`view-conversation__header__member`}
+                        to={`/members/${member._id}`}
+                        style={style}>
+                    </Link>
                 </div>
-                <div className='view-conversation__list-messages'>
+                <div className='view-conversation__list-messages'
+                    ref={(c) => this.listview = c}>
                     {messages.map((message, index) => <div
                         key={index}
                         className={`view-conversation__list-messages__item ${

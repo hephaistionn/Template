@@ -27,6 +27,9 @@ class ViewMember extends ComponentUrlWatched {
                     style={member.avatar && { backgroundImage: `url(${member.avatar})` }} />
                 <div className='view-member__username' >{member.username}</div>
                 <div className='view-member__description' >{member.description}</div>
+                <div className='view-member__previous fas fa-arrow-left'
+                    aria-hidden='true'
+                    onClick={this.props.history.goBack} />
                 <Link
                     className={`view-member__edit fas fa-edit ${session._id !== member._id ? ' hide' : ''}`}
                     aria-hidden='true'
@@ -36,7 +39,7 @@ class ViewMember extends ComponentUrlWatched {
                     className={`view-member__message fas fa-comment-alt ${session._id === member._id ? ' hide' : ''}`}
                     aria-hidden='true'
                     to={`/messages/${member._id}`}>
-                </Link>;
+                </Link>
             </div>
         );
     }

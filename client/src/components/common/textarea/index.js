@@ -9,6 +9,7 @@ class TextArea extends React.Component {
     }
 
     componentDidMount() {
+        if(!this.props.autoResize) return;
         this.textarea.style.overflowY = 'hidden';
         setTimeout(()=> {
             if(!this.textarea.style) return;
@@ -23,6 +24,7 @@ class TextArea extends React.Component {
     }
 
     autoResize(e) {
+        if(!this.props.autoResize) return;  
         this.textarea.style.height = 'auto';
         this.textarea.style.height = this.textarea.scrollHeight + 'px';
     }

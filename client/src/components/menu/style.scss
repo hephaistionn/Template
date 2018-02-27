@@ -4,7 +4,6 @@
     position: relative;
     background: #2196f3;
     color: white;
-
     &__container {
         @include view();
         display: flex;
@@ -19,9 +18,10 @@
         margin: 1px 0 1px 1px;
         flex: auto;
         text-align: center;
-        padding: 15px;
+        padding: 13px;
         background: #2196f3; 
         box-sizing: border-box;
+        height: 50px;
         &.selected {
         }
 

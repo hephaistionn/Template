@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import './../assets/fonts/fontawesome-all.css';
 
-
-body {
-    font-size: 1rem;
+html, body, #app {
+    position: relative;
+    height: 100%;
     margin: 0;
+}
+
+.app-container {
+    font-size: 1rem;
     font-family: 'Lato', sans-serif;
+    position: relative;
+    height: 100%;
 }
 
 .hide {
