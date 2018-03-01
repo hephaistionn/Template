@@ -15,22 +15,26 @@ function* getTeam(req, res) {
     const fields = { __v: 0, team: 0, _id: 0 };
     const query = { team: { '$all': [currenMemberId, memberId] } };
 
-    let messages = yield Message.find(query, fields);
+    const list = yield Message.find(query, fields);
+    const team = yield populate(memberId);
+    const room = [currenMemberId, memberId].sort().join('');
 
-    messages = yield populate(messages, memberId);
+    const result = {
+        list: list,
+        team: team,
+        room: room
+    }
 
-    res.send(messages);
+    res.send(result);
 }
 
-function* populate(messages, memberId) {
+function* populate(memberId) {
     const fields = { username: 1, avatar: 1 };
     const query = { _id: memberId };
 
     const member = yield Member.findOne(query, fields);
 
-    messages[0].team = [member];
-
-    return messages;
+    return [member];
 }
 
 

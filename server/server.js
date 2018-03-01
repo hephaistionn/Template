@@ -12,6 +12,7 @@ const apiComment = require('./api/comment');
 const apiMessage = require('./api/message');
 const apiDocument = require('./api/document');
 const routes = require('./routes');
+const socket = require('./services/socket');
 
 // templating engine 
 app.set('view engine', 'ejs');
@@ -28,6 +29,8 @@ app.use('/api/', acl, apiArticle, apiMember, apiComment, apiMessage, apiDocument
 // loading error middleware
 app.use(middlewareError);
 
-app.listen(3000, function () { 
+const serveur = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 });
+
+socket(serveur);

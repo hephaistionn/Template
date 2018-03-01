@@ -60,11 +60,11 @@ class ViewMessage extends ComponentUrlWatched {
         const message = this.state.message;
         const messages = this.state.messages;
 
-        if (!messages.length) {
+        if (!messages) {
             return <div />
         }
 
-        const member = messages[0].team[0];
+        const member = messages.team[0];
         const style = {
             backgroundColor: this.color,
             backgroundImage: member.avatar ? `url(${member.avatar})` : null
@@ -83,7 +83,7 @@ class ViewMessage extends ComponentUrlWatched {
                 </div>
                 <div className='view-conversation__list-messages'
                     ref={(c) => this.listview = c}>
-                    {messages.map((message, index) => <div
+                    {messages.list.map((message, index) => <div
                         key={index}
                         className={`view-conversation__list-messages__item ${
                             message.owner === session._id ? 'your' : ''}`} >

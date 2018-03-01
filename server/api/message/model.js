@@ -5,6 +5,7 @@ const MessageSchema = new Schema({
     content: String,
     owner: String,
     team: Array,
+    room: String, 
     date: { type: Date, default: Date.now }
 });
 
