@@ -1,5 +1,20 @@
 @import './../variables';
 
-.view-verify{
 
+.view-verify{
+    display: flex;
+    flex-direction: column; // direction
+    align-content: center;
+    justify-content: space; // vertical space
+    align-items: center; // horizontal align
+    padding: 20px;
+
+    &__input {
+        margin: 20px 0;
+    }
+
+    &__button {
+        margin: 20px 0;
+        @include button();
+    }
 }

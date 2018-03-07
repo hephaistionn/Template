@@ -26,8 +26,14 @@ export class StoreMessage extends Reflux.Store {
             this.setState({ messages: null });
             axios.get(`/api/messages`)
                 .then(response => {
-                    this.setState({ conversations: response.data });
-                    actionsMessage.updated();
+                    this.setState({ conversations: response.data.concat(response.data) });
+                    // auto select conversation if no selected conversation. Only for large screen 
+                    const lastMessage  = this.state.conversations[0];
+                    const largeScreen = window.innerWidth>768;
+                    const memberId = location.pathname.split('/')[2];
+                    if(lastMessage && largeScreen && !memberId) {
+                        actionsMain.redirect(`/messages/${lastMessage.member._id}`);
+                    }
                 });
         } else {
             axios.get(`/api/messages/team/${memberId}`) 

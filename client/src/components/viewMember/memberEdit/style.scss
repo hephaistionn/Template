@@ -1,0 +1,60 @@
+@import './../../variables';
+
+.member-edit{
+    position: relative;
+    padding: 15px;
+    flex: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space; 
+    align-items: center; 
+
+    &__save {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__previous { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__avatar {
+        display: block;
+        margin-top:20px;
+        width: 100%;
+        .dropzone-container__dropzone {
+            background-image: url(../../../../assets/avatar3.png);
+            border-radius: 180px;
+            
+        }
+    }
+
+    &__username {
+        display: block;
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        margin-top:50px;
+    }
+
+    &__description {
+        display: block;
+        position: relative;
+        font-size: 1rem;
+        margin-top:30px;
+        width: 100%;
+    }
+
+}

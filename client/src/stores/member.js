@@ -25,7 +25,7 @@ export class StoreMember extends Reflux.Store {
             .then(response => {
                 this.setState(memberId ?
                     { member: response.data } :
-                    { members: response.data }
+                    { members: response.data.concat(response.data) }
                 );
             });
     }

@@ -1,0 +1,15 @@
+.card-member {
+    background-size: cover;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-image: url(../../../../../assets/avatar3.png);
+
+    &__username  {
+        color: aliceblue;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        margin: 4px;
+        text-shadow: 0 0 5px black;
+    }
+}

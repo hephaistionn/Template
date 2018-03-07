@@ -1,0 +1,15 @@
+@import './../../variables';
+
+.articles {
+    position: relative;
+    padding: 15px;
+    width: 100%;
+
+    &__grid {
+        @include column();
+    }
+
+    &__button {
+        @include button();
+    }
+}

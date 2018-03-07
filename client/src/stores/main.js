@@ -90,7 +90,7 @@ export class StoreMain extends Reflux.Store {
             email: email
         }).then((response) => {
             actionsMain.notif(tr('mail sent'));
-            actionsMain.redirect('/verify');
+            actionsMain.redirect('/verify/confirm');
         }); 
     }
 
@@ -109,7 +109,7 @@ export class StoreMain extends Reflux.Store {
             email: email
         }).then((response) => {
             actionsMain.notif(tr('mail sent'));
-            actionsMain.redirect('/reset');
+            actionsMain.redirect('/reset/confirm');
         }); 
     }
 

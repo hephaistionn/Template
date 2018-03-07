@@ -1,0 +1,95 @@
+@import './../../variables';
+
+.discussion {
+    position: relative;
+    padding: 0;
+    flex: auto;
+    display: inline-block;
+    height: 100%;
+    &__header {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 50px;
+        &__previous { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 13px 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    
+        &__member {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            margin: 5px 20px;
+            font-size: 1.5rem;
+            background-size: cover;
+            cursor: pointer;
+            background-image: url(../../../../assets/avatar3.png);
+        }
+    }
+    &__list-messages {
+        position: relative;
+        display: flex;
+        flex: auto;
+        flex-direction: column; 
+        width: calc(100% - 40px);
+        height: calc(100% - 175px);
+        overflow: auto;
+        padding: 0 20px;
+        &__item {
+            position: relative;
+            display: block;
+            background: #d1e8fb;
+            margin: 4px 0 4px 0;
+            border-radius: 10px;
+            max-width: 66%;
+            margin-right: auto;
+            margin-left: inherit;
+            &.your {
+                margin-left: auto;
+                margin-right: inherit;
+            }
+
+            &__date {
+                font-size: 0.7rem;
+                color: rgb(141, 141, 141);
+                margin: 10px;
+            }
+
+            &__content {
+                font-size: 1.1rem;
+                margin: 10px;
+            }
+        }
+    }
+
+    &__tools{
+        position: relative;
+        width: 100%;
+        height: 125px;
+        background: #2196f3;
+        &__input {
+            padding: 10px 20px 0 20px;
+            .textarea__value {
+                background: inherit;
+                border: 1px solid gray;
+            }
+            .textarea__label,
+            .textarea__bar {
+                display: none;
+            }
+        }
+        &__button {
+            @include button();
+            display: block;
+            text-align: center;
+            margin: 10px 20px;
+        }
+    }
+}

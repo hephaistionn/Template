@@ -1,9 +1,0 @@
-@import './../variables';
-
-.view-members{
-    @include view();
-    padding: 0;
-    &__grid {
-        @include grid();
-    }
-}

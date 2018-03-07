@@ -1,9 +1,0 @@
-@import './../variables';
-
-.view-messages{
-    @include view();
-    padding: 0;
-    &__grid {
-        @include column();
-    }
-}

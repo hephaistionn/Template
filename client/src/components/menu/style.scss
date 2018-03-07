@@ -4,9 +4,16 @@
     position: relative;
     background: #2196f3;
     color: white;
+    width: 100%;
+    flex: none;
+    display: block;
+    height: 52px;
+
+
     &__container {
-        @include view();
         display: flex;
+        max-width: 1200px;
+        margin: auto;
         justify-content: space-around;
         align-items: center;
         padding: 0;

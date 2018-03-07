@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import './../assets/fonts/fontawesome-all.css';
+@import './components/variables';
 
 html, body, #app {
     position: relative;
@@ -11,7 +12,15 @@ html, body, #app {
     font-size: 1rem;
     font-family: 'Lato', sans-serif;
     position: relative;
+    overflow: hidden;
     height: 100%;
+    &__views {
+        position: relative;
+        height: calc(100% - 102px);
+        @media only screen and (max-width: 768px) {
+            height: calc(100% - 52px);
+        }
+    }   
 }
 
 .hide {
