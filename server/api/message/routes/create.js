@@ -12,7 +12,7 @@ function* create(req, res) {
         err.status = 403;
         throw err;
     }
-    if (!req.body.content) {
+    if (!content) {
         const err = new Error('Need content');
         err.status = 403;
         throw err;

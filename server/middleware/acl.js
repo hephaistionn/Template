@@ -24,13 +24,21 @@ module.exports = function* (req, res) {
     const action = ACTIONS[req.method.toLowerCase()];
     const modelName = urlData[2];
     const modelId = urlData[3];
-    const teamIds = urlData[3] === 'team' ? [] : null;
     const Model = modelMap[modelName];
     const ACL = Model.ACL;
     const role = ROLES[ACL[action]];
-    if (teamIds) {
-        if (urlData[4]) teamIds.push(urlData[4]);
-        teamIds.push(req.session.memberId);
+    let teamIds;
+    let belongsToId;
+    let belongsToType;
+    if (urlData[3] < 10) {
+        if (urlData[3] === 'team') {
+            teamIds = [];
+            if (urlData[4]) teamIds.push(urlData[4]);
+            teamIds.push(req.session.memberId);
+        } else {
+            belongsToType = urlData[3];
+            belongsToId = urlData[4];
+        }
     }
 
     if (role > EVERYONE) {
@@ -42,11 +50,16 @@ module.exports = function* (req, res) {
     }
 
     if (role > AUTHENTICATED && req.session.memberLevel !== ADMIN) {
-
-        const condition = teamIds ? { team: { '$all': teamIds } } : { _id: modelId };
+        let condition = {};
+        if (teamIds) {
+            condition.team = { '$all': teamIds };
+        } else if (belongsToType) {
+            condition[belongsToType + 'Id'] = belongsToId;
+        } else {
+            condition._id = modelId;
+        }
 
         const instance = yield Model.findOne(condition);
-
         if (!instance) {
             var err = new Error('This document does not exist');
             err.status = 404;

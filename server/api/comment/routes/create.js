@@ -3,9 +3,26 @@ const Comment = require('../model');
 
 function* create(req, res) {
 
-    const model = req.body;
+    const articleId = req.params.articleId;
+    const ownerId = req.session.memberId;
+    const content = req.body.content;
 
-    const intance = new Comment(model);
+    if (!articleId) {
+        const err = new Error('Need article');
+        err.status = 403;
+        throw err;
+    }
+    if (!content) {
+        const err = new Error('Need content');
+        err.status = 403;
+        throw err;
+    }
+
+    const intance = new Comment({
+        content: content,
+        owner: ownerId,
+        articleId: articleId
+    });
 
     const comment = yield intance.save();
 
@@ -13,4 +30,4 @@ function* create(req, res) {
 
 }
 
-module.exports = router.post('/', create);
+module.exports = router.post('/article/:articleId', create);

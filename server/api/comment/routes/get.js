@@ -3,11 +3,11 @@ const Comment = require('../model');
 
 function* get(req, res) {
 
-    const condition = { _id: req.params.id };
+    const condition = { articleId: req.params.articleId };
 
-    const comment = yield Comment.findOne(condition);
+    const comments = yield Comment.find(condition);
 
-    res.send(comment);
+    res.send({ list: comments });
 }
 
-module.exports = router.get('/:id*?', get);
+module.exports = router.get('/article/:articleId', get);

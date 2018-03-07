@@ -5,7 +5,6 @@ import io from 'socket.io-client'
 
 export const actionsMessage = Reflux.createActions([
     'send',
-    'change',
     'get',
     'updated' //Hack, very bad
 ]);

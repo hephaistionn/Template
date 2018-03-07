@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
     content: String,
+    owner: String,
+    articleId: String,
     date: { type: Date, default: Date.now }
 });
 
