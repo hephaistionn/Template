@@ -12,7 +12,7 @@ function* getTeam(req, res) {
         throw err;
     }
 
-    const fields = { __v: 0, team: 0, _id: 0 };
+    const fields = { team: 0, _id: 0 };
     const query = { team: { '$all': [currenMemberId, memberId] } };
 
     const list = yield Message.find(query, fields);

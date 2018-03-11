@@ -12,7 +12,7 @@
     min-width: 300px; 
     &:not(.optional) {
         width: 100%;
-        height: calc(100% - 50px);
+        overflow: visible;
     }
     &__grid {
         @include grid();

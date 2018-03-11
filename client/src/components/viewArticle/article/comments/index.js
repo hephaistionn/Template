@@ -5,6 +5,7 @@ import Reflux from 'reflux';
 import Moment from 'moment';
 import { StoreComment, actionsComment } from '../../../../stores/comment';
 import Textarea from './../../../common/textarea';
+import Avatar from './../../../common/avatar';
 
 class Comments extends Reflux.Component {
 
@@ -62,9 +63,15 @@ class Comments extends Reflux.Component {
                     {comments && comments.list.map((com, index) => <div
                         key={index}
                         className={`comments__list__item ${
-                            com.owner === member._id ? 'your' : ''}`} >
-                        <div className='comments__list__item__date'>
-                            {Moment(com.date).format('MMM/DD HH:mm')}
+                            com.owner._id === member._id ? 'your' : ''}`} >
+                        <Avatar className='comments__list__item__avatar' member={com.owner} />
+                        <div className='comments__list__item__userinfo'>
+                            <Link className='comments__list__item__username' to={`/members/${com.owner._id}`}>
+                                {com.owner.username}
+                            </Link>
+                            <div className='comments__list__item__date'>
+                                {Moment(com.date).format('MMM/DD HH:mm')}
+                            </div>
                         </div>
                         <div className='comments__list__item__content'>
                             {com.content}

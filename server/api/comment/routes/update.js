@@ -3,6 +3,8 @@ const Comment = require('../model');
 
 function* update(req, res) {
 
+    const fields = { __v: 0 };
+
     const condition = { _id: req.params.id };
 
     const updated = req.body;
@@ -13,7 +15,7 @@ function* update(req, res) {
         strict: true
     }
 
-    const comment = yield Comment.findOneAndUpdate(condition, updated, option);
+    const comment = yield Comment.findOneAndUpdate(condition, updated, option, fields);
 
     res.send(comment);
 }

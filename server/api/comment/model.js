@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
     content: String,
-    owner: String,
+    owner: { type: Schema.Types.ObjectId, ref: 'Member' },
     articleId: String,
     date: { type: Date, default: Date.now }
+},{
+    versionKey: false
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);

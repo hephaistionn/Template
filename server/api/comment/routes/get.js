@@ -3,9 +3,13 @@ const Comment = require('../model');
 
 function* get(req, res) {
 
+    const fields = { __v: 0 };
+
     const condition = { articleId: req.params.articleId };
 
-    const comments = yield Comment.find(condition);
+    const populate = { path: 'owner', select: 'username avatar'}
+
+    const comments = yield Comment.find(condition, fields).populate(populate);
 
     res.send({ list: comments });
 }

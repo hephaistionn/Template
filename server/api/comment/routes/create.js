@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Comment = require('../model');
+const Member = require('../../member/model');
 
 function* create(req, res) {
 
@@ -20,11 +21,15 @@ function* create(req, res) {
 
     const intance = new Comment({
         content: content,
-        owner: ownerId,
+        owner: req.session.memberId,
         articleId: articleId
     });
 
     const comment = yield intance.save();
+
+    const fields = {username:1, avatar:1};
+    const query = {_id: req.session.memberId};
+    comment.owner = yield Member.findOne(query, fields);
 
     res.send(comment);
 
