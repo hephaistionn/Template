@@ -27,40 +27,6 @@
         display: flex;
         width: 100%;
         flex-direction: column; 
-        &__item {
-            position: relative;
-            flex-direction: row; 
-            padding: 20px;
-            background: #d1e8fb;
-            margin: 20px 0 4px 0;
-            border-radius: 10px;
-            max-width: 100%;
-
-            &__avatar {
-                display: inline-block;
-            }
-
-            &__userinfo {
-                display: inline-block;
-                vertical-align: top;
-            }
-
-            &__username {
-                display: inline-block;
-                padding: 0 10px 5px 10px;
-            }
-
-            &__date {
-                display: block;
-                font-size: 0.7rem;
-                padding: 0 10px 5px 10px;
-            }
-
-            &__content {
-                display: block;
-                margin: 10px 0 0 0;
-            }
-        }
     }   
 }
 

@@ -73,7 +73,7 @@ class Discussion extends ComponentUrlWatched {
         return (
             <div className='discussion'>
                 <div className='discussion__header'>
-                    <div className='discussion__header__previous fas fa-arrow-left'
+                    <div className='discussion__header__previous fas fa-arrow-left optional-full'
                         aria-hidden='true'
                         onClick={this.props.history.goBack} />
                     <Link className={`discussion__header__member`}

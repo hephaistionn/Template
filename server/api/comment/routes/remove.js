@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const Comment = require('../model');
 
-function* update(req, res) {
+function* remove(req, res) {
     const condition = { _id: req.params.id };
 
-    const updated = req.body;
+    const updated = { deleted: true };
 
     const option = {
         new: true,
@@ -14,7 +14,7 @@ function* update(req, res) {
 
     const comment = yield Comment.findOneAndUpdate(condition, updated, option);
 
-    res.send(comment);
+    res.send('deleted');
 }
 
-module.exports = router.put('/:id', update);
+module.exports = router.delete('/:id', remove);

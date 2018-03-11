@@ -5,13 +5,13 @@ import Reflux from 'reflux';
 import Moment from 'moment';
 import { StoreComment, actionsComment } from '../../../../stores/comment';
 import Textarea from './../../../common/textarea';
-import Avatar from './../../../common/avatar';
+import Comment from './comment'
 
 class Comments extends Reflux.Component {
 
     constructor(props) {
         super(props);
-        this.state = { comment: '' };
+        this.state = { value: ''};
         this.store = StoreComment;
     }
 
@@ -24,22 +24,22 @@ class Comments extends Reflux.Component {
         actionsComment.get(articleId);
     }
 
-    change(event) {
+    changeComment(event) {
         const value = event.target.value;
-        this.setState({ comment: value });
+        this.setState({ value: value });
     }
 
-    send() {
-        const comment = this.state.comment;
+    sendComment() {
+        const value = this.state.value;
         const articleId = this.props.articleId;
-        actionsComment.send(comment, articleId);
-        this.setState({ comment: '' });
+        actionsComment.send(value, articleId);
+        this.setState({ value: '' });
     }
 
     render() {
         const comments = this.state.comments;
         const member = this.props.member;
-        const comment = this.state.comment;
+        const value = this.state.value;
 
         return (
             <div className='comments'>
@@ -49,34 +49,21 @@ class Comments extends Reflux.Component {
                         className='comments__form__input'
                         type='text'
                         name='content'
-                        value={comment}
-                        onChange={this.change.bind(this)} />
+                        value={value}
+                        onChange={this.changeComment.bind(this)} />
                     <div
                         className='comments__form__button'
-                        onClick={this.send.bind(this)}>
+                        onClick={this.sendComment.bind(this)}>
                         {tr('send')}
                     </div>
                 </div>
 
                 <div className='comments__list'
                     ref={(c) => this.listview = c}>
-                    {comments && comments.list.map((com, index) => <div
-                        key={index}
-                        className={`comments__list__item ${
-                            com.owner._id === member._id ? 'your' : ''}`} >
-                        <Avatar className='comments__list__item__avatar' member={com.owner} />
-                        <div className='comments__list__item__userinfo'>
-                            <Link className='comments__list__item__username' to={`/members/${com.owner._id}`}>
-                                {com.owner.username}
-                            </Link>
-                            <div className='comments__list__item__date'>
-                                {Moment(com.date).format('MMM/DD HH:mm')}
-                            </div>
-                        </div>
-                        <div className='comments__list__item__content'>
-                            {com.content}
-                        </div>
-                    </div>)}
+                    {comments && comments.list.map((com, index) => <Comment
+                        member={member}
+                        comment={com}
+                        key={index} />)}
                 </div>
             </div>
         );
