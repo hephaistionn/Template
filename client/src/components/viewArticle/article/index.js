@@ -30,7 +30,7 @@ class ViewArticle extends ComponentUrlWatched {
                 <div className='article__previous fas fa-arrow-left'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
-                {session._id === article.owner && <Link
+                {session._id === article.owner._id && <Link
                     className='article__edit fas fa-edit'
                     to={'/articles/' + article._id + '/edit'} />}
                 <Avatar className='article__avatar' member={article.owner} />

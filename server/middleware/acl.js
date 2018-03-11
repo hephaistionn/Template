@@ -66,7 +66,7 @@ module.exports = function* (req, res) {
             throw err;
         }
 
-        if (role === OWNER && instance.owner !== req.session.memberId) {
+        if (role === OWNER && String(instance.owner) !== req.session.memberId) {
             var err = new Error('Unauthorized operation');
             err.status = 403;
             throw err;
