@@ -13,6 +13,7 @@ class ViewArticleEdit extends ComponentUrlWatched {
     }
 
     urlUpdated() {
+        actionsArticle.clear();
         const articleId = this.props.match.params.articleId;
         if (articleId) {
             actionsArticle.get(articleId);

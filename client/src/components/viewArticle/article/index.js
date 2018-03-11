@@ -6,6 +6,7 @@ import ComponentUrlWatched from './../../common/componentUrlWatched';
 import { StoreArticle, actionsArticle } from '../../../stores/article';
 import { StoreMain } from '../../../stores/main';
 import Comments from './comments';
+import Avatar from './../../common/avatar';
 
 class ViewArticle extends ComponentUrlWatched {
 
@@ -32,6 +33,10 @@ class ViewArticle extends ComponentUrlWatched {
                 {session._id === article.owner && <Link
                     className='article__edit fas fa-edit'
                     to={'/articles/' + article._id + '/edit'} />}
+                <Avatar className='article__avatar' member={article.owner} />
+                <Link className='article__username' to={`/members/${article.owner._id}`}>
+                    {article.owner.username}
+                </Link>
                 <div className='article__title'>{article.title}</div>
                 <div className='article__date'>{Moment(article.date).format('MMM Do YY')}</div> 
                 <div className='article__content'>{article.content}</div>

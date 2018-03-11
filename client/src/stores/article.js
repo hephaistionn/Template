@@ -5,6 +5,7 @@ import { actionsMain } from './main';
 
 export const actionsArticle = Reflux.createActions([
     'get',
+    'clear',
     'change',
     'update',
     'create'
@@ -28,6 +29,10 @@ export class StoreArticle extends Reflux.Store {
                     this.setState({ article: response.data }) :
                     this.setState({ articles: response.data });
             });
+    }
+
+    onClear()  {
+        this.setState({ article: {}});
     }
 
     onChange(field, value) {
