@@ -6,7 +6,7 @@ const DocumentSchema = new Schema({
         type: Array,
         default: []
     },
-    owner: String
+    owner: { type: Schema.Types.ObjectId, ref: 'Member' }
 });
 
 const Document = mongoose.model('Document', DocumentSchema);
