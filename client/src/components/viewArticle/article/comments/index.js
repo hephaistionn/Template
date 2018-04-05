@@ -32,7 +32,7 @@ class Comments extends Reflux.Component {
     sendComment() {
         const value = this.state.value;
         const articleId = this.props.articleId;
-        actionsComment.send(value, articleId);
+        actionsComment.create(value, articleId);
         this.setState({ value: '' });
     }
 
@@ -63,6 +63,7 @@ class Comments extends Reflux.Component {
                     {comments && comments.list.map((com, index) => <Comment
                         member={member}
                         comment={com}
+                        articleId={this.props.articleId}
                         key={index} />)}
                 </div>
             </div>

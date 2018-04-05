@@ -7,6 +7,7 @@ function* create(req, res) {
     const articleId = req.params.articleId;
     const ownerId = req.session.memberId;
     const content = req.body.content;
+    const commentId = req.body.commentId; // if reply
 
     if (!articleId) {
         const err = new Error('Need article');
@@ -22,7 +23,8 @@ function* create(req, res) {
     const intance = new Comment({
         content: content,
         owner: req.session.memberId,
-        articleId: articleId
+        articleId: articleId,
+        commentId: commentId
     });
 
     const comment = yield intance.save();

@@ -23,6 +23,7 @@ export class StoreArticle extends Reflux.Store {
     }
 
     onGet(articleId) {
+        this.setState({ article: {}});
         axios.get('/api/articles/' + (articleId || ''))
             .then((response) => {
                 articleId ?

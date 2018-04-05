@@ -2,16 +2,15 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import Moment from 'moment';
-import { actionsComment } from '../../../../../stores/comment';
-import Textarea from './../../../../common/textarea';
-import Avatar from './../../../../common/avatar';
-import Reply from './reply';
+import { actionsComment } from '../../../../../../stores/comment';
+import Textarea from './../../../../../common/textarea';
+import Avatar from './../../../../../common/avatar';
 
-class Comment extends React.Component {
+class Reply extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: '', edit: false, reply: false };
+        this.state = { value: '', edit: false };
     }
 
     edit() {
@@ -30,18 +29,11 @@ class Comment extends React.Component {
     }
 
     sendUpdate() {
+        const parentId = this.props.commentId;
         const commentId = this.props.comment._id;
         const value = this.state.value;
-        actionsComment.update(value, commentId);
+        actionsComment.update(value, commentId, parentId);
         this.setState({ value: '', edit: false });
-    }
-
-    sendReply() {
-        const commentId = this.props.comment._id;
-        const articleId = this.props.articleId;
-        const value = this.state.value;
-        actionsComment.create(value, articleId, commentId);
-        this.setState({ value: '', reply: false });
     }
 
     cancel() {
@@ -52,21 +44,10 @@ class Comment extends React.Component {
         });
     }
 
-    showReplies() {
-        const commentId = this.props.comment._id;
-        const articleId = this.props.articleId;
-        actionsComment.get(articleId, commentId);
-    }
-
-    hideReplies() {
-        const commentId = this.props.comment._id;
-        const articleId = this.props.articleId;
-        actionsComment.hideReplies(articleId, commentId);
-    }
-
     remove() {
+        const parentId = this.props.commentId;
         const commentId = this.props.comment._id;
-        actionsComment.remove(commentId);
+        actionsComment.remove(commentId, parentId);
     }
 
     onChange(event) {
@@ -80,11 +61,10 @@ class Comment extends React.Component {
         const owner = this.props.comment.owner;
         const your = comment.owner._id === member._id;
         const edit = this.state.edit;
-        const reply = this.state.reply;
         const className = (this.props.className || '') + (your ? ' your' : '');
 
         return (
-            <div className={`comment ${className}`} >
+            <div className={`comment reply ${className}`} >
                 <div className='comment__actions'>
                     {your &&
                         <div className='comment__actions__edit fas fa-edit' onClick={this.edit.bind(this)} />}
@@ -104,43 +84,19 @@ class Comment extends React.Component {
                     !edit && <div className='comment__content'>{comment.content}</div>
                 }
                 {
-                    (edit || reply) && <div className='comment__content__from'>
+                    edit && <div className='comment__content__from'>
                         <textarea className='comment__form__textarea'
                             value={this.state.value}
                             onChange={this.onChange.bind(this)} />
-                        {edit && <div className='comment__form__ok'
-                            onClick={this.sendUpdate.bind(this)}>{tr('send')}</div>}
-                        {reply && <div className='comment__form__ok'
-                            onClick={this.sendReply.bind(this)}>{tr('send')}</div>}
+                        <div className='comment__form__ok'
+                            onClick={this.sendUpdate.bind(this)}>{tr('send')}</div>
                         <div className='comment__form__cancel'
                             onClick={this.cancel.bind(this)}>{tr('cancel')}</div>
                     </div>
                 }
-
-                {(!edit && !reply) &&
-                    <div className='comment__reply' onClick={this.reply.bind(this)} >
-                        {tr('reply')}
-                    </div>}
-
-                {(comment.numberReplies > 0 && !comment.replies) &&
-                    <div className='comment__nb_replies' onClick={this.showReplies.bind(this)} >
-                        {tr('show the ')} {comment.numberReplies} {comment.numberReplies > 1 ? tr('replies') : tr('reply')}
-                    </div>}
-
-                {comment.replies &&
-                    <div className='comment__hide_replies' onClick={this.hideReplies.bind(this)} >
-                        {tr('hide the ')} {comment.numberReplies} {comment.numberReplies > 1 ? tr('replies') : tr('reply')}
-                    </div>}
-
-                {comment.replies && comment.replies.list.map((reply, index) => <Reply
-                    member={member}
-                    comment={reply}
-                    articleId={this.props.articleId}
-                    commentId={comment._id}
-                    key={index} />)}
             </div>
         );
     }
 }
 
-export default Comment;  
+export default Reply;  

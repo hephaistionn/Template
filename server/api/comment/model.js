@@ -5,6 +5,7 @@ const CommentSchema = new Schema({
     content: String,
     owner: { type: Schema.Types.ObjectId, ref: 'Member' },
     articleId: String,
+    commentId: { type: Schema.Types.ObjectId, ref: 'Comment' },
     deleted: Boolean,
     date: { type: Date, default: Date.now }
 },{

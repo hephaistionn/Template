@@ -14,7 +14,7 @@ class CardArticle extends Reflux.Component {
     render() {
         const article = this.props.article;
         return (
-            <Link className='card-article' to={'/articles/' + article._id}>
+            <div className='card-article'>
                 <Avatar className='card-article__avatar' member={article.owner} />
                 <div className='card-article__owner'>
                     <Link className='card-article__username' to={`/members/${article.owner._id}`}>
@@ -22,8 +22,8 @@ class CardArticle extends Reflux.Component {
                     </Link>
                     <div className='card-article__date'>{Moment(article.date).format('MMM Do YY')}</div>
                 </div>
-                <div className='card-article__title'>{article.title}</div>
-            </Link>
+                <Link className='card-article__title' to={'/articles/' + article._id} >{article.title}</Link>
+            </div>
         );
     }
 }

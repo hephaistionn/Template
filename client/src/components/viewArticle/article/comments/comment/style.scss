@@ -31,6 +31,7 @@
 
     &__content {
         display: block;
+        white-space: pre;
         margin: 10px 0 0 0;
     }
 
@@ -41,14 +42,21 @@
 
         &__edit {
             display: inline-block;
+            margin: 8px 4px;
             cursor: pointer;
         }  
     
         &__remove {
             display: inline-block;
+            margin: 8px 4px;
             cursor: pointer;
         }  
 
+    }
+
+    &__reply {
+        display: inline-block;
+        padding: 10px 40px;
     }
 
     &__form {
