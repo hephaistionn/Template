@@ -26,6 +26,8 @@ const MemberSchema = new Schema({
     skills: {
         type: Array
     },
+    experience: Number,
+    working: Boolean,
     verified: Boolean,
     token: String,
     tokendate: Date,

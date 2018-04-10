@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Dropzone from '../../common/dropzone';
 import Textarea from '../../common/textarea';
 import Input from '../../common/input';
+import Selector from '../../common/selector';
+import Switch from '../../common/switch';
 
 class ViewMemberEdit extends ComponentUrlWatched {
 
@@ -27,7 +29,9 @@ class ViewMemberEdit extends ComponentUrlWatched {
         const username = this.state.member.username;
         const avatar = this.state.member.avatar;
         const description = this.state.member.description;
-        actionsMember.update(id, username, avatar, description);
+        const experience =  this.state.member.experience;
+        const working =  this.state.member.working;
+        actionsMember.update(id, username, avatar, description, experience, working);
     }
 
     changed(event) {
@@ -63,14 +67,27 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     label={tr('description')}
                     value={member.description || ''}
                     onChange={this.changed.bind(this)} />
+                <Selector 
+                    className='member-edit__experience'
+                    name='experience'
+                    value={member.experience}
+                    label={tr('experience')}
+                    options = {this.state.optionsExperience}
+                    onChange={this.changed.bind(this)} />
+                <Switch 
+                    className='member-edit__working'
+                    name='working'
+                    value={member.working}
+                    label={tr('working')}
+                    onChange={this.changed.bind(this)} />
                 <div
                     className='member-edit__save fas fa-save'
                     aria-hidden='true'
-                    onClick={this.save.bind(this)}/>
-                <div 
+                    onClick={this.save.bind(this)} />
+                <div
                     className='member__previous fas fa-arrow-left'
                     aria-hidden='true'
-                    onClick={this.props.history.goBack}/>
+                    onClick={this.props.history.goBack} />
             </div>
         );
     }

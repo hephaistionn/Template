@@ -1,0 +1,24 @@
+@import './../../variables';
+
+.selector {
+    position: relative;
+    &__label{
+        position: relative;
+        font-size: 1rem;
+        transform-origin: left;
+        color: gray;
+        text-transform: capitalize;
+        margin-bottom: 8px;
+    }
+
+    &__value{
+        background: transparent;
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        border-bottom: 1px solid gray;
+        pointer-events:auto;
+        -webkit-box-shadow: 0 0 0 30px white inset;
+        width: 100%;
+    }
+      
+}

@@ -15,7 +15,13 @@ export class StoreMember extends Reflux.Store {
         super();
         this.state = {
             members: [],
-            member: {}
+            member: {},
+            optionsExperience: [
+                { value: 0, label: '0 ' + tr('year') },
+                { value: 1, label: '1 ' + tr('year') },
+                { value: 2, label: '2 ' + tr('years') },
+                { value: 3, label: '3 ' + tr('years') }
+            ]
         };
         this.listenables = actionsMember;
     }
@@ -35,11 +41,13 @@ export class StoreMember extends Reflux.Store {
         this.setState({ member: this.state.member });
     }
 
-    onUpdate(memberId, username, avatar, description) {
+    onUpdate(memberId, username, avatar, description, experience, working) {
         axios.put('/api/members/' + memberId, {
             username: username,
             avatar: avatar,
-            description: description
+            description: description,
+            experience: experience,
+            working: working
         })
             .then((response) => {
                 this.setState({ member: response.data });
