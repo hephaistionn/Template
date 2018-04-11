@@ -8,6 +8,7 @@ import Textarea from '../../common/textarea';
 import Input from '../../common/input';
 import Selector from '../../common/selector';
 import Switch from '../../common/switch';
+import Tagger from '../../common/tagger';
 
 class ViewMemberEdit extends ComponentUrlWatched {
 
@@ -29,14 +30,14 @@ class ViewMemberEdit extends ComponentUrlWatched {
         const username = this.state.member.username;
         const avatar = this.state.member.avatar;
         const description = this.state.member.description;
-        const experience =  this.state.member.experience;
-        const working =  this.state.member.working;
-        actionsMember.update(id, username, avatar, description, experience, working);
+        const experience = this.state.member.experience;
+        const working = this.state.member.working;
+        const skills = this.state.member.skills;
+        actionsMember.update(id, username, avatar, description,
+            experience, working, skills);
     }
 
-    changed(event) {
-        const value = event.target.value;
-        const filed = event.target.name;
+    changed(value, filed) {
         actionsMember.change(filed, value);
     }
 
@@ -67,19 +68,26 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     label={tr('description')}
                     value={member.description || ''}
                     onChange={this.changed.bind(this)} />
-                <Selector 
+                <Selector
                     className='member-edit__experience'
                     name='experience'
                     value={member.experience}
                     label={tr('experience')}
-                    options = {this.state.optionsExperience}
+                    options={this.state.optionsExperience}
                     onChange={this.changed.bind(this)} />
-                <Switch 
+                <Switch
                     className='member-edit__working'
                     name='working'
                     value={member.working}
                     label={tr('working')}
                     onChange={this.changed.bind(this)} />
+                <Tagger
+                    className='member-edit__skills'
+                    tags={member.skills}
+                    name='skills'
+                    label={tr('skills')}
+                    onChange={this.changed.bind(this)}
+                />
                 <div
                     className='member-edit__save fas fa-save'
                     aria-hidden='true'

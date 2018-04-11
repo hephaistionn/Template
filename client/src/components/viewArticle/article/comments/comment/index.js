@@ -69,8 +69,7 @@ class Comment extends React.Component {
         actionsComment.remove(commentId);
     }
 
-    onChange(event) {
-        const value = event.target.value;
+    onChange(value) {
         this.setState({ value: value });
     }
 

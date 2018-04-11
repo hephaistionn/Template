@@ -50,8 +50,7 @@ class Reply extends React.Component {
         actionsComment.remove(commentId, parentId);
     }
 
-    onChange(event) {
-        const value = event.target.value;
+    onChange(value) {
         this.setState({ value: value });
     }
 

@@ -13,9 +13,7 @@ class ViewVerify extends Reflux.Component {
         this.state = { token: '' };
     }
 
-    change(event) {
-        const filed = event.target.name;
-        const value = event.target.value;
+    change(value, filed) {
         this.setState({ [filed]: value });
     }
 

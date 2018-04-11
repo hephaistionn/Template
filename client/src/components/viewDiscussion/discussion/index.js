@@ -24,8 +24,7 @@ class Discussion extends ComponentUrlWatched {
         }
     }
 
-    change(event) {
-        const value = event.target.value;
+    change(value) {
         this.setState({ message: value });
     }
 

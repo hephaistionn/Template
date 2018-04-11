@@ -41,13 +41,14 @@ export class StoreMember extends Reflux.Store {
         this.setState({ member: this.state.member });
     }
 
-    onUpdate(memberId, username, avatar, description, experience, working) {
+    onUpdate(memberId, username, avatar, description, experience, working, skills) {
         axios.put('/api/members/' + memberId, {
             username: username,
             avatar: avatar,
             description: description,
             experience: experience,
-            working: working
+            working: working,
+            skills: skills
         })
             .then((response) => {
                 this.setState({ member: response.data });

@@ -4,14 +4,11 @@ import React from 'react';
 class Switch extends React.Component {
 
     onClick() {
-        const event = {
-            target: {
-                name: this.props.name,
-                value: !this.props.value
-            }
-        }
-        this.props.onChange(event);
+        const value = !this.props.value;
+        const name = this.props.name;
+        this.props.onChange(value,  name);
     }
+
 
     render() {
 

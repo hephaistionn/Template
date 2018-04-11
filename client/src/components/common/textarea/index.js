@@ -37,6 +37,12 @@ class TextArea extends React.Component {
         this.setState({ focus: false });
     }
 
+    onChange() {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.props.onChange(value, name);
+    }
+
     render() {
 
         return (
@@ -53,7 +59,7 @@ class TextArea extends React.Component {
                     onBlur={this.onBlur.bind(this)}
                     onFocus={this.onFocus.bind(this)}
                     ref={(c) => this.textarea = c}
-                    onChange={this.props.onChange} />
+                    onChange={this.onChange} />
                 <hr className='textarea__bar' />
             </div>
         );

@@ -32,9 +32,7 @@ class ViewArticleEdit extends ComponentUrlWatched {
         }
     }
 
-    change(event) {
-        const value = event.target.value;
-        const filed = event.target.name;
+    change(value, filed) {
         actionsArticle.change(filed, value);
     }
 
