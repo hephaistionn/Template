@@ -1,0 +1,36 @@
+@import './../variables';
+
+.filter  {
+    position: relative;
+    z-index: 2;
+    &__button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        margin: 17px;
+        border-radius: 30px;
+        background: rgb(255, 255, 255);
+        font-size: 1.8rem;
+        &::before  {
+            margin: 10px;
+            line-height: 50px;
+        }
+        @include icon('search');  
+    }
+
+    &__container {
+        position: absolute;
+        width: 100%;
+        height: 300px;
+        background: green;
+        display: none;
+    }
+
+    &.show {
+        .filter__container {
+            display: block;
+        }
+    }
+}

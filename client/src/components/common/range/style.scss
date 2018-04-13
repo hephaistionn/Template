@@ -1,0 +1,22 @@
+@import './../../variables';
+
+.range {
+    position: relative;
+    &__label{
+        position: relative;
+        font-size: 1rem;
+        transform-origin: left;
+        color: gray;
+        text-transform: capitalize;
+        margin-bottom: 8px;
+    }
+
+    &__min {
+        width: 40%;
+    }
+
+    &__max {
+        width: 40%;
+    }
+      
+}
