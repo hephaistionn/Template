@@ -20,17 +20,42 @@
         @include icon('search');  
     }
 
-    &__container {
-        position: absolute;
-        width: 100%;
-        height: 300px;
-        background: green;
-        display: none;
-    }
-
     &.show {
         .filter__container {
             display: block;
+        }
+    }
+
+    &__container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: none;
+
+        &__input {
+            margin: 20px 15px;
+        }
+
+        &__checkbox{
+            margin: 20px 15px;
+            .checkbox__box {
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .checkbox__label {
+                display: inline-block;
+            }
+
+        }
+
+        &__range  {
+            margin: 20px 15px;
+        }
+
+        &__button {
+            @include button(); 
+            margin: 20px 15px;
         }
     }
 }

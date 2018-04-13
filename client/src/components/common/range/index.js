@@ -8,13 +8,13 @@ class Range extends React.Component {
         return (
             <div className={'range ' + (this.props.className || '')}>
                 <div className='range__label'>{this.props.label}</div>
-                <selector
+                <Selector
                     className='range__min'
                     name={this.props.nameMin}
                     value={this.props.valueMin || ''}
                     options={this.props.optionsMin}
                     onChange={this.props.onChange} />
-                <select
+                <Selector
                     className='range__max'
                     name={this.props.nameMax}
                     value={this.props.valueMax || ''}

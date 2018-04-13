@@ -12,11 +12,14 @@
     }
 
     &__min {
-        width: 40%;
+        width: 45%;
+        display: inline-block;
+        margin: 0 22px 0 0;
     }
 
     &__max {
-        width: 40%;
+        width: 45%;
+        display: inline-block;
     }
       
 }
