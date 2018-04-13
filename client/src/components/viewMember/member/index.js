@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { StoreMember, actionsMember } from '../../../stores/member';
 import { StoreMain, actionsMain } from '../../../stores/main';
 import ComponentUrlWatched from './../../common/componentUrlWatched';
+import Tags from './../../common/tags';
+import Property from './../../common/property';
 
 class ViewMember extends ComponentUrlWatched {
 
@@ -26,12 +28,22 @@ class ViewMember extends ComponentUrlWatched {
         const session = this.state.session;
         // const state = this.getParam() ? 'optional' : '';
 
+        const avatar = member.avatar;
+        const username = member.username;
+        const description = member.description;
+        const experience = this.state.optionsExperience[member.experience|0].label;
+        const working = member.working?tr('yes'):tr('no');
+        const skills = member.skills;
+        console.log('--- experience :',experience)
         return (
             <div className={`member`}>
                 <div className='member__avatar'
-                    style={member.avatar && { backgroundImage: `url(${member.avatar})` }} />
-                <div className='member__username' >{member.username}</div>
-                <div className='member__description' >{member.description}</div>
+                    style={avatar && { backgroundImage: `url(${avatar})` }} />
+                <div className='member__username' >{username}</div>
+                <div className='member__description'>{description}</div>
+                <Property className='member__description' value={experience} label={tr('experience')}/>
+                <Property className='member__description' value={working} label={tr('working')}/>
+                <Tags className='member__description' values={skills} label={tr('skills')}/>
                 <div className='member__previous fas fa-arrow-left'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
