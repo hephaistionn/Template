@@ -19,6 +19,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             display: none; //only in mobile mode
+            @include icon('arrow-left');  
         }
     
         &__member {

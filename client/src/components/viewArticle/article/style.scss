@@ -17,6 +17,7 @@
         margin: 20px;
         font-size: 1.5rem;
         cursor: pointer;
+        @include icon('edit');  
     }
 
     &__previous { 
@@ -26,6 +27,7 @@
         margin: 15px;
         font-size: 1.5rem;
         cursor: pointer;
+        @include icon('arrow-left');  
     }
 
     &__title {

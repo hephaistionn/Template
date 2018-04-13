@@ -50,7 +50,8 @@ class Reply extends React.Component {
         actionsComment.remove(commentId, parentId);
     }
 
-    onChange(value) {
+    onChange(event) {
+        const value = event.target.value;
         this.setState({ value: value });
     }
 
@@ -66,9 +67,9 @@ class Reply extends React.Component {
             <div className={`comment reply ${className}`} >
                 <div className='comment__actions'>
                     {your &&
-                        <div className='comment__actions__edit fas fa-edit' onClick={this.edit.bind(this)} />}
+                        <div className='comment__actions__edit' onClick={this.edit.bind(this)} />}
                     {your &&
-                        <div className='comment__actions__edit fas fa-trash' onClick={this.remove.bind(this)} />}
+                        <div className='comment__actions__remove' onClick={this.remove.bind(this)} />}
                 </div>
                 <Avatar className='comment__avatar' member={owner} />
                 <div className='comment__info'>

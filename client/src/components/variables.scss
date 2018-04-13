@@ -1,4 +1,11 @@
+@import './icons.scss'; 
+ 
  $focus-color: #2196f3;
+
+ @mixin icon($icon) {
+    @extend .fas;
+    @extend .fa-#{$icon};
+}
 
  @mixin view() { 
     position: relative;

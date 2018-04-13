@@ -55,17 +55,22 @@
         margin: 15px;
         font-size: 1.5rem;
         cursor: pointer;
-        &.message,
+        &.message {
+            right: 0;
+            @include icon('comment-alt'); 
+        }
         &.edit {
             right: 0;
-            // @include icon('fa-edit'); 
+            @include icon('edit');  
         }
         &.previous {
             left: 0; 
+            @include icon('arrow-left'); 
         }
         &.logout {
             position: relative;
             align-self: end;
+            @include icon('sign-out-alt'); 
         }
     }
 }

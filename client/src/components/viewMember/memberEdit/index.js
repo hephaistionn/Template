@@ -89,11 +89,11 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     onChange={this.changed.bind(this)}
                 />
                 <div
-                    className='member-edit__button save fas fa-save'
+                    className='member-edit__button save'
                     aria-hidden='true'
                     onClick={this.save.bind(this)} />
                 <div
-                    className='member-edit__button previous fas fa-arrow-left'
+                    className='member-edit__button previous'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
             </div>

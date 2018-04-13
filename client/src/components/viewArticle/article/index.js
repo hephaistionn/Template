@@ -27,11 +27,11 @@ class ViewArticle extends ComponentUrlWatched {
 
         return (
             <div className='article'>
-                <div className='article__previous fas fa-arrow-left'
+                <div className='article__previous'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
                 {session._id === article.owner._id && <Link
-                    className='article__edit fas fa-edit'
+                    className='article__edit'
                     to={'/articles/' + article._id + '/edit'} />}
                 <Avatar className='article__avatar' member={article.owner} />
                 <Link className='article__username' to={`/members/${article.owner._id}`}>

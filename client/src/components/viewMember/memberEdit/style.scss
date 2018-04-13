@@ -19,10 +19,12 @@
         cursor: pointer;
         &.save {
             right: 0;
+            @include icon('save');  
         }
     
         &.previous { 
             left: 0;
+            @include icon('arrow-left');  
         }
     }
 

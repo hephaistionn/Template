@@ -44,12 +44,14 @@
             display: inline-block;
             margin: 8px 4px;
             cursor: pointer;
+            @include icon('edit'); 
         }  
     
         &__remove {
             display: inline-block;
             margin: 8px 4px;
             cursor: pointer;
+            @include icon('trash'); 
         }  
 
     }

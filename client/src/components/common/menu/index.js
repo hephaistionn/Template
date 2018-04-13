@@ -29,7 +29,7 @@ class Menu extends React.Component {
     render() {
         return (
             <div className={`menu ${this.props.className || ''}`}>
-                <div className='menu__button fas fa-bars'
+                <div className='menu__button'
                     aria-hidden='true'
                     onClick={this.onOpen.bind(this)} />
                 {this.state.open && <div className='menu__list'>

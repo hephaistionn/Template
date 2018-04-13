@@ -21,9 +21,9 @@ class MainMenu extends Reflux.Component {
         return ( 
             <div className='main-menu'>
                 <div className='main-menu__container'>
-                    <NavLink key={1} activeClassName='selected' className='fas fa-envelope' to={'/messages'}></NavLink>
-                    <NavLink key={2} activeClassName='selected' className='fas fa-globe' to={'/articles'}></NavLink>
-                    <NavLink key={4} activeClassName='selected' className='fas fa-address-card' to={'/members/'}></NavLink>
+                    <NavLink key={1} activeClassName='selected' className='main-menu__container__messages' to={'/messages'}></NavLink>
+                    <NavLink key={2} activeClassName='selected' className='main-menu__container__articles' to={'/articles'}></NavLink>
+                    <NavLink key={4} activeClassName='selected' className='main-menu__container__members' to={'/members/'}></NavLink>
                 </div>
             </div>
         );

@@ -41,11 +41,11 @@ class ViewArticleEdit extends ComponentUrlWatched {
         return (
             <div className='article-edit'>
                 <div
-                    className='article-edit__save fas fa-save'
+                    className='article-edit__save'
                     aria-hidden='true'
                     onClick={this.save.bind(this)}/>
                 <div 
-                    className='article-edit__previous fas fa-arrow-left'
+                    className='article-edit__previous'
                     aria-hidden='true'
                     onClick={this.props.history.goBack}/>
                 <Input

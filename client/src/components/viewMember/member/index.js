@@ -44,20 +44,20 @@ class ViewMember extends ComponentUrlWatched {
                 <Property className='member__property'  value={experience} label={tr('experience')}/>
                 <Property className='member__property' value={working} label={tr('working')}/>
                 <Tags className='member__tags' values={skills} label={tr('skills')}/>
-                <div className='member__button previous fas fa-arrow-left'
+                <div className='member__button previous'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
                 <Link
-                    className={`member__button edit fas fa-edit ${session._id !== member._id ? ' hide' : ''}`}
+                    className={`member__button edit ${session._id !== member._id ? ' hide' : ''}`}
                     aria-hidden='true'
                     to={'/members/' + member._id + '/edit'}>
                 </Link>
                 <Link
-                    className={`member__button message fas fa-comment-alt ${session._id === member._id ? ' hide' : ''}`}
+                    className={`member__button message ${session._id === member._id ? ' hide' : ''}`}
                     aria-hidden='true'
                     to={`/messages/${member._id}`}>
                 </Link>
-                <div className={`member__button logout fas fa-sign-out-alt ${session._id !== member._id ? ' hide' : ''}`}
+                <div className={`member__button logout ${session._id !== member._id ? ' hide' : ''}`}
                     onClick={this.logout}
                 />
             </div>
