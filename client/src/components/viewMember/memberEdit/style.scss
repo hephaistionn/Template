@@ -11,22 +11,19 @@
     justify-content: space; 
     align-items: center; 
 
-    &__save {
+    &__button {
         position: absolute;
         top: 0;
-        right: 0;
         margin: 20px;
         font-size: 1.5rem;
         cursor: pointer;
-    }
-
-    &__previous { 
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 15px;
-        font-size: 1.5rem;
-        cursor: pointer;
+        &.save {
+            right: 0;
+        }
+    
+        &.previous { 
+            left: 0;
+        }
     }
 
     &__avatar {

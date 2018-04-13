@@ -10,33 +10,6 @@
     justify-content: space; 
     align-items: center; 
 
-    &__message,
-    &__edit {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 15px;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    &__previous {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 15px;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    &__logout {
-        position: relative;
-        margin: 15px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        align-self: end;
-    }
-
     &__avatar {
         display: block;
         position: relative;
@@ -67,7 +40,32 @@
         white-space: pre-line;
     }
 
-    &__skills {
+    &__property  {
+        max-width: 400px;
+        align-self: normal;
+    }
+
+    &__tags  {
+        width: 100%;
+    }
+
+    &__button { 
+        position: absolute;
+        top: 0;
         margin: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        &.message,
+        &.edit {
+            right: 0;
+            // @include icon('fa-edit'); 
+        }
+        &.previous {
+            left: 0; 
+        }
+        &.logout {
+            position: relative;
+            align-self: end;
+        }
     }
 }

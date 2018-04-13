@@ -1,11 +1,14 @@
 import './style.scss';
 import React from 'react';
 
+import Tag from './tag'
+
 class Tagger extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { focus: false, value: '' };
+        this.colors = ['#9c27b0', '#03a9f4', '#ff5722', '#4caf50', '#f32134']
     }
 
     addTag() {
@@ -43,6 +46,8 @@ class Tagger extends React.Component {
     }
 
     render() {
+        const colors = this.colors;
+
         return (
             <div className={'tagger ' +
                 (this.props.value ? 'full ' : '') +
@@ -69,13 +74,10 @@ class Tagger extends React.Component {
                 </div>
                 <div className='tagger__list'>
                     {
-                        this.props.tags && this.props.tags.map((tag, index) => <div
-                            className='tagger__list__tag'
-                            key={index}>
-                            <span>{tag}</span>
-                            <i className="tagger__list__tag__remove fa fa-times fa-1x"
-                                aria-hidden="true" onClick={this.removeTag.bind(this, index)}></i>
-                        </div>)
+                        this.props.tags && this.props.tags.map((tag, index) => <Tag
+                            className='tagger__list__tag' 
+                            key={index} value={tag} 
+                            onClick={this.removeTag.bind(this, index)}/>)
                     }
                 </div>
             </div>

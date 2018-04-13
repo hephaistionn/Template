@@ -2,32 +2,30 @@
 
 .tags {
     position: relative;
-
+    width: 100%;
+    display: block;
+    padding: 20px 0;
     &__label {
-        position: absolute;
-        top: 0;
         line-height: 2.2rem;
         font-size: 1.4rem;
-        transform:  scale(1) translateY(0rem);
-        transform-origin: left;
         color: gray;
         text-transform: capitalize;
+        width: 150px;
     }
 
     &__list {
-        position: relative;
-        width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: baseline;
         flex-wrap: wrap;
         &__tag {
             position: relative;
-            width: 130px;
             text-align: center;
             background: gray;
-            padding: 10px;
-            margin: 6px;
+            padding: 10px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            color: white;
         }
     }
 }

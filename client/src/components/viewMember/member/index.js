@@ -34,30 +34,30 @@ class ViewMember extends ComponentUrlWatched {
         const experience = this.state.optionsExperience[member.experience|0].label;
         const working = member.working?tr('yes'):tr('no');
         const skills = member.skills;
-        console.log('--- experience :',experience)
+
         return (
             <div className={`member`}>
                 <div className='member__avatar'
                     style={avatar && { backgroundImage: `url(${avatar})` }} />
                 <div className='member__username' >{username}</div>
                 <div className='member__description'>{description}</div>
-                <Property className='member__description' value={experience} label={tr('experience')}/>
-                <Property className='member__description' value={working} label={tr('working')}/>
-                <Tags className='member__description' values={skills} label={tr('skills')}/>
-                <div className='member__previous fas fa-arrow-left'
+                <Property className='member__property'  value={experience} label={tr('experience')}/>
+                <Property className='member__property' value={working} label={tr('working')}/>
+                <Tags className='member__tags' values={skills} label={tr('skills')}/>
+                <div className='member__button previous fas fa-arrow-left'
                     aria-hidden='true'
                     onClick={this.props.history.goBack} />
                 <Link
-                    className={`member__edit fas fa-edit ${session._id !== member._id ? ' hide' : ''}`}
+                    className={`member__button edit fas fa-edit ${session._id !== member._id ? ' hide' : ''}`}
                     aria-hidden='true'
                     to={'/members/' + member._id + '/edit'}>
                 </Link>
                 <Link
-                    className={`member__message fas fa-comment-alt ${session._id === member._id ? ' hide' : ''}`}
+                    className={`member__button message fas fa-comment-alt ${session._id === member._id ? ' hide' : ''}`}
                     aria-hidden='true'
                     to={`/messages/${member._id}`}>
                 </Link>
-                <div className={`member__logout fas fa-sign-out-alt ${session._id !== member._id ? ' hide' : ''}`}
+                <div className={`member__button logout fas fa-sign-out-alt ${session._id !== member._id ? ' hide' : ''}`}
                     onClick={this.logout}
                 />
             </div>
