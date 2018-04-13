@@ -8,7 +8,7 @@ class Input extends React.Component {
         this.state = { focus: false };
     }
 
-    onChange() {
+    onChange(event) {
         const name = event.target.name;
         const value = event.target.value;
         this.props.onChange(value, name);
@@ -37,7 +37,7 @@ class Input extends React.Component {
                     value={this.props.value || ''}
                     onBlur={this.onBlur.bind(this)}
                     onFocus={this.onFocus.bind(this)}
-                    onChange={this.onChange} />
+                    onChange={this.onChange.bind(this)} />
                 <div className='input__label'>{this.props.label}</div>
                 <hr className='input__bar' />
             </div>
