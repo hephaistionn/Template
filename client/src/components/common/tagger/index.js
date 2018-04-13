@@ -8,7 +8,6 @@ class Tagger extends React.Component {
     constructor(props) {
         super(props);
         this.state = { focus: false, value: '' };
-        this.colors = ['#9c27b0', '#03a9f4', '#ff5722', '#4caf50', '#f32134']
     }
 
     addTag() {
@@ -46,8 +45,6 @@ class Tagger extends React.Component {
     }
 
     render() {
-        const colors = this.colors;
-
         return (
             <div className={'tagger ' +
                 (this.props.value ? 'full ' : '') +

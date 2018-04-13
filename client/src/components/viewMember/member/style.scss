@@ -4,7 +4,6 @@
     position: relative;
     padding: 15px;
     flex: auto;
-    display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space; 
@@ -20,6 +19,7 @@
         background-image: url(../../../../assets/avatar3.png);
         background-color: black;
         margin-top:15px;
+        margin: auto;
     }
 
     &__username {
@@ -41,7 +41,6 @@
     }
 
     &__property  {
-        max-width: 400px;
         align-self: normal;
     }
 

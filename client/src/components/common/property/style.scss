@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 4px 0;
+    margin: 10px 0;
     border-bottom: solid 1px gray;
     &__label {
         text-transform: capitalize;
