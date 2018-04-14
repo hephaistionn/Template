@@ -32,7 +32,15 @@ class Filter extends Reflux.Component {
         this.setState({ [filed]: value });
     }
 
-    update() {
+    filter() {
+        const filter = {
+            skills: this.state.skills.split(' '),
+            online: this.state.online,
+            working: this.state.working,
+            expMin: this.state.expMin,
+            expMax: this.state.expMax
+        }
+        actionsMember.getList(filter);
         this.setState({ show: false });
     }
 
@@ -72,7 +80,7 @@ class Filter extends Reflux.Component {
                         label={tr('experience')} />
                     <div
                         className='filter__container__button'
-                        onClick={this.update.bind(this)}>{tr('search')}</div>
+                        onClick={this.filter.bind(this)}>{tr('search')}</div>
                 </div>
             </div>
         );

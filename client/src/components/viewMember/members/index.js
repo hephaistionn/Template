@@ -14,7 +14,7 @@ class ViewMembers extends Reflux.Component {
     }
 
     componentDidMount() {
-        actionsMember.get();
+        actionsMember.getList();
     }
 
     render() {

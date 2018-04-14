@@ -6,6 +6,7 @@ export const actionsMember = Reflux.createActions([
     'change',
     'update',
     'get',
+    'getList',
     'setPicture'
 ]);
 
@@ -27,12 +28,16 @@ export class StoreMember extends Reflux.Store {
     }
 
     onGet(memberId) {
-        axios.get('/api/members/' + (memberId || ''))
+        axios.get('/api/members/' + memberId)
             .then(response => {
-                this.setState(memberId ?
-                    { member: response.data } :
-                    { members: response.data.concat(response.data) }
-                );
+                this.setState({ member: response.data });
+            });
+    }
+
+    onGetList(params) {
+        axios.get('/api/members/', {params: params})
+            .then(response => {
+                this.setState({ members: response.data.concat(response.data) });
             });
     }
 
