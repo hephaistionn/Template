@@ -25,7 +25,7 @@ class Filter extends Reflux.Component {
     }
 
     forceShow() {
-        this.setState({ show: true });
+        this.setState({ show: !this.state.show });
     }
 
     change(value, filed) {
@@ -33,7 +33,7 @@ class Filter extends Reflux.Component {
     }
 
     update() {
-
+        this.setState({ show: false });
     }
 
     render() {
