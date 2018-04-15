@@ -19,8 +19,8 @@ class Filter extends Reflux.Component {
             skills: '',
             online: false,
             working: false,
-            expMin: 0,
-            expMax: 2
+            expMin: undefined,
+            expMax: undefined
         };
     }
 
@@ -34,11 +34,11 @@ class Filter extends Reflux.Component {
 
     filter() {
         const filter = {
-            skills: this.state.skills.split(' '),
-            online: this.state.online,
-            working: this.state.working,
-            expMin: this.state.expMin,
-            expMax: this.state.expMax
+            skills: this.state.skills ? this.state.skills.split(' ') : undefined,
+            online: this.state.online || undefined,
+            working: this.state.working || undefined,
+            expMin: this.state.expMin || undefined,
+            expMax: this.state.expMax || undefined,
         }
         actionsMember.getList(filter);
         this.setState({ show: false });
@@ -72,11 +72,11 @@ class Filter extends Reflux.Component {
                         className='filter__container__range'
                         valueMin={this.state.expMin}
                         valueMax={this.state.expMax}
-                        onChange={this.change.bind(this)}
-                        nameMin='expMin' 
-                        nameMin='expMax'
+                        nameMin='expMin'
+                        nameMax='expMax'
                         optionsMin={this.state.optionsExperience}
                         optionsMax={this.state.optionsExperience}
+                        onChange={this.change.bind(this)}
                         label={tr('experience')} />
                     <div
                         className='filter__container__button'

@@ -4,7 +4,7 @@ import React from 'react';
 class Selector extends React.Component {
 
     render() {
-        const options = this.props.options||[];
+        const options = this.props.options || [];
 
         return (
             <div className={'selector ' + (this.props.className || '')}>
@@ -14,10 +14,10 @@ class Selector extends React.Component {
                         className='selector__value'
                         name={this.props.name}
                         value={this.props.value || ''}
-                        onChange={this.props.onChange}> 
+                        onChange={this.props.onChange}>
                         {
-                            options.map(option =>
-                                <option value={option.value} key={option.value}>
+                            options.map((option, index) =>
+                                <option value={option.value} key={index}>
                                     {option.label}
                                 </option>)
                         }
