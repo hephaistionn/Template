@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const index = path.resolve(__dirname, './templates/index.ejs');
+const googleapi = require('./services/googleapi');
 
 router.use('/', express.static('client/.dist'));
 
@@ -31,5 +32,17 @@ function indexRender(req, res) {
         res.render(index, { lang: 'fr' });
     }
 }
+
+router.get('/details', function * place(req, res) {
+    const placeId = 'ChIJgcpR9-gnVQ0RiXo5ewOGY3k';
+    const response = yield googleapi.details(placeId);
+    res.send(response);
+});
+
+router.get('/autocomplete/:input', function * place(req, res) {
+    const input = req.params.input;
+    const response = yield googleapi.autocomplete(input);
+    res.send(response);
+});
 
 module.exports = router;

@@ -96,6 +96,7 @@ EMAIL_KEY: process.env.EMAIL_KEY,
 EMAIL_SECRET: process.env.EMAIL_SECRET,
 CLOUD_KEY: process.env.CLOUD_KEY,
 CLOUD_SECRET: process.env.CLOUD_SECRET
+GOOGLE_API_KEY: process.env.GOOGLE_API_KEY
 ```
 ### API
 The server API is configured via this directory.
