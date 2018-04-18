@@ -8,6 +8,7 @@ export const history = createHistory()
 export const actionsMain = Reflux.createActions([
     'redirect',
     'getSession',
+    'autoloc',
     'signup',
     'signin',
     'logout',
@@ -24,7 +25,8 @@ export class StoreMain extends Reflux.Store {
         super();
         this.state = {
             session: {},
-            predictions: []
+            loc: null,
+            city: null
         };
         this.listenables = actionsMain;
     }
@@ -44,14 +46,25 @@ export class StoreMain extends Reflux.Store {
             });
     }
 
-    onSignup(email, password, username, cgu) {
+    onAutoloc() {
+        axios.get('https://geoip-db.com/json/')
+            .then(response => {
+                const city = response.data.city + ', '+ response.data.country_name;
+                const loc = [response.data.latitude, response.data.longitude];
+                this.setState({ city: city, loc: loc });
+            });
+    }
+
+    onSignup(email, password, username, cgu, city, loc) {
         if (email && username && password && cgu) {
             return axios.post('/api/members/signup', {
                 email: email,
                 password: password,
-                username: username
+                username: username,
+                city: city,
+                loc: loc
             }).then((response) => {
-                actionsMain.redirect('/verify');
+                actionsMain.redirect('/verify/');
             });
         }
     }
@@ -83,6 +96,7 @@ export class StoreMain extends Reflux.Store {
             token: token
         }).then((response) => {
             this.setState({ session: response.data });
+            actionsMain.redirect('/members');
         }); 
     }
 

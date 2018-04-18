@@ -12,7 +12,7 @@
         transform-origin: left;
         color: gray;
         text-transform: capitalize;
-
+        pointer-events: none;  
     }
 
     &__value{

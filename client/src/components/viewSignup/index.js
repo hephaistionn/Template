@@ -10,11 +10,10 @@ class ViewSignup extends Reflux.Component {
         super(props);
         this.store = StoreMain;
         this.state = { email: '', username: '', password: '', cgu: false };
+        actionsMain.autoloc();
     }
 
-    change(event) {
-        const filed = event.target.name;
-        const value = event.target.value;
+    change(value, filed) {
         this.setState({ [filed]: value });
     }
 
@@ -28,7 +27,9 @@ class ViewSignup extends Reflux.Component {
         const username = this.state.username;
         const password = this.state.password;
         const cgu = this.state.cgu;
-        actionsMain.signup(email, password, username, cgu);
+        const city = this.state.city;
+        const loc = this.state.loc;
+        actionsMain.signup(email, password, username, cgu, city, loc);
     }
 
     render() {

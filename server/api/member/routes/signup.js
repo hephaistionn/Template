@@ -11,6 +11,8 @@ function* signup(req, res) {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
+            city: req.body.city || 'Paris, France',
+            loc: req.body.loc || [47.2173, -1.5534],
             token: mongoose.Types.ObjectId().toString().substr(-5),
             tokendate: new Date(),
             verified: false,
