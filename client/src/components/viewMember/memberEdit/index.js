@@ -2,6 +2,7 @@ import './style.scss';
 import ComponentUrlWatched from './../../common/componentUrlWatched';
 import React from 'react';
 import { StoreMember, actionsMember } from '../../../stores/member';
+import { actionsMain } from '../../../stores/main';
 import { Link } from 'react-router-dom';
 import Dropzone from '../../common/dropzone';
 import Textarea from '../../common/textarea';
@@ -9,6 +10,7 @@ import Input from '../../common/input';
 import Selector from '../../common/selector';
 import Switch from '../../common/switch';
 import Tagger from '../../common/tagger';
+import InputCity from '../../common/inputCity';
 
 class ViewMemberEdit extends ComponentUrlWatched {
 
@@ -27,14 +29,17 @@ class ViewMemberEdit extends ComponentUrlWatched {
     save(event) {
         event.preventDefault();
         const id = this.state.member._id;
-        const username = this.state.member.username;
-        const avatar = this.state.member.avatar;
-        const description = this.state.member.description;
-        const experience = this.state.member.experience;
-        const working = this.state.member.working;
-        const skills = this.state.member.skills;
-        actionsMember.update(id, username, avatar, description,
-            experience, working, skills);
+        const fileds = {
+            username: this.state.member.username,
+            avatar:this.state.member.avatar,
+            description:this.state.member.description,
+            experience:this.state.member.experience,
+            working:this.state.member.working,
+            skills:this.state.member.skills,
+            city:this.state.member.city,
+            loc:this.state.member.loc
+        }
+        actionsMember.update(id, fileds);
     }
 
     changed(value, filed) {
@@ -86,8 +91,14 @@ class ViewMemberEdit extends ComponentUrlWatched {
                     tags={member.skills}
                     name='skills'
                     label={tr('skills')}
-                    onChange={this.changed.bind(this)}
-                />
+                    onChange={this.changed.bind(this)} />
+                <InputCity 
+                    className='member-edit__city'
+                    nameInput='city'
+                    nameLoc='loc'
+                    value={member.city}
+                    label={tr('city')}
+                    onChange={this.changed.bind(this)} />
                 <div
                     className='member-edit__button save'
                     aria-hidden='true'

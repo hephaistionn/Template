@@ -23,6 +23,8 @@ router.get('/articles/:articleId/edit', indexRender);
 router.get('/articles/:articleId', indexRender);
 router.get('/articles/', indexRender);
 router.get('/', indexRender);
+router.get('/geo/autocomplete/:input', autocomplete);
+router.get('/geo/location/:cityId', location);
 
 function indexRender(req, res) {
     const ext = req.headers.host.substr(-3);
@@ -33,16 +35,16 @@ function indexRender(req, res) {
     }
 }
 
-router.get('/details', function * place(req, res) {
-    const placeId = 'ChIJgcpR9-gnVQ0RiXo5ewOGY3k';
-    const response = yield googleapi.details(placeId);
-    res.send(response);
-});
-
-router.get('/autocomplete/:input', function * place(req, res) {
+function * autocomplete(req, res) {
     const input = req.params.input;
     const response = yield googleapi.autocomplete(input);
     res.send(response);
-});
+}
+
+function * location(req, res) {
+    const cityId = req.params.cityId;
+    const response = yield googleapi.getLocation(cityId);
+    res.send(response);
+}
 
 module.exports = router;

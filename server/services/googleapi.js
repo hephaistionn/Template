@@ -4,13 +4,13 @@ const baseRoute = 'https://maps.googleapis.com/maps/api/place/';
 const key = conf.GOOGLE_API_KEY
 
 const googleapi = {
-    details: function* details(placeId) {
+    getLocation: function* getLocation(placeId) {
         const response = yield axios.get(baseRoute + `details/json?key=${key}&placeid=${placeId}`);
         const city = response.data.result.formatted_address;
         const location = response.data.result.geometry.location;
         return {
             city: city,
-            location: location
+            loc: [location.lat, location.lng]
         };
     },
     autocomplete: function* autocomplete(input) {
@@ -18,7 +18,7 @@ const googleapi = {
         const result = response.data.predictions.map(prediction => {
             return {
                 city: prediction.description,
-                placeid: prediction.place_id
+                cityId: prediction.place_id
             }
         });
         return result;

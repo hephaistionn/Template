@@ -23,7 +23,8 @@ export class StoreMain extends Reflux.Store {
     constructor() {
         super();
         this.state = {
-            session: {}
+            session: {},
+            predictions: []
         };
         this.listenables = actionsMain;
     }

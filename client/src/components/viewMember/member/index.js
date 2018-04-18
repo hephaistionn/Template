@@ -34,6 +34,7 @@ class ViewMember extends ComponentUrlWatched {
         const experience = this.state.optionsExperience[member.experience|0].label;
         const working = member.working?tr('yes'):tr('no');
         const skills = member.skills;
+        const city = member.city;
 
         return (
             <div className={`member`}>
@@ -43,6 +44,7 @@ class ViewMember extends ComponentUrlWatched {
                 <div className='member__description'>{description}</div>
                 <Property className='member__property'  value={experience} label={tr('experience')}/>
                 <Property className='member__property' value={working} label={tr('working')}/>
+                <Property className='member__property' value={city} label={tr('city')}/>
                 <Tags className='member__tags' values={skills} label={tr('skills')}/>
                 <div className='member__button previous'
                     aria-hidden='true'

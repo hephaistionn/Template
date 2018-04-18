@@ -39,6 +39,11 @@ const MemberSchema = new Schema({
     level: {
         type: Number
     },
+    city: String,
+    loc: {
+        type: [Number],
+        index: '2d'
+    },
     avatar: String,
     date: { type: Date, default: Date.now }
 });
