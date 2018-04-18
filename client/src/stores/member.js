@@ -22,6 +22,13 @@ export class StoreMember extends Reflux.Store {
                 { value: 1, label: '1 ' + tr('year') },
                 { value: 2, label: '2 ' + tr('years') },
                 { value: 3, label: '3 ' + tr('years') }
+            ],
+            optionsDistance: [
+                { value: 5, label: '5 ' + tr('km') },
+                { value: 10, label: '10 ' + tr('km') },
+                { value: 50, label: '50' + tr('km') },
+                { value: 200, label: '200 ' + tr('km') },
+                { value: 1000, label: '1000' + tr('km') }
             ]
         };
         this.listenables = actionsMember;

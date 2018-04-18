@@ -23,6 +23,7 @@ function* getById(req, res) {
             qey.expMin ? condition.experience.$gt = parseInt(qey.expMin, 10) - 1 : null;
             qey.expMax ? condition.experience.$lt = parseInt(qey.expMax, 10) + 1 : null;
         }
+        qey.distance ? condition.distance = parseInt(qey.distance, 10) : null;
         const members = yield Member.find(condition, fields);
         res.send(members);
     }

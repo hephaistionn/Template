@@ -20,7 +20,8 @@ class Filter extends Reflux.Component {
             online: false,
             working: false,
             expMin: undefined,
-            expMax: undefined
+            expMax: undefined, 
+            distance: undefined
         };
     }
 
@@ -39,6 +40,7 @@ class Filter extends Reflux.Component {
             working: this.state.working || undefined,
             expMin: this.state.expMin || undefined,
             expMax: this.state.expMax || undefined,
+            distance: this.state.distance || undefined,
         }
         actionsMember.getList(filter);
         this.setState({ show: false });
@@ -78,6 +80,13 @@ class Filter extends Reflux.Component {
                         optionsMax={this.state.optionsExperience}
                         onChange={this.change.bind(this)}
                         label={tr('experience')} />
+                    <Selector 
+                        className='filter__container__range'
+                        name='distance'
+                        value={this.state.distance}
+                        label={tr('distance')}
+                        options={this.state.optionsDistance}
+                        onChange={this.change.bind(this)} />
                     <div
                         className='filter__container__button'
                         onClick={this.filter.bind(this)}>{tr('search')}</div>
