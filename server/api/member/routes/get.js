@@ -23,7 +23,19 @@ function* getById(req, res) {
             qey.expMin ? condition.experience.$gt = parseInt(qey.expMin, 10) - 1 : null;
             qey.expMax ? condition.experience.$lt = parseInt(qey.expMax, 10) + 1 : null;
         }
-        qey.distance ? condition.distance = parseInt(qey.distance, 10) : null;
+        if (qey.distance) {
+            const distance = Math.min(parseInt(qey.distance, 10), 4000);
+            const coords = [qey.coords[0], qey.coords[1]];
+            condition.loc = {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: coords
+                    },
+                    $maxDistance: distance * 1000
+                }
+            };
+        }
         const members = yield Member.find(condition, fields);
         res.send(members);
     }

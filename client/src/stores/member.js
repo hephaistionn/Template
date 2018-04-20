@@ -28,6 +28,8 @@ export class StoreMember extends Reflux.Store {
                 { value: 10, label: '10 ' + tr('km') },
                 { value: 50, label: '50' + tr('km') },
                 { value: 200, label: '200 ' + tr('km') },
+                { value: 300, label: '300 ' + tr('km') },
+                { value: 400, label: '400 ' + tr('km') },
                 { value: 1000, label: '1000' + tr('km') }
             ]
         };
@@ -44,7 +46,7 @@ export class StoreMember extends Reflux.Store {
     onGetList(params) {
         axios.get('/api/members/', {params: params})
             .then(response => {
-                this.setState({ members: response.data.concat(response.data) });
+                this.setState({ members: response.data });
             });
     }
 

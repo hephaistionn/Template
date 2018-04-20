@@ -5,9 +5,7 @@ import Selector from './../selector'
 class Range extends React.Component {
 
 
-    onChange(event) {
-        const name = event.target.name;
-        const value = event.target.value;
+    onChange(value, name) {
         this.props.onChange(value, name);
     }
 

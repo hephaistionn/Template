@@ -3,6 +3,12 @@ import React from 'react';
 
 class Selector extends React.Component {
 
+    onChange(event) {
+        const name = this.props.name;
+        const value = event.target.value;
+        this.props.onChange(value, name);
+    }
+
     render() {
         const options = this.props.options || [];
 
@@ -14,7 +20,7 @@ class Selector extends React.Component {
                         className='selector__value'
                         name={this.props.name}
                         value={this.props.value || ''}
-                        onChange={this.props.onChange}>
+                        onChange={this.onChange.bind(this)}>
                         {
                             options.map((option, index) =>
                                 <option value={option.value} key={index}>

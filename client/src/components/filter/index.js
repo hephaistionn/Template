@@ -2,6 +2,7 @@ import './style.scss';
 import Reflux from 'reflux';
 import React from 'react';
 import { StoreMember, actionsMember } from '../../stores/member';
+import { StoreMain } from '../../stores/main';
 
 import Input from './../common/input';
 import Switch from './../common/switch';
@@ -13,7 +14,7 @@ class Filter extends Reflux.Component {
 
     constructor(props) {
         super(props);
-        this.store = StoreMember;
+        this.stores = [StoreMember, StoreMain];
         this.state = {
             show: false,
             skills: '',
@@ -21,7 +22,7 @@ class Filter extends Reflux.Component {
             working: false,
             expMin: undefined,
             expMax: undefined, 
-            distance: undefined
+            distance: 50
         };
     }
 
@@ -41,6 +42,7 @@ class Filter extends Reflux.Component {
             expMin: this.state.expMin || undefined,
             expMax: this.state.expMax || undefined,
             distance: this.state.distance || undefined,
+            coords: this.state.session.loc
         }
         actionsMember.getList(filter);
         this.setState({ show: false });
