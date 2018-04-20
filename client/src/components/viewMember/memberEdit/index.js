@@ -19,7 +19,7 @@ class ViewMemberEdit extends ComponentUrlWatched {
         this.store = StoreMember;
     }
 
-    urlUpdated() {
+    onUrlChange() {
         const memberId = this.props.match.params.memberId;
         if (memberId) {
             actionsMember.get(memberId);

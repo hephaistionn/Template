@@ -8,9 +8,10 @@ function* getById(req, res) {
     };
 
     if (req.params.id) {
+        const qey = req.query;
         if (req.params.id.length < 3) return;
         const query = { _id: req.params.id };
-        const member = yield Member.findOne(query, fields);
+        const member = yield Member.findOne(query, fields)
         res.send(member);
     } else {
         const qey = req.query;

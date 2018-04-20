@@ -14,7 +14,7 @@ class ViewMember extends ComponentUrlWatched {
         this.stores = [StoreMember, StoreMain];
     }
 
-    urlUpdated(params) {
+    onUrlChange(params) {
         const memberId = params.memberId;
         actionsMember.get(memberId);
     }

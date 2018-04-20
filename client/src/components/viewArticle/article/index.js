@@ -14,7 +14,7 @@ class ViewArticle extends ComponentUrlWatched {
         super(props);
         this.stores = [StoreArticle, StoreMain];
     }
-    urlUpdated(params) {
+    onUrlChange(params) {
         const articleId = params.articleId;
         actionsArticle.get(articleId);
     }

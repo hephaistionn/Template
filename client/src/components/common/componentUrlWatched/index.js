@@ -3,24 +3,25 @@ import Reflux from 'reflux';
 class ComponentUrlWatched extends Reflux.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.scrollY = 0;
+        this.scollDown = false;
     }
 
     componentDidMount() {
-
         const params = this.props.match ? this.props.match.params : {};
-        this.urlUpdated(params);
+        this.onUrlChange(params);
     }
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.location) {
-            return this.urlUpdated();
+            return this.onUrlChange();
         }
 
         const nextPath = nextProps.location.pathname;
         const previousPath = this.props.location.pathname;
         if (previousPath !== nextPath /*&& this.props.match.url === nextPath.slice(0, -1)*/) {
-            this.urlUpdated(nextProps.match.params);
+            this.onUrlChange(nextProps.match.params);
         }
     }
 
@@ -29,7 +30,20 @@ class ComponentUrlWatched extends Reflux.Component {
         return this.props.location.pathname.split('/')[2];
     }
 
-    urlUpdated() {
+    onScoll(event) {
+        const y = event.currentTarget.parentElement.getClientRects()[0].top;
+        if (this.scollDown && y === this.scrollY) {
+            this.onScrollBottom();
+        }
+        this.scollDown = y < this.scrollY;
+        this.scrollY = y;
+    }
+
+    onScrollBottom() {
+
+    }
+
+    onUrlChange() {
 
     }
 }

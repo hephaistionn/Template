@@ -12,7 +12,7 @@ class ViewArticleEdit extends ComponentUrlWatched {
         this.store = StoreArticle;
     }
 
-    urlUpdated() {
+    onUrlChange() {
         actionsArticle.clear();
         const articleId = this.props.match.params.articleId;
         if (articleId) {

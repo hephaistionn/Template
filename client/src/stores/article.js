@@ -5,6 +5,7 @@ import { actionsMain } from './main';
 
 export const actionsArticle = Reflux.createActions([
     'get',
+    'getList',
     'clear',
     'change',
     'update',
@@ -23,17 +24,28 @@ export class StoreArticle extends Reflux.Store {
     }
 
     onGet(articleId) {
-        this.setState({ article: {}});
-        axios.get('/api/articles/' + (articleId || ''))
+        this.setState({ article: {} });
+        axios.get('/api/articles/' + articleId)
             .then((response) => {
-                articleId ?
-                    this.setState({ article: response.data }) :
-                    this.setState({ articles: response.data });
+                this.setState({ article: response.data });
             });
     }
 
-    onClear()  {
-        this.setState({ article: {}});
+    onGetList(page) {
+        this.setState({ article: {} });
+        axios.get('/api/articles/?page=' + page)
+            .then((response) => {
+                if(page===1) {
+                    this.setState({ articles: response.data })
+                }else{
+                    response.data.docs = [].concat(this.state.articles.docs).concat(response.data.docs);
+                    this.setState({ articles: response.data })
+                }
+            });
+    }
+
+    onClear() {
+        this.setState({ article: {} });
     }
 
     onChange(field, value) {

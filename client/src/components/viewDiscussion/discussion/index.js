@@ -16,7 +16,7 @@ class Discussion extends ComponentUrlWatched {
         this.state = { message: '' };
     }
 
-    urlUpdated(params) {
+    onUrlChange(params) {
         const memberId = params.memberId;
         actionsMessage.get(memberId);
         actionsMessage.updated = ()=>{

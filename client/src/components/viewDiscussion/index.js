@@ -14,7 +14,7 @@ class ViewDiscussion extends ComponentUrlWatched {
         this.stores = [StoreMessage];
     }
 
-    urlUpdated(params) {
+    onUrlChange(params) {
         actionsMessage.get();
     }
 
