@@ -43,10 +43,15 @@ export class StoreMember extends Reflux.Store {
             });
     }
 
-    onGetList(params) {
-        axios.get('/api/members/', {params: params})
+    onGetList(params, page) {
+        axios.get('/api/members/?page=' + (page || 1), { params: params })
             .then(response => {
-                this.setState({ members: response.data });
+                if (page === 1) {
+                    this.setState({ members: response.data });
+                } else if(this.state.members.docs) {
+                    response.data.docs = [].concat(this.state.members.docs).concat(response.data.docs);
+                    this.setState({ members: response.data })
+                }
             });
     }
 
@@ -83,5 +88,5 @@ export class StoreMember extends Reflux.Store {
             this.setState({ 'member': member });
             return member;
         }
-    }   
+    }
 }

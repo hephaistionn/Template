@@ -14,12 +14,14 @@ class ViewMembers extends Reflux.Component {
     }
 
     componentDidMount() {
-        actionsMember.getList();
+        actionsMember.getList(null, 1);
     }
 
     render() {
-        const members = this.state.members;
+        const members = this.state.members.docs;
         const session = this.state.session;
+
+        if (!members) return <div />
 
         const items = members.filter(member => member._id !== session._id)
             .map((member, index) => <CardMember

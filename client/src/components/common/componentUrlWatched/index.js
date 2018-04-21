@@ -15,7 +15,7 @@ class ComponentUrlWatched extends Reflux.Component {
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.location) {
-            return this.onUrlChange();
+            this.onUrlChange();
         }
 
         const nextPath = nextProps.location.pathname;

@@ -15,10 +15,19 @@ function* getById(req, res) {
         res.send(member);
     } else {
         const qey = req.query;
+        const perpage = 100;
+        const page = parseInt(qey.page||1, 10);
+        const count = yield Member.count();
         const condition = {}
-        qey.skills ? condition.skills = { $all: qey.skills } : null;
-        qey.online ? condition.online = qey.online : null;
-        qey.working ? condition.working = qey.working : null;
+        if(qey.skills) {
+            condition.skills = { $all: qey.skills };
+        }
+        if(qey.online) {
+            condition.online = qey.online;
+        }
+        if(qey.working) {
+            condition.working = qey.working;
+        }
         if (qey.expMin || qey.expMax) {
             condition.experience = {};
             qey.expMin ? condition.experience.$gt = parseInt(qey.expMin, 10) - 1 : null;
@@ -37,8 +46,16 @@ function* getById(req, res) {
                 }
             };
         }
-        const members = yield Member.find(condition, fields);
-        res.send(members);
+        const members = yield Member.find(condition, fields)
+        .skip((page || 1) * perpage - perpage)
+        .limit(perpage);
+        res.send({
+            currentPage: page,
+            totalPages: Math.ceil(count/perpage),
+            total: count,
+            limit: perpage,
+            docs: members
+        });
     }
 
 }

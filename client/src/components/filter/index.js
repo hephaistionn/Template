@@ -44,7 +44,7 @@ class Filter extends Reflux.Component {
             distance: this.state.distance || undefined,
             coords: this.state.session.loc
         }
-        actionsMember.getList(filter);
+        actionsMember.getList(filter, 1);
         this.setState({ show: false });
     }
 

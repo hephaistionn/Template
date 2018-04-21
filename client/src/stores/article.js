@@ -33,11 +33,11 @@ export class StoreArticle extends Reflux.Store {
 
     onGetList(page) {
         this.setState({ article: {} });
-        axios.get('/api/articles/?page=' + page)
+        axios.get('/api/articles/?page=' + page || 1)
             .then((response) => {
-                if(page===1) {
+                if (page === 1) {
                     this.setState({ articles: response.data })
-                }else{
+                } else {
                     response.data.docs = [].concat(this.state.articles.docs).concat(response.data.docs);
                     this.setState({ articles: response.data })
                 }
